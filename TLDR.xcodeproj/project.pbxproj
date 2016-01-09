@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A924DE91E956F100E9747CF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		ED269C311C414B1400BED358 /* TLDRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C301C414B1400BED358 /* TLDRTests.swift */; };
+		ED269C431C41870300BED358 /* CommandRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C421C41870300BED358 /* CommandRealm.swift */; };
 		ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3531C3FA76500613214 /* MarkdownParser.swift */; };
 		EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB081891C3F70E8002BB783 /* AppDelegate.swift */; };
 		EDB0818C1C3F70E8002BB783 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0818B1C3F70E8002BB783 /* ViewController.swift */; };
@@ -15,10 +18,27 @@
 		EDB081941C3F70E8002BB783 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB081921C3F70E8002BB783 /* LaunchScreen.storyboard */; };
 		EDB0819C1C3F8D6A002BB783 /* CommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */; };
 		EDB0819E1C3F9FD2002BB783 /* tldr.json in Resources */ = {isa = PBXBuildFile; fileRef = EDB0819D1C3F9FD2002BB783 /* tldr.json */; };
-		EDB0838C1C3FA05A002BB783 /* index.json in Resources */ = {isa = PBXBuildFile; fileRef = EDB082681C3FA05A002BB783 /* index.json */; };
+		EDF72B471C41493A00BF5067 /* tldr.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EDF72B461C41493A00BF5067 /* tldr.bundle */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		ED269C331C414B1400BED358 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDB0817E1C3F70E8002BB783 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDB081851C3F70E8002BB783;
+			remoteInfo = TLDR;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC706F10FDA7F86B0D3249C8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E579B7D4846F39B201D66542 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		ED269C2E1C414B1400BED358 /* TLDRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLDRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED269C301C414B1400BED358 /* TLDRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRTests.swift; sourceTree = "<group>"; };
+		ED269C321C414B1400BED358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED269C421C41870300BED358 /* CommandRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandRealm.swift; sourceTree = "<group>"; };
 		ED4EC3531C3FA76500613214 /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		EDB081861C3F70E8002BB783 /* TLDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB081891C3F70E8002BB783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,313 +49,62 @@
 		EDB081951C3F70E8002BB783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandHelper.swift; sourceTree = "<group>"; };
 		EDB0819D1C3F9FD2002BB783 /* tldr.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tldr.json; sourceTree = "<group>"; };
-		EDB081A11C3FA05A002BB783 /* 7za.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = 7za.md; sourceTree = "<group>"; };
-		EDB081A21C3FA05A002BB783 /* ab.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ab.md; sourceTree = "<group>"; };
-		EDB081A31C3FA05A002BB783 /* ack.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ack.md; sourceTree = "<group>"; };
-		EDB081A41C3FA05A002BB783 /* adb.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = adb.md; sourceTree = "<group>"; };
-		EDB081A51C3FA05A002BB783 /* ag.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ag.md; sourceTree = "<group>"; };
-		EDB081A61C3FA05A002BB783 /* alias.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = alias.md; sourceTree = "<group>"; };
-		EDB081A71C3FA05A002BB783 /* apropos.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = apropos.md; sourceTree = "<group>"; };
-		EDB081A81C3FA05A002BB783 /* ar.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ar.md; sourceTree = "<group>"; };
-		EDB081A91C3FA05A002BB783 /* awk.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = awk.md; sourceTree = "<group>"; };
-		EDB081AA1C3FA05A002BB783 /* bash.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = bash.md; sourceTree = "<group>"; };
-		EDB081AB1C3FA05A002BB783 /* bashmarks.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = bashmarks.md; sourceTree = "<group>"; };
-		EDB081AC1C3FA05A002BB783 /* bc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = bc.md; sourceTree = "<group>"; };
-		EDB081AD1C3FA05A002BB783 /* bundle.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = bundle.md; sourceTree = "<group>"; };
-		EDB081AE1C3FA05A002BB783 /* cal.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = cal.md; sourceTree = "<group>"; };
-		EDB081AF1C3FA05A002BB783 /* calibre-server.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "calibre-server.md"; sourceTree = "<group>"; };
-		EDB081B01C3FA05A002BB783 /* calibredb.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = calibredb.md; sourceTree = "<group>"; };
-		EDB081B11C3FA05A002BB783 /* cat.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = cat.md; sourceTree = "<group>"; };
-		EDB081B21C3FA05A002BB783 /* cd.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = cd.md; sourceTree = "<group>"; };
-		EDB081B31C3FA05A002BB783 /* chmod.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = chmod.md; sourceTree = "<group>"; };
-		EDB081B41C3FA05A002BB783 /* chown.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = chown.md; sourceTree = "<group>"; };
-		EDB081B51C3FA05A002BB783 /* chsh.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = chsh.md; sourceTree = "<group>"; };
-		EDB081B61C3FA05A002BB783 /* cksum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = cksum.md; sourceTree = "<group>"; };
-		EDB081B71C3FA05A002BB783 /* clang.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = clang.md; sourceTree = "<group>"; };
-		EDB081B81C3FA05A002BB783 /* comm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = comm.md; sourceTree = "<group>"; };
-		EDB081B91C3FA05A002BB783 /* convert.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = convert.md; sourceTree = "<group>"; };
-		EDB081BA1C3FA05A002BB783 /* cordova.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = cordova.md; sourceTree = "<group>"; };
-		EDB081BB1C3FA05A002BB783 /* cowsay.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = cowsay.md; sourceTree = "<group>"; };
-		EDB081BC1C3FA05A002BB783 /* cp.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = cp.md; sourceTree = "<group>"; };
-		EDB081BD1C3FA05A002BB783 /* curl.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = curl.md; sourceTree = "<group>"; };
-		EDB081BE1C3FA05A002BB783 /* cut.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = cut.md; sourceTree = "<group>"; };
-		EDB081BF1C3FA05A002BB783 /* date.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = date.md; sourceTree = "<group>"; };
-		EDB081C01C3FA05A002BB783 /* deluser.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = deluser.md; sourceTree = "<group>"; };
-		EDB081C11C3FA05A002BB783 /* df.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = df.md; sourceTree = "<group>"; };
-		EDB081C21C3FA05A002BB783 /* diff.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = diff.md; sourceTree = "<group>"; };
-		EDB081C31C3FA05A002BB783 /* dig.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = dig.md; sourceTree = "<group>"; };
-		EDB081C41C3FA05A002BB783 /* docker.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = docker.md; sourceTree = "<group>"; };
-		EDB081C51C3FA05A002BB783 /* drush.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = drush.md; sourceTree = "<group>"; };
-		EDB081C61C3FA05A002BB783 /* ebook-convert.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "ebook-convert.md"; sourceTree = "<group>"; };
-		EDB081C71C3FA05A002BB783 /* echo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = echo.md; sourceTree = "<group>"; };
-		EDB081C81C3FA05A002BB783 /* electrum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = electrum.md; sourceTree = "<group>"; };
-		EDB081C91C3FA05A002BB783 /* emacs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = emacs.md; sourceTree = "<group>"; };
-		EDB081CA1C3FA05A002BB783 /* enca.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = enca.md; sourceTree = "<group>"; };
-		EDB081CB1C3FA05A002BB783 /* env.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = env.md; sourceTree = "<group>"; };
-		EDB081CC1C3FA05A002BB783 /* exiftool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = exiftool.md; sourceTree = "<group>"; };
-		EDB081CD1C3FA05A002BB783 /* fdupes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = fdupes.md; sourceTree = "<group>"; };
-		EDB081CE1C3FA05A002BB783 /* ffmpeg.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ffmpeg.md; sourceTree = "<group>"; };
-		EDB081CF1C3FA05A002BB783 /* file.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = file.md; sourceTree = "<group>"; };
-		EDB081D01C3FA05A002BB783 /* find.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = find.md; sourceTree = "<group>"; };
-		EDB081D11C3FA05A002BB783 /* for.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = for.md; sourceTree = "<group>"; };
-		EDB081D21C3FA05A002BB783 /* fortune.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = fortune.md; sourceTree = "<group>"; };
-		EDB081D31C3FA05A002BB783 /* fswebcam.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = fswebcam.md; sourceTree = "<group>"; };
-		EDB081D41C3FA05A002BB783 /* gcc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = gcc.md; sourceTree = "<group>"; };
-		EDB081D51C3FA05A002BB783 /* gem.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = gem.md; sourceTree = "<group>"; };
-		EDB081D61C3FA05A002BB783 /* gifsicle.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = gifsicle.md; sourceTree = "<group>"; };
-		EDB081D71C3FA05A002BB783 /* git-add.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-add.md"; sourceTree = "<group>"; };
-		EDB081D81C3FA05A002BB783 /* git-blame.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-blame.md"; sourceTree = "<group>"; };
-		EDB081D91C3FA05A002BB783 /* git-branch.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-branch.md"; sourceTree = "<group>"; };
-		EDB081DA1C3FA05A002BB783 /* git-checkout.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-checkout.md"; sourceTree = "<group>"; };
-		EDB081DB1C3FA05A002BB783 /* git-clone.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-clone.md"; sourceTree = "<group>"; };
-		EDB081DC1C3FA05A002BB783 /* git-commit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-commit.md"; sourceTree = "<group>"; };
-		EDB081DD1C3FA05A002BB783 /* git-config.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-config.md"; sourceTree = "<group>"; };
-		EDB081DE1C3FA05A002BB783 /* git-diff.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-diff.md"; sourceTree = "<group>"; };
-		EDB081DF1C3FA05A002BB783 /* git-init.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-init.md"; sourceTree = "<group>"; };
-		EDB081E01C3FA05A002BB783 /* git-log.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-log.md"; sourceTree = "<group>"; };
-		EDB081E11C3FA05A002BB783 /* git-merge.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-merge.md"; sourceTree = "<group>"; };
-		EDB081E21C3FA05A002BB783 /* git-mv.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-mv.md"; sourceTree = "<group>"; };
-		EDB081E31C3FA05A002BB783 /* git-pull.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-pull.md"; sourceTree = "<group>"; };
-		EDB081E41C3FA05A002BB783 /* git-push.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-push.md"; sourceTree = "<group>"; };
-		EDB081E51C3FA05A002BB783 /* git-remote.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-remote.md"; sourceTree = "<group>"; };
-		EDB081E61C3FA05A002BB783 /* git-rm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-rm.md"; sourceTree = "<group>"; };
-		EDB081E71C3FA05A002BB783 /* git-stash.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-stash.md"; sourceTree = "<group>"; };
-		EDB081E81C3FA05A002BB783 /* git-status.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-status.md"; sourceTree = "<group>"; };
-		EDB081E91C3FA05A002BB783 /* git-svn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-svn.md"; sourceTree = "<group>"; };
-		EDB081EA1C3FA05A002BB783 /* git-tag.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "git-tag.md"; sourceTree = "<group>"; };
-		EDB081EB1C3FA05A002BB783 /* git.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = git.md; sourceTree = "<group>"; };
-		EDB081EC1C3FA05A002BB783 /* gpg.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = gpg.md; sourceTree = "<group>"; };
-		EDB081ED1C3FA05A002BB783 /* gradle.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = gradle.md; sourceTree = "<group>"; };
-		EDB081EE1C3FA05A002BB783 /* grep.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = grep.md; sourceTree = "<group>"; };
-		EDB081EF1C3FA05A002BB783 /* gzip.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = gzip.md; sourceTree = "<group>"; };
-		EDB081F01C3FA05A002BB783 /* handbrakecli.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = handbrakecli.md; sourceTree = "<group>"; };
-		EDB081F11C3FA05A002BB783 /* haxelib.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = haxelib.md; sourceTree = "<group>"; };
-		EDB081F21C3FA05A002BB783 /* history.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = history.md; sourceTree = "<group>"; };
-		EDB081F31C3FA05A002BB783 /* host.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = host.md; sourceTree = "<group>"; };
-		EDB081F41C3FA05A002BB783 /* iconv.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = iconv.md; sourceTree = "<group>"; };
-		EDB081F51C3FA05A002BB783 /* if.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = if.md; sourceTree = "<group>"; };
-		EDB081F61C3FA05A002BB783 /* ifconfig.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ifconfig.md; sourceTree = "<group>"; };
-		EDB081F71C3FA05A002BB783 /* ionice.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ionice.md; sourceTree = "<group>"; };
-		EDB081F81C3FA05A002BB783 /* ioping.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ioping.md; sourceTree = "<group>"; };
-		EDB081F91C3FA05A002BB783 /* ipcs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ipcs.md; sourceTree = "<group>"; };
-		EDB081FA1C3FA05A002BB783 /* java.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = java.md; sourceTree = "<group>"; };
-		EDB081FB1C3FA05A002BB783 /* javac.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = javac.md; sourceTree = "<group>"; };
-		EDB081FC1C3FA05A002BB783 /* kill.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = kill.md; sourceTree = "<group>"; };
-		EDB081FD1C3FA05A002BB783 /* last.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = last.md; sourceTree = "<group>"; };
-		EDB081FE1C3FA05A002BB783 /* less.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = less.md; sourceTree = "<group>"; };
-		EDB081FF1C3FA05A002BB783 /* ln.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ln.md; sourceTree = "<group>"; };
-		EDB082001C3FA05A002BB783 /* lp.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = lp.md; sourceTree = "<group>"; };
-		EDB082011C3FA05A002BB783 /* lpstat.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = lpstat.md; sourceTree = "<group>"; };
-		EDB082021C3FA05A002BB783 /* ls.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ls.md; sourceTree = "<group>"; };
-		EDB082031C3FA05A002BB783 /* lsof.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = lsof.md; sourceTree = "<group>"; };
-		EDB082041C3FA05A002BB783 /* mailx.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mailx.md; sourceTree = "<group>"; };
-		EDB082051C3FA05A002BB783 /* make.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = make.md; sourceTree = "<group>"; };
-		EDB082061C3FA05A002BB783 /* man.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = man.md; sourceTree = "<group>"; };
-		EDB082071C3FA05A002BB783 /* mkdir.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mkdir.md; sourceTree = "<group>"; };
-		EDB082081C3FA05A002BB783 /* mocha.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mocha.md; sourceTree = "<group>"; };
-		EDB082091C3FA05A002BB783 /* more.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = more.md; sourceTree = "<group>"; };
-		EDB0820A1C3FA05A002BB783 /* mount.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mount.md; sourceTree = "<group>"; };
-		EDB0820B1C3FA05A002BB783 /* mp4box.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mp4box.md; sourceTree = "<group>"; };
-		EDB0820C1C3FA05A002BB783 /* mtr.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mtr.md; sourceTree = "<group>"; };
-		EDB0820D1C3FA05A002BB783 /* mv.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mv.md; sourceTree = "<group>"; };
-		EDB0820E1C3FA05A002BB783 /* mysql.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mysql.md; sourceTree = "<group>"; };
-		EDB0820F1C3FA05A002BB783 /* mysqldump.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mysqldump.md; sourceTree = "<group>"; };
-		EDB082101C3FA05A002BB783 /* nc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = nc.md; sourceTree = "<group>"; };
-		EDB082111C3FA05A002BB783 /* nginx.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = nginx.md; sourceTree = "<group>"; };
-		EDB082121C3FA05A002BB783 /* nice.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = nice.md; sourceTree = "<group>"; };
-		EDB082131C3FA05A002BB783 /* nmap.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = nmap.md; sourceTree = "<group>"; };
-		EDB082141C3FA05A002BB783 /* node.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = node.md; sourceTree = "<group>"; };
-		EDB082151C3FA05A002BB783 /* nohup.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = nohup.md; sourceTree = "<group>"; };
-		EDB082161C3FA05A002BB783 /* npm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = npm.md; sourceTree = "<group>"; };
-		EDB082171C3FA05A002BB783 /* nvm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = nvm.md; sourceTree = "<group>"; };
-		EDB082181C3FA05A002BB783 /* pandoc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pandoc.md; sourceTree = "<group>"; };
-		EDB082191C3FA05A002BB783 /* parallel.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = parallel.md; sourceTree = "<group>"; };
-		EDB0821A1C3FA05A002BB783 /* pass.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pass.md; sourceTree = "<group>"; };
-		EDB0821B1C3FA05A002BB783 /* passwd.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = passwd.md; sourceTree = "<group>"; };
-		EDB0821C1C3FA05A002BB783 /* paste.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = paste.md; sourceTree = "<group>"; };
-		EDB0821D1C3FA05A002BB783 /* patch.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = patch.md; sourceTree = "<group>"; };
-		EDB0821E1C3FA05A002BB783 /* pgrep.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pgrep.md; sourceTree = "<group>"; };
-		EDB0821F1C3FA05A002BB783 /* php.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = php.md; sourceTree = "<group>"; };
-		EDB082201C3FA05A002BB783 /* phpunit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = phpunit.md; sourceTree = "<group>"; };
-		EDB082211C3FA05A002BB783 /* ping.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ping.md; sourceTree = "<group>"; };
-		EDB082221C3FA05A002BB783 /* pip.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pip.md; sourceTree = "<group>"; };
-		EDB082231C3FA05A002BB783 /* pkill.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pkill.md; sourceTree = "<group>"; };
-		EDB082241C3FA05A002BB783 /* play.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = play.md; sourceTree = "<group>"; };
-		EDB082251C3FA05A002BB783 /* printf.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = printf.md; sourceTree = "<group>"; };
-		EDB082261C3FA05A002BB783 /* ps.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ps.md; sourceTree = "<group>"; };
-		EDB082271C3FA05A002BB783 /* psql.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = psql.md; sourceTree = "<group>"; };
-		EDB082281C3FA05A002BB783 /* pushd.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pushd.md; sourceTree = "<group>"; };
-		EDB082291C3FA05A002BB783 /* pwd.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pwd.md; sourceTree = "<group>"; };
-		EDB0822A1C3FA05A002BB783 /* python.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = python.md; sourceTree = "<group>"; };
-		EDB0822B1C3FA05A002BB783 /* redis-cli.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "redis-cli.md"; sourceTree = "<group>"; };
-		EDB0822C1C3FA05A002BB783 /* rename.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = rename.md; sourceTree = "<group>"; };
-		EDB0822D1C3FA05A002BB783 /* renice.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = renice.md; sourceTree = "<group>"; };
-		EDB0822E1C3FA05A002BB783 /* rm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = rm.md; sourceTree = "<group>"; };
-		EDB0822F1C3FA05A002BB783 /* rmdir.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = rmdir.md; sourceTree = "<group>"; };
-		EDB082301C3FA05A002BB783 /* rsync.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = rsync.md; sourceTree = "<group>"; };
-		EDB082311C3FA05A002BB783 /* salt-call.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "salt-call.md"; sourceTree = "<group>"; };
-		EDB082321C3FA05A002BB783 /* salt-key.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "salt-key.md"; sourceTree = "<group>"; };
-		EDB082331C3FA05A002BB783 /* salt-run.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "salt-run.md"; sourceTree = "<group>"; };
-		EDB082341C3FA05A002BB783 /* salt.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = salt.md; sourceTree = "<group>"; };
-		EDB082351C3FA05A002BB783 /* sass.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sass.md; sourceTree = "<group>"; };
-		EDB082361C3FA05A002BB783 /* scp.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = scp.md; sourceTree = "<group>"; };
-		EDB082371C3FA05A002BB783 /* screen.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = screen.md; sourceTree = "<group>"; };
-		EDB082381C3FA05A002BB783 /* sed.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sed.md; sourceTree = "<group>"; };
-		EDB082391C3FA05A002BB783 /* sl.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sl.md; sourceTree = "<group>"; };
-		EDB0823A1C3FA05A002BB783 /* sort.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sort.md; sourceTree = "<group>"; };
-		EDB0823B1C3FA05A002BB783 /* sox.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sox.md; sourceTree = "<group>"; };
-		EDB0823C1C3FA05A002BB783 /* split.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = split.md; sourceTree = "<group>"; };
-		EDB0823D1C3FA05A002BB783 /* srm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = srm.md; sourceTree = "<group>"; };
-		EDB0823E1C3FA05A002BB783 /* ssh.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ssh.md; sourceTree = "<group>"; };
-		EDB0823F1C3FA05A002BB783 /* sshfs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sshfs.md; sourceTree = "<group>"; };
-		EDB082401C3FA05A002BB783 /* strings.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = strings.md; sourceTree = "<group>"; };
-		EDB082411C3FA05A002BB783 /* su.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = su.md; sourceTree = "<group>"; };
-		EDB082421C3FA05A002BB783 /* sudo.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sudo.md; sourceTree = "<group>"; };
-		EDB082431C3FA05A002BB783 /* svn.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = svn.md; sourceTree = "<group>"; };
-		EDB082441C3FA05A002BB783 /* tac.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tac.md; sourceTree = "<group>"; };
-		EDB082451C3FA05A002BB783 /* tail.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tail.md; sourceTree = "<group>"; };
-		EDB082461C3FA05A002BB783 /* tar.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tar.md; sourceTree = "<group>"; };
-		EDB082471C3FA05A002BB783 /* tcpdump.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tcpdump.md; sourceTree = "<group>"; };
-		EDB082481C3FA05A002BB783 /* tee.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tee.md; sourceTree = "<group>"; };
-		EDB082491C3FA05A002BB783 /* telnet.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = telnet.md; sourceTree = "<group>"; };
-		EDB0824A1C3FA05A002BB783 /* test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
-		EDB0824B1C3FA05A002BB783 /* time.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = time.md; sourceTree = "<group>"; };
-		EDB0824C1C3FA05A002BB783 /* tldr.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tldr.md; sourceTree = "<group>"; };
-		EDB0824D1C3FA05A002BB783 /* tmux.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tmux.md; sourceTree = "<group>"; };
-		EDB0824E1C3FA05A002BB783 /* touch.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = touch.md; sourceTree = "<group>"; };
-		EDB0824F1C3FA05A002BB783 /* tr.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tr.md; sourceTree = "<group>"; };
-		EDB082501C3FA05A002BB783 /* traceroute.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = traceroute.md; sourceTree = "<group>"; };
-		EDB082511C3FA05A002BB783 /* transcode.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = transcode.md; sourceTree = "<group>"; };
-		EDB082521C3FA05A002BB783 /* tree.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tree.md; sourceTree = "<group>"; };
-		EDB082531C3FA05A002BB783 /* ufraw-batch.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "ufraw-batch.md"; sourceTree = "<group>"; };
-		EDB082541C3FA05A002BB783 /* umount.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = umount.md; sourceTree = "<group>"; };
-		EDB082551C3FA05A002BB783 /* uname.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = uname.md; sourceTree = "<group>"; };
-		EDB082561C3FA05A002BB783 /* unrar.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = unrar.md; sourceTree = "<group>"; };
-		EDB082571C3FA05A002BB783 /* unzip.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = unzip.md; sourceTree = "<group>"; };
-		EDB082581C3FA05A002BB783 /* uptime.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = uptime.md; sourceTree = "<group>"; };
-		EDB082591C3FA05A002BB783 /* vagrant.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = vagrant.md; sourceTree = "<group>"; };
-		EDB0825A1C3FA05A002BB783 /* vim.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = vim.md; sourceTree = "<group>"; };
-		EDB0825B1C3FA05A002BB783 /* vimtutor.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = vimtutor.md; sourceTree = "<group>"; };
-		EDB0825C1C3FA05A002BB783 /* virtualenv.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = virtualenv.md; sourceTree = "<group>"; };
-		EDB0825D1C3FA05A002BB783 /* w.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = w.md; sourceTree = "<group>"; };
-		EDB0825E1C3FA05A002BB783 /* wc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = wc.md; sourceTree = "<group>"; };
-		EDB0825F1C3FA05A002BB783 /* wget.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = wget.md; sourceTree = "<group>"; };
-		EDB082601C3FA05A002BB783 /* which.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = which.md; sourceTree = "<group>"; };
-		EDB082611C3FA05A002BB783 /* while.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = while.md; sourceTree = "<group>"; };
-		EDB082621C3FA05A002BB783 /* whoami.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = whoami.md; sourceTree = "<group>"; };
-		EDB082631C3FA05A002BB783 /* yes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = yes.md; sourceTree = "<group>"; };
-		EDB082641C3FA05A002BB783 /* zbarimg.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = zbarimg.md; sourceTree = "<group>"; };
-		EDB082651C3FA05A002BB783 /* zfs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = zfs.md; sourceTree = "<group>"; };
-		EDB082661C3FA05A002BB783 /* zip.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = zip.md; sourceTree = "<group>"; };
-		EDB082671C3FA05A002BB783 /* zpool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = zpool.md; sourceTree = "<group>"; };
-		EDB082681C3FA05A002BB783 /* index.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = index.json; sourceTree = "<group>"; };
-		EDB0826A1C3FA05A002BB783 /* apt-cache.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "apt-cache.md"; sourceTree = "<group>"; };
-		EDB0826B1C3FA05A002BB783 /* apt-get.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "apt-get.md"; sourceTree = "<group>"; };
-		EDB0826C1C3FA05A002BB783 /* aptitude.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = aptitude.md; sourceTree = "<group>"; };
-		EDB0826D1C3FA05A002BB783 /* base64.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = base64.md; sourceTree = "<group>"; };
-		EDB0826E1C3FA05A002BB783 /* chroot.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = chroot.md; sourceTree = "<group>"; };
-		EDB0826F1C3FA05A002BB783 /* dd.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = dd.md; sourceTree = "<group>"; };
-		EDB082701C3FA05A002BB783 /* dnf.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = dnf.md; sourceTree = "<group>"; };
-		EDB082711C3FA05A002BB783 /* dpkg-query.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "dpkg-query.md"; sourceTree = "<group>"; };
-		EDB082721C3FA05A002BB783 /* dpkg.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = dpkg.md; sourceTree = "<group>"; };
-		EDB082731C3FA05A002BB783 /* du.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = du.md; sourceTree = "<group>"; };
-		EDB082741C3FA05A002BB783 /* emerge.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = emerge.md; sourceTree = "<group>"; };
-		EDB082751C3FA05A002BB783 /* findmnt.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = findmnt.md; sourceTree = "<group>"; };
-		EDB082761C3FA05A002BB783 /* firewall-cmd.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "firewall-cmd.md"; sourceTree = "<group>"; };
-		EDB082771C3FA05A002BB783 /* free.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = free.md; sourceTree = "<group>"; };
-		EDB082781C3FA05A002BB783 /* head.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = head.md; sourceTree = "<group>"; };
-		EDB082791C3FA05A002BB783 /* hostname.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = hostname.md; sourceTree = "<group>"; };
-		EDB0827A1C3FA05A002BB783 /* iostat.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = iostat.md; sourceTree = "<group>"; };
-		EDB0827B1C3FA05A002BB783 /* ip.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ip.md; sourceTree = "<group>"; };
-		EDB0827C1C3FA05A002BB783 /* jobs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = jobs.md; sourceTree = "<group>"; };
-		EDB0827D1C3FA05A002BB783 /* journalctl.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = journalctl.md; sourceTree = "<group>"; };
-		EDB0827E1C3FA05A002BB783 /* locate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = locate.md; sourceTree = "<group>"; };
-		EDB0827F1C3FA05A002BB783 /* lsb_release.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = lsb_release.md; sourceTree = "<group>"; };
-		EDB082801C3FA05A002BB783 /* md5sum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = md5sum.md; sourceTree = "<group>"; };
-		EDB082811C3FA05A002BB783 /* mdadm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mdadm.md; sourceTree = "<group>"; };
-		EDB082821C3FA05A002BB783 /* nethogs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = nethogs.md; sourceTree = "<group>"; };
-		EDB082831C3FA05A002BB783 /* netstat.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = netstat.md; sourceTree = "<group>"; };
-		EDB082841C3FA05A002BB783 /* pacman.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pacman.md; sourceTree = "<group>"; };
-		EDB082851C3FA05A002BB783 /* sha1sum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sha1sum.md; sourceTree = "<group>"; };
-		EDB082861C3FA05A002BB783 /* sha224sum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sha224sum.md; sourceTree = "<group>"; };
-		EDB082871C3FA05A002BB783 /* sha256sum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sha256sum.md; sourceTree = "<group>"; };
-		EDB082881C3FA05A002BB783 /* sha384sum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sha384sum.md; sourceTree = "<group>"; };
-		EDB082891C3FA05A002BB783 /* sha512sum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sha512sum.md; sourceTree = "<group>"; };
-		EDB0828A1C3FA05A002BB783 /* shuf.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = shuf.md; sourceTree = "<group>"; };
-		EDB0828B1C3FA05A002BB783 /* shutdown.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = shutdown.md; sourceTree = "<group>"; };
-		EDB0828C1C3FA05A002BB783 /* ss.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ss.md; sourceTree = "<group>"; };
-		EDB0828D1C3FA05A002BB783 /* ssh-copy-id.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "ssh-copy-id.md"; sourceTree = "<group>"; };
-		EDB0828E1C3FA05A002BB783 /* strace.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = strace.md; sourceTree = "<group>"; };
-		EDB0828F1C3FA05A002BB783 /* systemctl.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = systemctl.md; sourceTree = "<group>"; };
-		EDB082901C3FA05A002BB783 /* tcpflow.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = tcpflow.md; sourceTree = "<group>"; };
-		EDB082911C3FA05A002BB783 /* timedatectl.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = timedatectl.md; sourceTree = "<group>"; };
-		EDB082921C3FA05A002BB783 /* top.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = top.md; sourceTree = "<group>"; };
-		EDB082931C3FA05A002BB783 /* ulimit.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ulimit.md; sourceTree = "<group>"; };
-		EDB082941C3FA05A002BB783 /* useradd.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = useradd.md; sourceTree = "<group>"; };
-		EDB082951C3FA05A002BB783 /* userdel.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = userdel.md; sourceTree = "<group>"; };
-		EDB082961C3FA05A002BB783 /* usermod.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = usermod.md; sourceTree = "<group>"; };
-		EDB082971C3FA05A002BB783 /* wall.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = wall.md; sourceTree = "<group>"; };
-		EDB082981C3FA05A002BB783 /* watch.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = watch.md; sourceTree = "<group>"; };
-		EDB082991C3FA05A002BB783 /* wpa_cli.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = wpa_cli.md; sourceTree = "<group>"; };
-		EDB0829A1C3FA05A002BB783 /* xargs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = xargs.md; sourceTree = "<group>"; };
-		EDB0829B1C3FA05A002BB783 /* xrandr.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = xrandr.md; sourceTree = "<group>"; };
-		EDB0829C1C3FA05A002BB783 /* xsetwacom.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = xsetwacom.md; sourceTree = "<group>"; };
-		EDB0829D1C3FA05A002BB783 /* yum.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = yum.md; sourceTree = "<group>"; };
-		EDB0829E1C3FA05A002BB783 /* zypper.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = zypper.md; sourceTree = "<group>"; };
-		EDB082A01C3FA05A002BB783 /* airport.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = airport.md; sourceTree = "<group>"; };
-		EDB082A11C3FA05A002BB783 /* brew.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = brew.md; sourceTree = "<group>"; };
-		EDB082A21C3FA05A002BB783 /* caffeinate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = caffeinate.md; sourceTree = "<group>"; };
-		EDB082A31C3FA05A002BB783 /* dd.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = dd.md; sourceTree = "<group>"; };
-		EDB082A41C3FA05A002BB783 /* diskutil.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = diskutil.md; sourceTree = "<group>"; };
-		EDB082A51C3FA05A002BB783 /* ditto.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ditto.md; sourceTree = "<group>"; };
-		EDB082A61C3FA05A002BB783 /* drutil.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = drutil.md; sourceTree = "<group>"; };
-		EDB082A71C3FA05A002BB783 /* du.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = du.md; sourceTree = "<group>"; };
-		EDB082A81C3FA05A002BB783 /* head.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = head.md; sourceTree = "<group>"; };
-		EDB082A91C3FA05A002BB783 /* hostname.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = hostname.md; sourceTree = "<group>"; };
-		EDB082AA1C3FA05A002BB783 /* locate.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = locate.md; sourceTree = "<group>"; };
-		EDB082AB1C3FA05A002BB783 /* md5.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = md5.md; sourceTree = "<group>"; };
-		EDB082AC1C3FA05A002BB783 /* mdfind.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = mdfind.md; sourceTree = "<group>"; };
-		EDB082AD1C3FA05A002BB783 /* netstat.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = netstat.md; sourceTree = "<group>"; };
-		EDB082AE1C3FA05A002BB783 /* networksetup.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = networksetup.md; sourceTree = "<group>"; };
-		EDB082AF1C3FA05A002BB783 /* open.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = open.md; sourceTree = "<group>"; };
-		EDB082B01C3FA05A002BB783 /* pbcopy.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pbcopy.md; sourceTree = "<group>"; };
-		EDB082B11C3FA05A002BB783 /* pbpaste.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = pbpaste.md; sourceTree = "<group>"; };
-		EDB082B21C3FA05A002BB783 /* qlmanage.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = qlmanage.md; sourceTree = "<group>"; };
-		EDB082B31C3FA05A002BB783 /* route.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = route.md; sourceTree = "<group>"; };
-		EDB082B41C3FA05A002BB783 /* say.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = say.md; sourceTree = "<group>"; };
-		EDB082B51C3FA05A002BB783 /* shutdown.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = shutdown.md; sourceTree = "<group>"; };
-		EDB082B61C3FA05A002BB783 /* sw_vers.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sw_vers.md; sourceTree = "<group>"; };
-		EDB082B71C3FA05A002BB783 /* sysctl.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sysctl.md; sourceTree = "<group>"; };
-		EDB082B81C3FA05A002BB783 /* system_profiler.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = system_profiler.md; sourceTree = "<group>"; };
-		EDB082B91C3FA05A002BB783 /* systemsetup.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = systemsetup.md; sourceTree = "<group>"; };
-		EDB082BA1C3FA05A002BB783 /* top.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = top.md; sourceTree = "<group>"; };
-		EDB082BB1C3FA05A002BB783 /* wacaw.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = wacaw.md; sourceTree = "<group>"; };
-		EDB082BC1C3FA05A002BB783 /* xctool.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = xctool.md; sourceTree = "<group>"; };
-		EDB082BD1C3FA05A002BB783 /* xed.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = xed.md; sourceTree = "<group>"; };
-		EDB082BE1C3FA05A002BB783 /* xsltproc.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = xsltproc.md; sourceTree = "<group>"; };
-		EDB082C01C3FA05A002BB783 /* prctl.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = prctl.md; sourceTree = "<group>"; };
-		EDB082C11C3FA05A002BB783 /* prstat.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = prstat.md; sourceTree = "<group>"; };
-		EDB082C21C3FA05A002BB783 /* svcadm.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = svcadm.md; sourceTree = "<group>"; };
-		EDB082C31C3FA05A002BB783 /* svccfg.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = svccfg.md; sourceTree = "<group>"; };
-		EDB082C41C3FA05A002BB783 /* svcs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = svcs.md; sourceTree = "<group>"; };
+		EDF72B461C41493A00BF5067 /* tldr.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = tldr.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EDB081831C3F70E8002BB783 /* Frameworks */ = {
+		ED269C2B1C414B1400BED358 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDB081831C3F70E8002BB783 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A924DE91E956F100E9747CF /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E43CAF18CDFE940A409404C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BC706F10FDA7F86B0D3249C8 /* Pods.debug.xcconfig */,
+				E579B7D4846F39B201D66542 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA39B605F5CD8DF8ACE9901F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED269C2F1C414B1400BED358 /* TLDRTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED269C301C414B1400BED358 /* TLDRTests.swift */,
+				ED269C321C414B1400BED358 /* Info.plist */,
+			);
+			path = TLDRTests;
+			sourceTree = "<group>";
+		};
 		EDB0817D1C3F70E8002BB783 = {
 			isa = PBXGroup;
 			children = (
 				EDB081881C3F70E8002BB783 /* TLDR */,
+				ED269C2F1C414B1400BED358 /* TLDRTests */,
 				EDB081871C3F70E8002BB783 /* Products */,
+				E43CAF18CDFE940A409404C6 /* Pods */,
+				EA39B605F5CD8DF8ACE9901F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -343,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB081861C3F70E8002BB783 /* TLDR.app */,
+				ED269C2E1C414B1400BED358 /* TLDRTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -353,355 +123,49 @@
 				EDB081891C3F70E8002BB783 /* AppDelegate.swift */,
 				EDB0818B1C3F70E8002BB783 /* ViewController.swift */,
 				EDB0819D1C3F9FD2002BB783 /* tldr.json */,
-				EDB0819F1C3FA05A002BB783 /* pages */,
 				EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */,
+				ED269C421C41870300BED358 /* CommandRealm.swift */,
 				ED4EC3531C3FA76500613214 /* MarkdownParser.swift */,
 				EDB0818D1C3F70E8002BB783 /* Main.storyboard */,
 				EDB081901C3F70E8002BB783 /* Assets.xcassets */,
 				EDB081921C3F70E8002BB783 /* LaunchScreen.storyboard */,
 				EDB081951C3F70E8002BB783 /* Info.plist */,
+				EDF72B461C41493A00BF5067 /* tldr.bundle */,
 			);
 			path = TLDR;
-			sourceTree = "<group>";
-		};
-		EDB0819F1C3FA05A002BB783 /* pages */ = {
-			isa = PBXGroup;
-			children = (
-				EDB081A01C3FA05A002BB783 /* common */,
-				EDB082681C3FA05A002BB783 /* index.json */,
-				EDB082691C3FA05A002BB783 /* linux */,
-				EDB0829F1C3FA05A002BB783 /* osx */,
-				EDB082BF1C3FA05A002BB783 /* sunos */,
-			);
-			path = pages;
-			sourceTree = "<group>";
-		};
-		EDB081A01C3FA05A002BB783 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				EDB081A11C3FA05A002BB783 /* 7za.md */,
-				EDB081A21C3FA05A002BB783 /* ab.md */,
-				EDB081A31C3FA05A002BB783 /* ack.md */,
-				EDB081A41C3FA05A002BB783 /* adb.md */,
-				EDB081A51C3FA05A002BB783 /* ag.md */,
-				EDB081A61C3FA05A002BB783 /* alias.md */,
-				EDB081A71C3FA05A002BB783 /* apropos.md */,
-				EDB081A81C3FA05A002BB783 /* ar.md */,
-				EDB081A91C3FA05A002BB783 /* awk.md */,
-				EDB081AA1C3FA05A002BB783 /* bash.md */,
-				EDB081AB1C3FA05A002BB783 /* bashmarks.md */,
-				EDB081AC1C3FA05A002BB783 /* bc.md */,
-				EDB081AD1C3FA05A002BB783 /* bundle.md */,
-				EDB081AE1C3FA05A002BB783 /* cal.md */,
-				EDB081AF1C3FA05A002BB783 /* calibre-server.md */,
-				EDB081B01C3FA05A002BB783 /* calibredb.md */,
-				EDB081B11C3FA05A002BB783 /* cat.md */,
-				EDB081B21C3FA05A002BB783 /* cd.md */,
-				EDB081B31C3FA05A002BB783 /* chmod.md */,
-				EDB081B41C3FA05A002BB783 /* chown.md */,
-				EDB081B51C3FA05A002BB783 /* chsh.md */,
-				EDB081B61C3FA05A002BB783 /* cksum.md */,
-				EDB081B71C3FA05A002BB783 /* clang.md */,
-				EDB081B81C3FA05A002BB783 /* comm.md */,
-				EDB081B91C3FA05A002BB783 /* convert.md */,
-				EDB081BA1C3FA05A002BB783 /* cordova.md */,
-				EDB081BB1C3FA05A002BB783 /* cowsay.md */,
-				EDB081BC1C3FA05A002BB783 /* cp.md */,
-				EDB081BD1C3FA05A002BB783 /* curl.md */,
-				EDB081BE1C3FA05A002BB783 /* cut.md */,
-				EDB081BF1C3FA05A002BB783 /* date.md */,
-				EDB081C01C3FA05A002BB783 /* deluser.md */,
-				EDB081C11C3FA05A002BB783 /* df.md */,
-				EDB081C21C3FA05A002BB783 /* diff.md */,
-				EDB081C31C3FA05A002BB783 /* dig.md */,
-				EDB081C41C3FA05A002BB783 /* docker.md */,
-				EDB081C51C3FA05A002BB783 /* drush.md */,
-				EDB081C61C3FA05A002BB783 /* ebook-convert.md */,
-				EDB081C71C3FA05A002BB783 /* echo.md */,
-				EDB081C81C3FA05A002BB783 /* electrum.md */,
-				EDB081C91C3FA05A002BB783 /* emacs.md */,
-				EDB081CA1C3FA05A002BB783 /* enca.md */,
-				EDB081CB1C3FA05A002BB783 /* env.md */,
-				EDB081CC1C3FA05A002BB783 /* exiftool.md */,
-				EDB081CD1C3FA05A002BB783 /* fdupes.md */,
-				EDB081CE1C3FA05A002BB783 /* ffmpeg.md */,
-				EDB081CF1C3FA05A002BB783 /* file.md */,
-				EDB081D01C3FA05A002BB783 /* find.md */,
-				EDB081D11C3FA05A002BB783 /* for.md */,
-				EDB081D21C3FA05A002BB783 /* fortune.md */,
-				EDB081D31C3FA05A002BB783 /* fswebcam.md */,
-				EDB081D41C3FA05A002BB783 /* gcc.md */,
-				EDB081D51C3FA05A002BB783 /* gem.md */,
-				EDB081D61C3FA05A002BB783 /* gifsicle.md */,
-				EDB081D71C3FA05A002BB783 /* git-add.md */,
-				EDB081D81C3FA05A002BB783 /* git-blame.md */,
-				EDB081D91C3FA05A002BB783 /* git-branch.md */,
-				EDB081DA1C3FA05A002BB783 /* git-checkout.md */,
-				EDB081DB1C3FA05A002BB783 /* git-clone.md */,
-				EDB081DC1C3FA05A002BB783 /* git-commit.md */,
-				EDB081DD1C3FA05A002BB783 /* git-config.md */,
-				EDB081DE1C3FA05A002BB783 /* git-diff.md */,
-				EDB081DF1C3FA05A002BB783 /* git-init.md */,
-				EDB081E01C3FA05A002BB783 /* git-log.md */,
-				EDB081E11C3FA05A002BB783 /* git-merge.md */,
-				EDB081E21C3FA05A002BB783 /* git-mv.md */,
-				EDB081E31C3FA05A002BB783 /* git-pull.md */,
-				EDB081E41C3FA05A002BB783 /* git-push.md */,
-				EDB081E51C3FA05A002BB783 /* git-remote.md */,
-				EDB081E61C3FA05A002BB783 /* git-rm.md */,
-				EDB081E71C3FA05A002BB783 /* git-stash.md */,
-				EDB081E81C3FA05A002BB783 /* git-status.md */,
-				EDB081E91C3FA05A002BB783 /* git-svn.md */,
-				EDB081EA1C3FA05A002BB783 /* git-tag.md */,
-				EDB081EB1C3FA05A002BB783 /* git.md */,
-				EDB081EC1C3FA05A002BB783 /* gpg.md */,
-				EDB081ED1C3FA05A002BB783 /* gradle.md */,
-				EDB081EE1C3FA05A002BB783 /* grep.md */,
-				EDB081EF1C3FA05A002BB783 /* gzip.md */,
-				EDB081F01C3FA05A002BB783 /* handbrakecli.md */,
-				EDB081F11C3FA05A002BB783 /* haxelib.md */,
-				EDB081F21C3FA05A002BB783 /* history.md */,
-				EDB081F31C3FA05A002BB783 /* host.md */,
-				EDB081F41C3FA05A002BB783 /* iconv.md */,
-				EDB081F51C3FA05A002BB783 /* if.md */,
-				EDB081F61C3FA05A002BB783 /* ifconfig.md */,
-				EDB081F71C3FA05A002BB783 /* ionice.md */,
-				EDB081F81C3FA05A002BB783 /* ioping.md */,
-				EDB081F91C3FA05A002BB783 /* ipcs.md */,
-				EDB081FA1C3FA05A002BB783 /* java.md */,
-				EDB081FB1C3FA05A002BB783 /* javac.md */,
-				EDB081FC1C3FA05A002BB783 /* kill.md */,
-				EDB081FD1C3FA05A002BB783 /* last.md */,
-				EDB081FE1C3FA05A002BB783 /* less.md */,
-				EDB081FF1C3FA05A002BB783 /* ln.md */,
-				EDB082001C3FA05A002BB783 /* lp.md */,
-				EDB082011C3FA05A002BB783 /* lpstat.md */,
-				EDB082021C3FA05A002BB783 /* ls.md */,
-				EDB082031C3FA05A002BB783 /* lsof.md */,
-				EDB082041C3FA05A002BB783 /* mailx.md */,
-				EDB082051C3FA05A002BB783 /* make.md */,
-				EDB082061C3FA05A002BB783 /* man.md */,
-				EDB082071C3FA05A002BB783 /* mkdir.md */,
-				EDB082081C3FA05A002BB783 /* mocha.md */,
-				EDB082091C3FA05A002BB783 /* more.md */,
-				EDB0820A1C3FA05A002BB783 /* mount.md */,
-				EDB0820B1C3FA05A002BB783 /* mp4box.md */,
-				EDB0820C1C3FA05A002BB783 /* mtr.md */,
-				EDB0820D1C3FA05A002BB783 /* mv.md */,
-				EDB0820E1C3FA05A002BB783 /* mysql.md */,
-				EDB0820F1C3FA05A002BB783 /* mysqldump.md */,
-				EDB082101C3FA05A002BB783 /* nc.md */,
-				EDB082111C3FA05A002BB783 /* nginx.md */,
-				EDB082121C3FA05A002BB783 /* nice.md */,
-				EDB082131C3FA05A002BB783 /* nmap.md */,
-				EDB082141C3FA05A002BB783 /* node.md */,
-				EDB082151C3FA05A002BB783 /* nohup.md */,
-				EDB082161C3FA05A002BB783 /* npm.md */,
-				EDB082171C3FA05A002BB783 /* nvm.md */,
-				EDB082181C3FA05A002BB783 /* pandoc.md */,
-				EDB082191C3FA05A002BB783 /* parallel.md */,
-				EDB0821A1C3FA05A002BB783 /* pass.md */,
-				EDB0821B1C3FA05A002BB783 /* passwd.md */,
-				EDB0821C1C3FA05A002BB783 /* paste.md */,
-				EDB0821D1C3FA05A002BB783 /* patch.md */,
-				EDB0821E1C3FA05A002BB783 /* pgrep.md */,
-				EDB0821F1C3FA05A002BB783 /* php.md */,
-				EDB082201C3FA05A002BB783 /* phpunit.md */,
-				EDB082211C3FA05A002BB783 /* ping.md */,
-				EDB082221C3FA05A002BB783 /* pip.md */,
-				EDB082231C3FA05A002BB783 /* pkill.md */,
-				EDB082241C3FA05A002BB783 /* play.md */,
-				EDB082251C3FA05A002BB783 /* printf.md */,
-				EDB082261C3FA05A002BB783 /* ps.md */,
-				EDB082271C3FA05A002BB783 /* psql.md */,
-				EDB082281C3FA05A002BB783 /* pushd.md */,
-				EDB082291C3FA05A002BB783 /* pwd.md */,
-				EDB0822A1C3FA05A002BB783 /* python.md */,
-				EDB0822B1C3FA05A002BB783 /* redis-cli.md */,
-				EDB0822C1C3FA05A002BB783 /* rename.md */,
-				EDB0822D1C3FA05A002BB783 /* renice.md */,
-				EDB0822E1C3FA05A002BB783 /* rm.md */,
-				EDB0822F1C3FA05A002BB783 /* rmdir.md */,
-				EDB082301C3FA05A002BB783 /* rsync.md */,
-				EDB082311C3FA05A002BB783 /* salt-call.md */,
-				EDB082321C3FA05A002BB783 /* salt-key.md */,
-				EDB082331C3FA05A002BB783 /* salt-run.md */,
-				EDB082341C3FA05A002BB783 /* salt.md */,
-				EDB082351C3FA05A002BB783 /* sass.md */,
-				EDB082361C3FA05A002BB783 /* scp.md */,
-				EDB082371C3FA05A002BB783 /* screen.md */,
-				EDB082381C3FA05A002BB783 /* sed.md */,
-				EDB082391C3FA05A002BB783 /* sl.md */,
-				EDB0823A1C3FA05A002BB783 /* sort.md */,
-				EDB0823B1C3FA05A002BB783 /* sox.md */,
-				EDB0823C1C3FA05A002BB783 /* split.md */,
-				EDB0823D1C3FA05A002BB783 /* srm.md */,
-				EDB0823E1C3FA05A002BB783 /* ssh.md */,
-				EDB0823F1C3FA05A002BB783 /* sshfs.md */,
-				EDB082401C3FA05A002BB783 /* strings.md */,
-				EDB082411C3FA05A002BB783 /* su.md */,
-				EDB082421C3FA05A002BB783 /* sudo.md */,
-				EDB082431C3FA05A002BB783 /* svn.md */,
-				EDB082441C3FA05A002BB783 /* tac.md */,
-				EDB082451C3FA05A002BB783 /* tail.md */,
-				EDB082461C3FA05A002BB783 /* tar.md */,
-				EDB082471C3FA05A002BB783 /* tcpdump.md */,
-				EDB082481C3FA05A002BB783 /* tee.md */,
-				EDB082491C3FA05A002BB783 /* telnet.md */,
-				EDB0824A1C3FA05A002BB783 /* test.md */,
-				EDB0824B1C3FA05A002BB783 /* time.md */,
-				EDB0824C1C3FA05A002BB783 /* tldr.md */,
-				EDB0824D1C3FA05A002BB783 /* tmux.md */,
-				EDB0824E1C3FA05A002BB783 /* touch.md */,
-				EDB0824F1C3FA05A002BB783 /* tr.md */,
-				EDB082501C3FA05A002BB783 /* traceroute.md */,
-				EDB082511C3FA05A002BB783 /* transcode.md */,
-				EDB082521C3FA05A002BB783 /* tree.md */,
-				EDB082531C3FA05A002BB783 /* ufraw-batch.md */,
-				EDB082541C3FA05A002BB783 /* umount.md */,
-				EDB082551C3FA05A002BB783 /* uname.md */,
-				EDB082561C3FA05A002BB783 /* unrar.md */,
-				EDB082571C3FA05A002BB783 /* unzip.md */,
-				EDB082581C3FA05A002BB783 /* uptime.md */,
-				EDB082591C3FA05A002BB783 /* vagrant.md */,
-				EDB0825A1C3FA05A002BB783 /* vim.md */,
-				EDB0825B1C3FA05A002BB783 /* vimtutor.md */,
-				EDB0825C1C3FA05A002BB783 /* virtualenv.md */,
-				EDB0825D1C3FA05A002BB783 /* w.md */,
-				EDB0825E1C3FA05A002BB783 /* wc.md */,
-				EDB0825F1C3FA05A002BB783 /* wget.md */,
-				EDB082601C3FA05A002BB783 /* which.md */,
-				EDB082611C3FA05A002BB783 /* while.md */,
-				EDB082621C3FA05A002BB783 /* whoami.md */,
-				EDB082631C3FA05A002BB783 /* yes.md */,
-				EDB082641C3FA05A002BB783 /* zbarimg.md */,
-				EDB082651C3FA05A002BB783 /* zfs.md */,
-				EDB082661C3FA05A002BB783 /* zip.md */,
-				EDB082671C3FA05A002BB783 /* zpool.md */,
-			);
-			path = common;
-			sourceTree = "<group>";
-		};
-		EDB082691C3FA05A002BB783 /* linux */ = {
-			isa = PBXGroup;
-			children = (
-				EDB0826A1C3FA05A002BB783 /* apt-cache.md */,
-				EDB0826B1C3FA05A002BB783 /* apt-get.md */,
-				EDB0826C1C3FA05A002BB783 /* aptitude.md */,
-				EDB0826D1C3FA05A002BB783 /* base64.md */,
-				EDB0826E1C3FA05A002BB783 /* chroot.md */,
-				EDB0826F1C3FA05A002BB783 /* dd.md */,
-				EDB082701C3FA05A002BB783 /* dnf.md */,
-				EDB082711C3FA05A002BB783 /* dpkg-query.md */,
-				EDB082721C3FA05A002BB783 /* dpkg.md */,
-				EDB082731C3FA05A002BB783 /* du.md */,
-				EDB082741C3FA05A002BB783 /* emerge.md */,
-				EDB082751C3FA05A002BB783 /* findmnt.md */,
-				EDB082761C3FA05A002BB783 /* firewall-cmd.md */,
-				EDB082771C3FA05A002BB783 /* free.md */,
-				EDB082781C3FA05A002BB783 /* head.md */,
-				EDB082791C3FA05A002BB783 /* hostname.md */,
-				EDB0827A1C3FA05A002BB783 /* iostat.md */,
-				EDB0827B1C3FA05A002BB783 /* ip.md */,
-				EDB0827C1C3FA05A002BB783 /* jobs.md */,
-				EDB0827D1C3FA05A002BB783 /* journalctl.md */,
-				EDB0827E1C3FA05A002BB783 /* locate.md */,
-				EDB0827F1C3FA05A002BB783 /* lsb_release.md */,
-				EDB082801C3FA05A002BB783 /* md5sum.md */,
-				EDB082811C3FA05A002BB783 /* mdadm.md */,
-				EDB082821C3FA05A002BB783 /* nethogs.md */,
-				EDB082831C3FA05A002BB783 /* netstat.md */,
-				EDB082841C3FA05A002BB783 /* pacman.md */,
-				EDB082851C3FA05A002BB783 /* sha1sum.md */,
-				EDB082861C3FA05A002BB783 /* sha224sum.md */,
-				EDB082871C3FA05A002BB783 /* sha256sum.md */,
-				EDB082881C3FA05A002BB783 /* sha384sum.md */,
-				EDB082891C3FA05A002BB783 /* sha512sum.md */,
-				EDB0828A1C3FA05A002BB783 /* shuf.md */,
-				EDB0828B1C3FA05A002BB783 /* shutdown.md */,
-				EDB0828C1C3FA05A002BB783 /* ss.md */,
-				EDB0828D1C3FA05A002BB783 /* ssh-copy-id.md */,
-				EDB0828E1C3FA05A002BB783 /* strace.md */,
-				EDB0828F1C3FA05A002BB783 /* systemctl.md */,
-				EDB082901C3FA05A002BB783 /* tcpflow.md */,
-				EDB082911C3FA05A002BB783 /* timedatectl.md */,
-				EDB082921C3FA05A002BB783 /* top.md */,
-				EDB082931C3FA05A002BB783 /* ulimit.md */,
-				EDB082941C3FA05A002BB783 /* useradd.md */,
-				EDB082951C3FA05A002BB783 /* userdel.md */,
-				EDB082961C3FA05A002BB783 /* usermod.md */,
-				EDB082971C3FA05A002BB783 /* wall.md */,
-				EDB082981C3FA05A002BB783 /* watch.md */,
-				EDB082991C3FA05A002BB783 /* wpa_cli.md */,
-				EDB0829A1C3FA05A002BB783 /* xargs.md */,
-				EDB0829B1C3FA05A002BB783 /* xrandr.md */,
-				EDB0829C1C3FA05A002BB783 /* xsetwacom.md */,
-				EDB0829D1C3FA05A002BB783 /* yum.md */,
-				EDB0829E1C3FA05A002BB783 /* zypper.md */,
-			);
-			path = linux;
-			sourceTree = "<group>";
-		};
-		EDB0829F1C3FA05A002BB783 /* osx */ = {
-			isa = PBXGroup;
-			children = (
-				EDB082A01C3FA05A002BB783 /* airport.md */,
-				EDB082A11C3FA05A002BB783 /* brew.md */,
-				EDB082A21C3FA05A002BB783 /* caffeinate.md */,
-				EDB082A31C3FA05A002BB783 /* dd.md */,
-				EDB082A41C3FA05A002BB783 /* diskutil.md */,
-				EDB082A51C3FA05A002BB783 /* ditto.md */,
-				EDB082A61C3FA05A002BB783 /* drutil.md */,
-				EDB082A71C3FA05A002BB783 /* du.md */,
-				EDB082A81C3FA05A002BB783 /* head.md */,
-				EDB082A91C3FA05A002BB783 /* hostname.md */,
-				EDB082AA1C3FA05A002BB783 /* locate.md */,
-				EDB082AB1C3FA05A002BB783 /* md5.md */,
-				EDB082AC1C3FA05A002BB783 /* mdfind.md */,
-				EDB082AD1C3FA05A002BB783 /* netstat.md */,
-				EDB082AE1C3FA05A002BB783 /* networksetup.md */,
-				EDB082AF1C3FA05A002BB783 /* open.md */,
-				EDB082B01C3FA05A002BB783 /* pbcopy.md */,
-				EDB082B11C3FA05A002BB783 /* pbpaste.md */,
-				EDB082B21C3FA05A002BB783 /* qlmanage.md */,
-				EDB082B31C3FA05A002BB783 /* route.md */,
-				EDB082B41C3FA05A002BB783 /* say.md */,
-				EDB082B51C3FA05A002BB783 /* shutdown.md */,
-				EDB082B61C3FA05A002BB783 /* sw_vers.md */,
-				EDB082B71C3FA05A002BB783 /* sysctl.md */,
-				EDB082B81C3FA05A002BB783 /* system_profiler.md */,
-				EDB082B91C3FA05A002BB783 /* systemsetup.md */,
-				EDB082BA1C3FA05A002BB783 /* top.md */,
-				EDB082BB1C3FA05A002BB783 /* wacaw.md */,
-				EDB082BC1C3FA05A002BB783 /* xctool.md */,
-				EDB082BD1C3FA05A002BB783 /* xed.md */,
-				EDB082BE1C3FA05A002BB783 /* xsltproc.md */,
-			);
-			path = osx;
-			sourceTree = "<group>";
-		};
-		EDB082BF1C3FA05A002BB783 /* sunos */ = {
-			isa = PBXGroup;
-			children = (
-				EDB082C01C3FA05A002BB783 /* prctl.md */,
-				EDB082C11C3FA05A002BB783 /* prstat.md */,
-				EDB082C21C3FA05A002BB783 /* svcadm.md */,
-				EDB082C31C3FA05A002BB783 /* svccfg.md */,
-				EDB082C41C3FA05A002BB783 /* svcs.md */,
-			);
-			path = sunos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		ED269C2D1C414B1400BED358 /* TLDRTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED269C351C414B1400BED358 /* Build configuration list for PBXNativeTarget "TLDRTests" */;
+			buildPhases = (
+				ED269C2A1C414B1400BED358 /* Sources */,
+				ED269C2B1C414B1400BED358 /* Frameworks */,
+				ED269C2C1C414B1400BED358 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED269C341C414B1400BED358 /* PBXTargetDependency */,
+			);
+			name = TLDRTests;
+			productName = TLDRTests;
+			productReference = ED269C2E1C414B1400BED358 /* TLDRTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EDB081851C3F70E8002BB783 /* TLDR */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDB081981C3F70E8002BB783 /* Build configuration list for PBXNativeTarget "TLDR" */;
 			buildPhases = (
+				EBA968124F36F685F4012A23 /* Check Pods Manifest.lock */,
 				EDB081821C3F70E8002BB783 /* Sources */,
 				EDB081831C3F70E8002BB783 /* Frameworks */,
 				EDB081841C3F70E8002BB783 /* Resources */,
+				67CE391469199B24DA77CD8A /* Embed Pods Frameworks */,
+				871FFF9139FE7AE8A4E5DE3E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -722,6 +186,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Suraj Pathak";
 				TargetAttributes = {
+					ED269C2D1C414B1400BED358 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = EDB081851C3F70E8002BB783;
+					};
 					EDB081851C3F70E8002BB783 = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -741,38 +209,111 @@
 			projectRoot = "";
 			targets = (
 				EDB081851C3F70E8002BB783 /* TLDR */,
+				ED269C2D1C414B1400BED358 /* TLDRTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		ED269C2C1C414B1400BED358 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDB081841C3F70E8002BB783 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDB0838C1C3FA05A002BB783 /* index.json in Resources */,
 				EDB081941C3F70E8002BB783 /* LaunchScreen.storyboard in Resources */,
 				EDB081911C3F70E8002BB783 /* Assets.xcassets in Resources */,
 				EDB0818F1C3F70E8002BB783 /* Main.storyboard in Resources */,
 				EDB0819E1C3F9FD2002BB783 /* tldr.json in Resources */,
+				EDF72B471C41493A00BF5067 /* tldr.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		67CE391469199B24DA77CD8A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		871FFF9139FE7AE8A4E5DE3E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBA968124F36F685F4012A23 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		ED269C2A1C414B1400BED358 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED269C311C414B1400BED358 /* TLDRTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDB081821C3F70E8002BB783 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */,
 				EDB0819C1C3F8D6A002BB783 /* CommandHelper.swift in Sources */,
+				ED269C431C41870300BED358 /* CommandRealm.swift in Sources */,
 				EDB0818C1C3F70E8002BB783 /* ViewController.swift in Sources */,
 				EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED269C341C414B1400BED358 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDB081851C3F70E8002BB783 /* TLDR */;
+			targetProxy = ED269C331C414B1400BED358 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EDB0818D1C3F70E8002BB783 /* Main.storyboard */ = {
@@ -794,6 +335,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		ED269C361C414B1400BED358 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TLDRTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.TLDRTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TLDR.app/TLDR";
+			};
+			name = Debug;
+		};
+		ED269C371C414B1400BED358 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TLDRTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.TLDRTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TLDR.app/TLDR";
+			};
+			name = Release;
+		};
 		EDB081961C3F70E8002BB783 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -879,29 +446,42 @@
 		};
 		EDB081991C3F70E8002BB783 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC706F10FDA7F86B0D3249C8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sg.com.propertyguru.TLDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
 			};
 			name = Debug;
 		};
 		EDB0819A1C3F70E8002BB783 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E579B7D4846F39B201D66542 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sg.com.propertyguru.TLDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ED269C351C414B1400BED358 /* Build configuration list for PBXNativeTarget "TLDRTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED269C361C414B1400BED358 /* Debug */,
+				ED269C371C414B1400BED358 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EDB081811C3F70E8002BB783 /* Build configuration list for PBXProject "TLDR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

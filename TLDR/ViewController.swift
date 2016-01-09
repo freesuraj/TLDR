@@ -17,7 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     
-    var suggestions: [String] = [] {
+    var suggestions: [Command] = [] {
         didSet {
             updateTableView()
         }
@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-        
+        StoreManager.updateDB()
     }
     
     func updateUI() {
@@ -40,7 +40,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         commandTextField.clearButtonMode = .Always
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSuggestion", name: UITextFieldTextDidChangeNotification, object: commandTextField)
         
-        resultTextView.backgroundColor = UIColor.blackColor()
+        resultTextView.backgroundColor = UIColor.clearColor()
         resultTextView.textColor = UIColor.whiteColor()
         resultTextView.font = UIFont(name: "Courier", size: 20)
         resultTextView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
@@ -56,7 +56,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         commandTextField.becomeFirstResponder()
-        updateResult()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -69,18 +68,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateResult() {
-
-        var result = resultTextView.text
-        let content = "man\n some command \n lesdjfk \n\n kdjdkfjdk \n"
-            
-        result = content + result
-        resultTextView.text = result
-        resultTextView.scrollRectToVisible(CGRect(origin: CGPointZero, size: resultTextView.frame.size), animated: true)
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         suggestions.removeAll()
+        guard let commandName  = textField.text else {
+            return true
+        }
+        lookUpWord(commandName, type: "common")
         return true
     }
     
@@ -90,8 +83,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func updateSuggestion() {
-        print("updating suggestions")
-        suggestions = ["man", "cat", "bash", "dall", "galla", "sublime", "atom"]
+        suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
+    }
+    
+    func lookUpWord(word: String, type: String) {
+        let currentAttrText = NSMutableAttributedString(attributedString: CommandHelper.attributedTextForTLDRCommand(Command(name: word, type: type)))
+        currentAttrText.appendAttributedString(NSAttributedString(string: "\n\n"))
+        currentAttrText.appendAttributedString(resultTextView.attributedText)
+        resultTextView.attributedText = currentAttrText
+        
+        resultTextView.scrollRectToVisible(CGRect(origin: CGPointZero, size: resultTextView.frame.size), animated: true)
     }
     
     func updateTableView() {
@@ -122,14 +123,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.backgroundColor = UIColor.clearColor()
             cell?.textLabel?.textColor = UIColor.lightTextColor()
         }
-        cell!.textLabel!.text = suggestions[indexPath.row]
-        cell!.detailTextLabel!.text = "dfd"
+        cell!.textLabel!.text = suggestions[indexPath.row].name
+        cell!.detailTextLabel!.text = suggestions[indexPath.row].type
         return cell!
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        commandTextField.text = suggestions[indexPath.row]
+        commandTextField.text = suggestions[indexPath.row].name
+        lookUpWord(suggestions[indexPath.row].name, type: suggestions[indexPath.row].type)
         commandTextField.resignFirstResponder()
         suggestions.removeAll()
     }
