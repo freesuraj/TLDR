@@ -17,7 +17,6 @@
 		EDB081911C3F70E8002BB783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB081901C3F70E8002BB783 /* Assets.xcassets */; };
 		EDB081941C3F70E8002BB783 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB081921C3F70E8002BB783 /* LaunchScreen.storyboard */; };
 		EDB0819C1C3F8D6A002BB783 /* CommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */; };
-		EDB0819E1C3F9FD2002BB783 /* tldr.json in Resources */ = {isa = PBXBuildFile; fileRef = EDB0819D1C3F9FD2002BB783 /* tldr.json */; };
 		EDF72B471C41493A00BF5067 /* tldr.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EDF72B461C41493A00BF5067 /* tldr.bundle */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +38,7 @@
 		ED269C301C414B1400BED358 /* TLDRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRTests.swift; sourceTree = "<group>"; };
 		ED269C321C414B1400BED358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED269C421C41870300BED358 /* CommandRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandRealm.swift; sourceTree = "<group>"; };
+		ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		ED4EC3531C3FA76500613214 /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		EDB081861C3F70E8002BB783 /* TLDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB081891C3F70E8002BB783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +48,6 @@
 		EDB081931C3F70E8002BB783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDB081951C3F70E8002BB783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandHelper.swift; sourceTree = "<group>"; };
-		EDB0819D1C3F9FD2002BB783 /* tldr.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tldr.json; sourceTree = "<group>"; };
 		EDF72B461C41493A00BF5067 /* tldr.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = tldr.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +82,7 @@
 		EA39B605F5CD8DF8ACE9901F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */,
 				9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -122,7 +122,6 @@
 			children = (
 				EDB081891C3F70E8002BB783 /* AppDelegate.swift */,
 				EDB0818B1C3F70E8002BB783 /* ViewController.swift */,
-				EDB0819D1C3F9FD2002BB783 /* tldr.json */,
 				EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */,
 				ED269C421C41870300BED358 /* CommandRealm.swift */,
 				ED4EC3531C3FA76500613214 /* MarkdownParser.swift */,
@@ -229,7 +228,6 @@
 				EDB081941C3F70E8002BB783 /* LaunchScreen.storyboard in Resources */,
 				EDB081911C3F70E8002BB783 /* Assets.xcassets in Resources */,
 				EDB0818F1C3F70E8002BB783 /* Main.storyboard in Resources */,
-				EDB0819E1C3F9FD2002BB783 /* tldr.json in Resources */,
 				EDF72B471C41493A00BF5067 /* tldr.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +449,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sg.com.propertyguru.TLDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
@@ -464,6 +466,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sg.com.propertyguru.TLDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";

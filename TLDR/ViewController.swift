@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-        StoreManager.updateDB()
+        NetworkManager.checkAutoUpdate()
     }
     
     func updateUI() {

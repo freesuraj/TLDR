@@ -8,6 +8,7 @@
 
 import Foundation
 import SSZipArchive
+import CryptoSwift
 
 struct Command {
     let name: String
@@ -45,6 +46,9 @@ struct FileManager {
         }
         do {
             try fileManager.copyItemAtURL(sourceUrl, toURL: destinationUrl)
+            dispatch_async(dispatch_get_main_queue(), {
+                StoreManager.updateDB()
+            })
         } catch let error as NSError {
             print("Error: copying file from \(sourceUrl) to \(destinationUrl) encountered error.\n \(error)")
         }
@@ -101,7 +105,32 @@ struct FileManager {
 }
 
 struct NetworkManager {
+    
+    static func checkAutoUpdate() {
+        let jsonSource = "https://raw.githubusercontent.com/tldr-pages/tldr/master/pages/index.json"
+        guard let jsonPath = FileManager.urlToIndexJson() else {
+            updateTldrLibrary()
+            return
+        }
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+                let localJsonString = try! String(contentsOfURL: jsonPath, encoding: NSUTF8StringEncoding)
+                guard let url = NSURL(string: jsonSource) else {
+                        updateTldrLibrary()
+                        return
+                }
+                do {
+                    let serverJsonString = try String(contentsOfURL: url, encoding: NSUTF8StringEncoding)
+                    if localJsonString.md5() == serverJsonString.md5() {
+                        return
+                    } else {
+                        updateTldrLibrary()
+                    }
+                } catch{}
+            })
+    }
+    
     static func updateTldrLibrary() {
+        print("updating tldr library ..")
         let zipSource = "http://tldr-pages.github.io/assets/tldr.zip"
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             guard let url = NSURL(string: zipSource),
@@ -122,4 +151,5 @@ struct NetworkManager {
         })
     }
 }
+
 
