@@ -42,7 +42,7 @@ platform :ios do
     produce(
         username: 'freesuraj@gmail.com',
         app_identifier: 'com.suraj.tldr',
-        app_name: 'TLDR',
+        app_name: 'TLDR Man Page',
         language: 'English',
         app_version: '1.0.0',
         sku: '20160110tldrios',
