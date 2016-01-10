@@ -1,0 +1,3 @@
+first version of TLDR man page.
+* more than 2000 man commands
+* auto update

@@ -1,0 +1,3 @@
+This is a reference dictionary for computer manual commands, but in TL;DR (Too long didn't read) mode. 
+This tool is a very handy for programmers and students.
+This project is open source and free to download.
