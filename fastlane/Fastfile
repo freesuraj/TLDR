@@ -106,7 +106,7 @@ platform :ios do
   lane :deploy do
     snapshot
     build_app
-    deliver(force: true, skip_deploy: true， submit_for_review: true)
+    deliver(force: true, skip_deploy: true, submit_for_review: true)
     frameit
   end
 
