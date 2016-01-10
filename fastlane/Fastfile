@@ -31,7 +31,7 @@ def build_app
 
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
-
+  cert
   udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true)
   ENV["PROJECT_UDID"] = udid
 
