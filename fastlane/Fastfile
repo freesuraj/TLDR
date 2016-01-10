@@ -38,7 +38,8 @@ def build_app
   gym(
     workspace: 'TLDR.xcworkspace',
     scheme: 'TLDR',
-    export_method: 'enterprise'
+    export_method: 'enterprise',
+    use_legacy_build_api: true
   )
 
   commit_version_bump(
@@ -68,7 +69,8 @@ def build_app_appstore
   gym(
     workspace: 'TLDR.xcworkspace',
     scheme: 'TLDR',
-    export_method: 'app-store'
+    export_method: 'app-store',
+    use_legacy_build_api: true
   )
 
   commit_version_bump(
@@ -118,7 +120,8 @@ platform :ios do
     gym(
       workspace: 'TLDR.xcworkspace',
       scheme: 'TLDR',
-      export_method: 'enterprise'
+      export_method: 'enterprise',
+      use_legacy_build_api: true
     )
   end
 
