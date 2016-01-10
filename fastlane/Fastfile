@@ -115,7 +115,11 @@ platform :ios do
 
   desc "Create ipa"
   lane :build do
-    build_app
+    gym(
+      workspace: 'TLDR.xcworkspace',
+      scheme: 'TLDR',
+      export_method: 'enterprise'
+    )
   end
 
   desc "Uploads metadata only - no ipa file will be uploaded"
