@@ -32,12 +32,13 @@ def build_app
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
 
-  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true, export_method: 'enterprise')
+  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true)
   ENV["PROJECT_UDID"] = udid
 
   gym(
     workspace: 'TLDR.xcworkspace',
-    scheme: 'TLDR'
+    scheme: 'TLDR',
+    export_method: 'enterprise'
   )
 
   commit_version_bump(
@@ -61,12 +62,13 @@ def build_app_appstore
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
 
-  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true, export_method: 'app-store')
+  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true)
   ENV["PROJECT_UDID"] = udid
 
   gym(
     workspace: 'TLDR.xcworkspace',
-    scheme: 'TLDR'
+    scheme: 'TLDR',
+    export_method: 'app-store'
   )
 
   commit_version_bump(
