@@ -84,7 +84,7 @@ platform :ios do
 
   desc "Create ipa"
   lane :build do
-    gym
+    build_app
   end
 
   desc "Uploads metadata only - no ipa file will be uploaded"
