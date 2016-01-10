@@ -36,9 +36,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         commandTextField.delegate = self
         updateTableView()
         
-        commandTextField.attributedPlaceholder = NSAttributedString(string: "tldr_", attributes: [NSForegroundColorAttributeName:UIColor.lightTextColor()])
+        commandTextField.attributedPlaceholder = NSAttributedString(string: "_", attributes: [NSForegroundColorAttributeName:UIColor.lightTextColor()])
         commandTextField.clearButtonMode = .Always
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSuggestion", name: UITextFieldTextDidChangeNotification, object: commandTextField)
+        commandTextField.clearsOnBeginEditing = true
         
         resultTextView.backgroundColor = UIColor.clearColor()
         resultTextView.textColor = UIColor.whiteColor()
@@ -56,6 +56,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         commandTextField.becomeFirstResponder()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSuggestion", name: UITextFieldTextDidChangeNotification, object: commandTextField)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -69,11 +70,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        suggestions.removeAll()
-        guard let commandName  = textField.text else {
-            return true
+        if suggestions.count > 0 {
+            lookUpWord(self.suggestions[0].name, type: self.suggestions[0].type)
+        } else {
+            if let commandName  = textField.text {
+                lookUpWord(commandName, type: "common")
+            }
         }
-        lookUpWord(commandName, type: "common")
+        suggestions.removeAll()
         return true
     }
     
@@ -93,12 +97,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         resultTextView.attributedText = currentAttrText
         
         resultTextView.scrollRectToVisible(CGRect(origin: CGPointZero, size: resultTextView.frame.size), animated: true)
+        
+        commandTextField.text = ""
+        suggestions.removeAll()
     }
     
     func updateTableView() {
         tableView.reloadData()
         let cellHeight = CGFloat(32.0)
-        let maxCells = CGFloat(4.0)
+        let maxCells = CGFloat(6.0)
         let cellsCount = min(maxCells, CGFloat(suggestions.count))
         tableViewHeightConstraint.constant = cellsCount * cellHeight
     }
@@ -132,8 +139,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         commandTextField.text = suggestions[indexPath.row].name
         lookUpWord(suggestions[indexPath.row].name, type: suggestions[indexPath.row].type)
-        commandTextField.resignFirstResponder()
-        suggestions.removeAll()
+    }
+}
+
+extension ViewController {
+    @IBAction func dismiss(segue:UIStoryboardSegue) {
+        
     }
 }
 
