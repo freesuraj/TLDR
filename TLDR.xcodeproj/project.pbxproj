@@ -582,7 +582,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sg.com.propertyguru.TLDR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.tldr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -602,7 +602,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sg.com.propertyguru.TLDR;
+				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.tldr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
 				VERSIONING_SYSTEM = "apple-generic";
