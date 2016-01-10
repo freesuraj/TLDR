@@ -32,7 +32,7 @@ def build_app
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
 
-  udid = sigh(app_identifier: "com.suraj.tldr", output_path: "/tmp")
+  udid = sigh(force: true)
   ENV["PROJECT_UDID"] = udid
 
   gym(
