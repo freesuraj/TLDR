@@ -12,31 +12,42 @@ import RealmSwift
 class CommandRealm: Object {
     dynamic var name = ""
     dynamic var type = ""
-    
     override static func primaryKey() -> String? {
         return "name"
     }
 }
 
 struct StoreManager {
-    static let realm = try! Realm()
-    
+    static let realm = StoreManager.safeRealm()
+    static func safeRealm() -> Realm? {
+        do {
+            let r = try Realm()
+            return r
+        } catch {
+            return nil
+        }
+    }
+
     static func addCommand(command: Command) {
+        guard let realm = realm else { return }
         if realm.inWriteTransaction {
             writeToRealmDb(command)
-        }
-        else {
-            try! realm.write({
-                writeToRealmDb(command)
-            })
+        } else {
+            do {
+                try realm.write({
+                    writeToRealmDb(command)
+                })
+            } catch {}
         }
     }
-    
+
     static func writeToRealmDb(command: Command) {
+        guard let realm = realm else { return }
         realm.create(CommandRealm.self, value: ["name": command.name, "type": command.type], update: true)
     }
-    
+
     static func getMatchingCommands(keyword: String) -> [Command] {
+        guard let realm = realm else { return []}
         let predicate = NSPredicate(format: "name CONTAINS[c] %@", keyword)
         let results = realm.objects(CommandRealm).filter(predicate)
         var output: [Command] = []
@@ -45,7 +56,7 @@ struct StoreManager {
         }
         return output
     }
-    
+
     static func updateDB() {
         guard let jsonUrl = FileManager.urlToIndexJson(),
             let jsonData = NSData(contentsOfURL: jsonUrl) else {
@@ -64,17 +75,5 @@ struct StoreManager {
                 }
             }
         } catch {}
-    }
-}
-
-extension Results {
-    func toArray<T>(ofType: T.Type) -> [T] {
-        var array = [T]()
-        for result in self {
-            if let result = result as? T {
-                array.append(result)
-            }
-        }
-        return array
     }
 }

@@ -20,6 +20,18 @@
 		EDF72B471C41493A00BF5067 /* tldr.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EDF72B461C41493A00BF5067 /* tldr.bundle */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		ED1AACDE1C4265FC009B9F9F /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		ED269C331C414B1400BED358 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -165,8 +177,10 @@
 				EDB081841C3F70E8002BB783 /* Resources */,
 				67CE391469199B24DA77CD8A /* Embed Pods Frameworks */,
 				871FFF9139FE7AE8A4E5DE3E /* Copy Pods Resources */,
+				ED1AACDF1C426619009B9F9F /* ShellScript */,
 			);
 			buildRules = (
+				ED1AACDE1C4265FC009B9F9F /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -279,6 +293,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		ED1AACDF1C426619009B9F9F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -448,6 +475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TLDR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -465,6 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TLDR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -9,12 +9,9 @@
 import UIKit
 
 struct MarkDownParser {
-    
     static func attributedStringOfMarkdownString(markdown: String) -> NSAttributedString {
-        let regexTypes = [RegexType.titleRegex, RegexType.subTitleRegex, RegexType.quoteRegex, RegexType.listRegex, RegexType.blockRegex, RegexType.italicRegex, RegexType.BoldRegex]
-        
-        let output = NSMutableAttributedString(string: markdown, attributes: RegexType.normalRegex.attributes())
-        
+        let regexTypes: [RegexType] = [.Title, .SubTitle, .Quote, .List, .Block,.Italic, .BoldRegex]
+        let output = NSMutableAttributedString(string: markdown, attributes: RegexType.Normal.attributes())
         var rangesToDelete: [NSRange] = []
         for regexType in regexTypes {
             let matches = regexType.regex().matchesInString(markdown)
@@ -37,94 +34,99 @@ struct MarkDownParser {
             outputString.deleteCharactersInRange(newRange)
         }
         output.endEditing()
-        
         return filteredOutput
     }
-    
+    // MARK: Regex Types
     enum RegexType {
-        case titleRegex, subTitleRegex, quoteRegex, listRegex, blockRegex, italicRegex, BoldRegex, normalRegex
-        
+        case Title, SubTitle, Quote, List, Block, Italic, BoldRegex, Normal
         func regex() -> Regex {
-            
             switch self {
-            case .titleRegex:
+            case .Title:
                 return Regex(pattern: "(\\s*#+)(.+)")
-            case .subTitleRegex:
+            case .SubTitle:
                 return Regex(pattern: "([^\n\\s]*>)(.+)")
-            case .quoteRegex:
+            case .Quote:
                 return Regex(pattern: "(`)(.+)(`)")
-            case .listRegex:
+            case .List:
                 return Regex(pattern: "(\\s*-)(\\s+.+)")
-            case .blockRegex:
+            case .Block:
                 return Regex(pattern: "(\\{\\{)([^{}]+)(\\}\\})")
-            case .italicRegex:
+            case .Italic:
                 return Regex(pattern: "(_)(.+)(_)")
             case .BoldRegex:
                 return Regex(pattern: "(\\*)(.+)(\\*)")
-            case .normalRegex:
+            case .Normal:
                 return Regex(pattern: ".+")
             }
         }
-        
+        // Return the attributes for the regex type
         func attributes() -> [String: AnyObject] {
             switch self {
-            case .titleRegex:
-                return [NSForegroundColorAttributeName:UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Courier", size: 22)!]
-            case .subTitleRegex:
-                return [NSForegroundColorAttributeName:UIColor.lightTextColor(), NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
-            case .quoteRegex:
-                return [NSForegroundColorAttributeName:UIColor.greenColor(), NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
-            case .listRegex:
-                return [NSForegroundColorAttributeName:UIColor.redColor(), NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
-            case .blockRegex:
-                return [NSForegroundColorAttributeName:UIColor.lightTextColor(), NSFontAttributeName: UIFont(name: "Courier-Bold", size: 18)!]
-            case .italicRegex:
-                return [NSForegroundColorAttributeName:UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Courier-Oblique", size: 18)!]
+            case .Title:
+                return [NSForegroundColorAttributeName:UIColor.whiteColor(),
+                    NSFontAttributeName: UIFont(name: "Courier", size: 22)!]
+            case .SubTitle:
+                return [NSForegroundColorAttributeName:UIColor.lightTextColor(),
+                    NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
+            case .Quote:
+                return [NSForegroundColorAttributeName:UIColor.greenColor(),
+                    NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
+            case .List:
+                return [NSForegroundColorAttributeName:UIColor.redColor(),
+                    NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
+            case .Block:
+                return [NSForegroundColorAttributeName:UIColor.lightTextColor(),
+                    NSFontAttributeName: UIFont(name: "Courier-Bold", size: 18)!]
+            case .Italic:
+                return [NSForegroundColorAttributeName:UIColor.whiteColor(),
+                    NSFontAttributeName: UIFont(name: "Courier-Oblique", size: 18)!]
             case .BoldRegex:
-                return [NSForegroundColorAttributeName:UIColor.orangeColor(), NSFontAttributeName: UIFont(name: "Courier-Bold", size: 18)!]
-            case .normalRegex:
-                return [NSForegroundColorAttributeName:UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
+                return [NSForegroundColorAttributeName:UIColor.orangeColor(),
+                    NSFontAttributeName: UIFont(name: "Courier-Bold", size: 18)!]
+            case .Normal:
+                return [NSForegroundColorAttributeName:UIColor.whiteColor(),
+                    NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
             }
         }
-        
+        // Returns a tuple of Template and index of the regex group that should remain
         func templateIndexToRetain() -> (String, Int) {
             switch self {
-            case .titleRegex:
+            case .Title:
                 return ("$2", 2)
-            case .subTitleRegex:
+            case .SubTitle:
                 return ("$2", 2)
-            case .quoteRegex:
+            case .Quote:
                 return ("$2", 2)
-            case .listRegex:
+            case .List:
                 return ("$0", 0)
-            case .blockRegex:
+            case .Block:
                 return ("$2", 2)
-            case .italicRegex:
+            case .Italic:
                 return ("$2", 2)
             case .BoldRegex:
                 return ("$2", 2)
-            case .normalRegex:
+            case .Normal:
                 return ("$0", 0)
             }
         }
-        
+        // Returns the ranges of indices of the regex group that should be deleted
         func rangeIndicesToDelete() -> [Int]? {
             switch self {
-            case .titleRegex:
+            case .Title:
                 return [1]
-            case .subTitleRegex:
+            case .SubTitle:
                 return [1]
-            case .quoteRegex:
+            case .Quote:
                 return [1,3]
-            case .listRegex:
+            case .List:
                 return nil
-            case .blockRegex:
+            case .Block:
                 return [1,3]
-            case .italicRegex:
+            case .Italic:
                 return [1,3]
             case .BoldRegex:
                 return [1,3]
-            case .normalRegex:
+            case .Normal:
                 return nil
             }
         }
@@ -134,7 +136,7 @@ struct MarkDownParser {
 struct Regex {
     let internalExpression: NSRegularExpression
     let pattern: String
-    
+    // Initialization
     init(pattern: String) {
         self.pattern = pattern
         do {
@@ -143,7 +145,6 @@ struct Regex {
             internalExpression = NSRegularExpression()
         }
     }
-    
     func matchesInString(input: String) -> [NSTextCheckingResult] {
         let matches = self.internalExpression.matchesInString(input, options: [], range: NSMakeRange(0, input.characters.count))
         return matches

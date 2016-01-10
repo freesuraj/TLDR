@@ -8,7 +8,7 @@
 
 import UIKit
 
-let CellIdentifier = "CellIdentifier"
+let cellIdentifier = "cellIdentifier"
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
@@ -16,49 +16,48 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var commandTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-    
     var suggestions: [Command] = [] {
         didSet {
             updateTableView()
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
         NetworkManager.checkAutoUpdate()
     }
-    
+
     func updateUI() {
-        
         tableView.dataSource = self
         tableView.delegate = self
         commandTextField.delegate = self
         updateTableView()
-        
-        commandTextField.attributedPlaceholder = NSAttributedString(string: "_", attributes: [NSForegroundColorAttributeName:UIColor.lightTextColor()])
+        // Customize text field
+        commandTextField.attributedPlaceholder = NSAttributedString(string: "_", attributes:
+            [NSForegroundColorAttributeName:UIColor.lightTextColor()])
         commandTextField.clearButtonMode = .Always
         commandTextField.clearsOnBeginEditing = true
-        
+        // Customize text view
         resultTextView.backgroundColor = UIColor.clearColor()
         resultTextView.textColor = UIColor.whiteColor()
         resultTextView.font = UIFont(name: "Courier", size: 20)
         resultTextView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
-        
         resultTextView.selectable = false
         resultTextView.editable = false
     }
-    
+
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         commandTextField.becomeFirstResponder()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSuggestion", name: UITextFieldTextDidChangeNotification, object: commandTextField)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSuggestion", name:
+            UITextFieldTextDidChangeNotification, object: commandTextField)
     }
-    
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: commandTextField)
@@ -68,7 +67,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if suggestions.count > 0 {
             lookUpWord(self.suggestions[0].name, type: self.suggestions[0].type)
@@ -80,28 +79,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
         suggestions.removeAll()
         return true
     }
-    
+
     func textFieldShouldClear(textField: UITextField) -> Bool {
         suggestions.removeAll()
         return true
     }
-    
+
     func updateSuggestion() {
         suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
     }
-    
+
     func lookUpWord(word: String, type: String) {
-        let currentAttrText = NSMutableAttributedString(attributedString: CommandHelper.attributedTextForTLDRCommand(Command(name: word, type: type)))
+        let currentAttrText = NSMutableAttributedString(attributedString:
+            CommandHelper.attributedTextForTLDRCommand(Command(name: word, type: type)))
         currentAttrText.appendAttributedString(NSAttributedString(string: "\n\n"))
         currentAttrText.appendAttributedString(resultTextView.attributedText)
         resultTextView.attributedText = currentAttrText
-        
         resultTextView.scrollRectToVisible(CGRect(origin: CGPointZero, size: resultTextView.frame.size), animated: true)
-        
         commandTextField.text = ""
         suggestions.removeAll()
     }
-    
+
     func updateTableView() {
         tableView.reloadData()
         let cellHeight = CGFloat(32.0)
@@ -112,21 +110,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return suggestions.count
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
-        if let cachedCell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) {
+        if let cachedCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
             cell = cachedCell
         } else {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: CellIdentifier)
+            cell = UITableViewCell(style: .Value1, reuseIdentifier: cellIdentifier)
             cell?.backgroundColor = UIColor.clearColor()
             cell?.textLabel?.textColor = UIColor.lightTextColor()
         }
@@ -134,7 +132,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell!.detailTextLabel!.text = suggestions[indexPath.row].type
         return cell!
     }
-    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         commandTextField.text = suggestions[indexPath.row].name
@@ -143,8 +141,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ViewController {
+
     @IBAction func dismiss(segue:UIStoryboardSegue) {
-        
     }
 }
-

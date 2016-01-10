@@ -1,0 +1,27 @@
+disabled_rules: # rule identifiers to exclude from running
+  - colon
+  - comma
+  - control_statement
+  - force_cast
+  
+# Find all the available rules by running:
+  # swiftlint rules
+
+# To disable a particular rule: use
+  # swiftlint: disable rule_name
+  # example swiftlint: disable line_length
+  # enable it back by adding swiftlint:enable rule_name
+
+included: # paths to include during linting. `--path` is ignored if present.
+  - TLDR
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+
+# parameterized rules can be customized from this configuration file
+line_length: 140
+# parameterized rules are first parameterized as a warning level, then error level.
+type_body_length:
+  - 300 # warning
+  - 400 # error
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
