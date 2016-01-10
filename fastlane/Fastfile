@@ -128,7 +128,7 @@ platform :ios do
   desc "Uploads metadata only - no ipa file will be uploaded"
   desc "You'll get a summary of the collected metadata before it's uploaded"
   lane :upload_metadata do
-    deliver(metadata_only: true)
+    deliver(submit_for_review: false)
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
@@ -144,7 +144,7 @@ platform :ios do
   lane :deploy do
     snapshot
     build_app_appstore
-    deliver(force: true, skip_deploy: true, submit_for_review: true)
+    deliver(force: true, skip_deploy: true, submit_for_review: true, automatic_release: true)
     frameit
   end
 
