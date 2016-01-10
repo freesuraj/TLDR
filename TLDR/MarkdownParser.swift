@@ -69,7 +69,7 @@ struct MarkDownParser {
         func attributes() -> [String: AnyObject] {
             switch self {
             case .titleRegex:
-                return [NSForegroundColorAttributeName:UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Courier", size: 30)!]
+                return [NSForegroundColorAttributeName:UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Courier", size: 22)!]
             case .subTitleRegex:
                 return [NSForegroundColorAttributeName:UIColor.lightTextColor(), NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
             case .quoteRegex:
