@@ -32,7 +32,36 @@ def build_app
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
 
-  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true)
+  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true, export_method: 'enterprise')
+  ENV["PROJECT_UDID"] = udid
+
+  gym(
+    workspace: 'TLDR.xcworkspace',
+    scheme: 'TLDR'
+  )
+
+  commit_version_bump(
+    message: 'Version Bump by fastlane',
+    xcodeproj: project_file,
+    force: true
+  )
+
+  push_to_git_remote
+end
+
+def build_app_appstore
+  project_file = 'TLDR.xcodeproj'
+
+  increment_build_number(xcodeproj: project_file) # version bump
+  # Get the latest provisionnig profiles from the Dev Portal and
+  # More information about code signing: https://github.com/KrauseFx/fastlane/blob/master/docs/CodeSigning.md
+  # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitextension", output_path: "/tmp")
+  # ENV["WATCHKIT_EXTENSIONS_UDID"] = udid
+
+  # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
+  # ENV["WATCHKIT_APP_UDID"] = udid
+
+  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true, export_method: 'app-store')
   ENV["PROJECT_UDID"] = udid
 
   gym(
@@ -105,7 +134,7 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :deploy do
     snapshot
-    build_app
+    build_app_appstore
     deliver(force: true, skip_deploy: true, submit_for_review: true)
     frameit
   end
