@@ -83,7 +83,7 @@ platform :ios do
   end
 
   desc "Create ipa"
-  lane :create_ipa do
+  lane :build do
     gym
   end
 
