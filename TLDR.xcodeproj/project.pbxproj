@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A924DE91E956F100E9747CF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		ED1AACE71C427F10009B9F9F /* TLDRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */; };
+		ED1AACEF1C428093009B9F9F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACEE1C428093009B9F9F /* SnapshotHelper.swift */; };
 		ED269C311C414B1400BED358 /* TLDRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C301C414B1400BED358 /* TLDRTests.swift */; };
 		ED269C431C41870300BED358 /* CommandRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C421C41870300BED358 /* CommandRealm.swift */; };
 		ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3531C3FA76500613214 /* MarkdownParser.swift */; };
@@ -33,6 +35,13 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		ED1AACE91C427F10009B9F9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDB0817E1C3F70E8002BB783 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDB081851C3F70E8002BB783;
+			remoteInfo = TLDR;
+		};
 		ED269C331C414B1400BED358 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EDB0817E1C3F70E8002BB783 /* Project object */;
@@ -46,6 +55,10 @@
 		9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC706F10FDA7F86B0D3249C8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E579B7D4846F39B201D66542 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		ED1AACE41C427F10009B9F9F /* TLDRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLDRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRUITests.swift; sourceTree = "<group>"; };
+		ED1AACE81C427F10009B9F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED1AACEE1C428093009B9F9F /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		ED269C2E1C414B1400BED358 /* TLDRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLDRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED269C301C414B1400BED358 /* TLDRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRTests.swift; sourceTree = "<group>"; };
 		ED269C321C414B1400BED358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +77,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		ED1AACE11C427F10009B9F9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED269C2B1C414B1400BED358 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,6 +120,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ED1AACE51C427F10009B9F9F /* TLDRUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ED1AACEE1C428093009B9F9F /* SnapshotHelper.swift */,
+				ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */,
+				ED1AACE81C427F10009B9F9F /* Info.plist */,
+			);
+			path = TLDRUITests;
+			sourceTree = "<group>";
+		};
 		ED269C2F1C414B1400BED358 /* TLDRTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +144,7 @@
 			children = (
 				EDB081881C3F70E8002BB783 /* TLDR */,
 				ED269C2F1C414B1400BED358 /* TLDRTests */,
+				ED1AACE51C427F10009B9F9F /* TLDRUITests */,
 				EDB081871C3F70E8002BB783 /* Products */,
 				E43CAF18CDFE940A409404C6 /* Pods */,
 				EA39B605F5CD8DF8ACE9901F /* Frameworks */,
@@ -125,6 +156,7 @@
 			children = (
 				EDB081861C3F70E8002BB783 /* TLDR.app */,
 				ED269C2E1C414B1400BED358 /* TLDRTests.xctest */,
+				ED1AACE41C427F10009B9F9F /* TLDRUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +181,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		ED1AACE31C427F10009B9F9F /* TLDRUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED1AACEB1C427F10009B9F9F /* Build configuration list for PBXNativeTarget "TLDRUITests" */;
+			buildPhases = (
+				ED1AACE01C427F10009B9F9F /* Sources */,
+				ED1AACE11C427F10009B9F9F /* Frameworks */,
+				ED1AACE21C427F10009B9F9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED1AACEA1C427F10009B9F9F /* PBXTargetDependency */,
+			);
+			name = TLDRUITests;
+			productName = TLDRUITests;
+			productReference = ED1AACE41C427F10009B9F9F /* TLDRUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		ED269C2D1C414B1400BED358 /* TLDRTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ED269C351C414B1400BED358 /* Build configuration list for PBXNativeTarget "TLDRTests" */;
@@ -199,6 +249,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Suraj Pathak";
 				TargetAttributes = {
+					ED1AACE31C427F10009B9F9F = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = EDB081851C3F70E8002BB783;
+					};
 					ED269C2D1C414B1400BED358 = {
 						CreatedOnToolsVersion = 7.2;
 						TestTargetID = EDB081851C3F70E8002BB783;
@@ -223,11 +277,19 @@
 			targets = (
 				EDB081851C3F70E8002BB783 /* TLDR */,
 				ED269C2D1C414B1400BED358 /* TLDRTests */,
+				ED1AACE31C427F10009B9F9F /* TLDRUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		ED1AACE21C427F10009B9F9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED269C2C1C414B1400BED358 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,6 +372,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		ED1AACE01C427F10009B9F9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED1AACE71C427F10009B9F9F /* TLDRUITests.swift in Sources */,
+				ED1AACEF1C428093009B9F9F /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ED269C2A1C414B1400BED358 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,6 +404,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		ED1AACEA1C427F10009B9F9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDB081851C3F70E8002BB783 /* TLDR */;
+			targetProxy = ED1AACE91C427F10009B9F9F /* PBXContainerItemProxy */;
+		};
 		ED269C341C414B1400BED358 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EDB081851C3F70E8002BB783 /* TLDR */;
@@ -360,6 +436,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		ED1AACEC1C427F10009B9F9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TLDRUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.TLDRUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TLDR;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		ED1AACED1C427F10009B9F9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TLDRUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.TLDRUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TLDR;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 		ED269C361C414B1400BED358 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -474,6 +574,7 @@
 			baseConfigurationReference = BC706F10FDA7F86B0D3249C8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -484,6 +585,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sg.com.propertyguru.TLDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -492,6 +594,7 @@
 			baseConfigurationReference = E579B7D4846F39B201D66542 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 2;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -502,12 +605,22 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sg.com.propertyguru.TLDR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ED1AACEB1C427F10009B9F9F /* Build configuration list for PBXNativeTarget "TLDRUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED1AACEC1C427F10009B9F9F /* Debug */,
+				ED1AACED1C427F10009B9F9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ED269C351C414B1400BED358 /* Build configuration list for PBXNativeTarget "TLDRTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
