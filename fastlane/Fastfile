@@ -57,6 +57,10 @@ platform :ios do
     snapshot
   end
 
+  lane :screenshot do
+    snapshot
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do

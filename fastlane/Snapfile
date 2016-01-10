@@ -21,7 +21,7 @@ languages([
 scheme "TLDR"
 
 # Where should the resulting screenshots be stored?
-output_directory "./screenshots"
+output_directory "./fastlane/screenshots"
 
 clear_previous_screenshots # remove the '#' to clear all previously generated screenshots before creating new ones
 
