@@ -1,1 +1,4 @@
-tldr, man page, too long, tldr ios
+tldr
+man page
+too long
+tldr ios

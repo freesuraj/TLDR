@@ -65,3 +65,4 @@ test_output/
 # iPA or zip
 *.zip
 *.ipa
+*.html
