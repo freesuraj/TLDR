@@ -45,7 +45,7 @@ platform :ios do
         app_name: 'TLDR',
         language: 'English',
         app_version: '1.0.0',
-        sku: '20160110tldrios'
+        sku: '20160110tldrios',
         team_id: '74HVZ53TRR',
         team_name: 'Suraj Pathak'
     )
