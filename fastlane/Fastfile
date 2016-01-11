@@ -64,17 +64,16 @@ def build_app_appstore
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
 
+  increment_build_number(xcodeproj: project_file) # version bump
+
   cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
   sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
-
-  increment_build_number(xcodeproj: project_file) # version bump
 
   gym(
     workspace: 'TLDR.xcworkspace',
     scheme: 'TLDR',
     export_method: 'app-store',
     use_legacy_build_api: true,
-    codesigning_identity: 'iOS Distribution: Suraj Pathak',
     silent: true
   )
 
