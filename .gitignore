@@ -66,4 +66,7 @@ test_output/
 *.zip
 *.ipa
 *.html
+*.p12
+*.certSigningRequest
+*.cer
 *.mobileprovision
