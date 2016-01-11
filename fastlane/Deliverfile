@@ -8,3 +8,24 @@
 
 app_identifier "com.suraj.tldr" # The bundle identifier of your app
 username "freesuraj@gmail.com" # your Apple ID user
+
+
+app_review_information(
+  first_name: "Felix",
+  last_name: "Krause",
+  phone_number: "+43 123123123",
+  email_address: "github@krausefx.com",
+  demo_user: "demoUser",
+  demo_password: "demoPass",
+  notes: "such notes, very text"
+)
+
+submission_information({
+  add_id_info_serves_ads: false,
+  content_rights_contains_third_party_content: false,
+  export_compliance_uses_encryption: false
+})
+
+app_rating_config_path './fastlane/metadata/appRating.json'
+
+price_tier 0

@@ -8,8 +8,8 @@ disabled_rules: # rule identifiers to exclude from running
   # swiftlint rules
 
 # To disable a particular rule: use
-  # swiftlint: disable rule_name
-  # example swiftlint: disable line_length
+  # swiftlint:disable rule_name
+  # example swiftlint:disable line_length
   # enable it back by adding swiftlint:enable rule_name
 
 included: # paths to include during linting. `--path` is ignored if present.

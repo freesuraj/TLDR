@@ -23,7 +23,6 @@ default_platform :ios
 def build_app
   project_file = 'TLDR.xcodeproj'
 
-  increment_build_number(xcodeproj: project_file) # version bump
   # Get the latest provisionnig profiles from the Dev Portal and
   # More information about code signing: https://github.com/KrauseFx/fastlane/blob/master/docs/CodeSigning.md
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitextension", output_path: "/tmp")
@@ -32,14 +31,17 @@ def build_app
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
   cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
-  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true)
-  ENV["PROJECT_UDID"] = udid
+  sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
+
+  increment_build_number(xcodeproj: project_file) # version bump
 
   gym(
     workspace: 'TLDR.xcworkspace',
     scheme: 'TLDR',
     export_method: 'enterprise',
-    use_legacy_build_api: true
+    use_legacy_build_api: true,
+    # suppress_xcode_output: true,
+    silent: true
   )
 
   commit_version_bump(
@@ -47,14 +49,13 @@ def build_app
     xcodeproj: project_file,
     force: true
   )
-
-  push_to_git_remote
+  #
+  # push_to_git_remote
 end
 
 def build_app_appstore
   project_file = 'TLDR.xcodeproj'
 
-  increment_build_number(xcodeproj: project_file) # version bump
   # Get the latest provisionnig profiles from the Dev Portal and
   # More information about code signing: https://github.com/KrauseFx/fastlane/blob/master/docs/CodeSigning.md
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitextension", output_path: "/tmp")
@@ -63,14 +64,18 @@ def build_app_appstore
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
 
-  udid = sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: true)
-  ENV["PROJECT_UDID"] = udid
+  cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
+  sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
+
+  increment_build_number(xcodeproj: project_file) # version bump
 
   gym(
     workspace: 'TLDR.xcworkspace',
     scheme: 'TLDR',
     export_method: 'app-store',
-    use_legacy_build_api: true
+    use_legacy_build_api: true,
+    codesigning_identity: 'iOS Distribution: Suraj Pathak',
+    silent: true
   )
 
   commit_version_bump(
@@ -78,16 +83,29 @@ def build_app_appstore
     xcodeproj: project_file,
     force: true
   )
+  # push_to_git_remote
 
-  push_to_git_remote
 end
-
-
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
     cocoapods
+  end
+
+  desc "Send test flight beta"
+  lane :testflight do
+    build_app
+    pilot(
+    distribute_external: true
+    )
+    slack
+  end
+
+  desc "Pilot to test flight if ipa exists"
+  lane :pilot do
+    pilot(distribute_external: true)
+    slack
   end
 
   desc "Creating a code signing certificate and provisioning profile"
@@ -135,7 +153,8 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     build_app
-    pilot
+    pilot(distribute_external: true)
+    slack
     # sh "your_script.sh"
     # You can also use other beta testing services here
   end
@@ -143,8 +162,10 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :deploy do
     build_app_appstore
-    deliver(force: true, skip_deploy: true, submit_for_review: true, automatic_release: true)
-    frameit
+    deliver(force: true, skip_screenshots: true, submit_for_review: true, automatic_release: true)
+    # frameit
+    slack
+    push_to_git_remote
   end
 
   # You can define as many lanes as you want

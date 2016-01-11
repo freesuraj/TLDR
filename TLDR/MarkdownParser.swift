@@ -146,6 +146,7 @@ struct Regex {
         }
     }
     func matchesInString(input: String) -> [NSTextCheckingResult] {
+        // swiftlint:disable legacy_constructor
         let matches = self.internalExpression.matchesInString(input, options: [], range: NSMakeRange(0, input.characters.count))
         return matches
     }

@@ -10,7 +10,7 @@ import UIKit
 
 let cellIdentifier = "cellIdentifier"
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var resultTextView: UITextView!
     @IBOutlet weak var commandTextField: UITextField!
@@ -32,6 +32,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         tableView.dataSource = self
         tableView.delegate = self
         commandTextField.delegate = self
+        resultTextView.delegate = self
         updateTableView()
         // Customize text field
         commandTextField.attributedPlaceholder = NSAttributedString(string: "_", attributes:
@@ -68,23 +69,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if suggestions.count > 0 {
-            lookUpWord(self.suggestions[0].name, type: self.suggestions[0].type)
-        } else {
-            if let commandName  = textField.text {
-                lookUpWord(commandName, type: "common")
-            }
-        }
-        suggestions.removeAll()
-        return true
-    }
-
-    func textFieldShouldClear(textField: UITextField) -> Bool {
-        suggestions.removeAll()
-        return true
-    }
-
     func updateSuggestion() {
         suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
     }
@@ -97,6 +81,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         resultTextView.attributedText = currentAttrText
         resultTextView.scrollRectToVisible(CGRect(origin: CGPointZero, size: resultTextView.frame.size), animated: true)
         commandTextField.text = ""
+        commandTextField.resignFirstResponder()
         suggestions.removeAll()
     }
 
@@ -106,6 +91,31 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let maxCells = CGFloat(6.0)
         let cellsCount = min(maxCells, CGFloat(suggestions.count))
         tableViewHeightConstraint.constant = cellsCount * cellHeight
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if suggestions.count > 0 {
+            lookUpWord(self.suggestions[0].name, type: self.suggestions[0].type)
+        } else {
+            if let commandName  = textField.text {
+                lookUpWord(commandName, type: "common")
+            }
+        }
+        suggestions.removeAll()
+        return true
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        suggestions.removeAll()
+        return true
+    }
+}
+
+extension ViewController: UITextViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        commandTextField.resignFirstResponder()
     }
 }
 

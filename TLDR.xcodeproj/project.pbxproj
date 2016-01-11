@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A924DE91E956F100E9747CF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1A924DE91E956F100E9747CF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */; };
 		ED1AACE71C427F10009B9F9F /* TLDRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */; };
 		ED1AACEF1C428093009B9F9F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACEE1C428093009B9F9F /* SnapshotHelper.swift */; };
 		ED269C311C414B1400BED358 /* TLDRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C301C414B1400BED358 /* TLDRTests.swift */; };
@@ -259,6 +259,7 @@
 					};
 					EDB081851C3F70E8002BB783 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = WZQCH4CE4Y;
 					};
 				};
 			};
@@ -574,7 +575,8 @@
 			baseConfigurationReference = BC706F10FDA7F86B0D3249C8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 18;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 28;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -584,6 +586,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.tldr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d316183e-d59f-4186-9c03-568cc18a2ce0";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -594,7 +597,8 @@
 			baseConfigurationReference = E579B7D4846F39B201D66542 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 18;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Suraj Pathak (74HVZ53TRR)";
+				CURRENT_PROJECT_VERSION = 28;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -604,6 +608,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.tldr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d316183e-d59f-4186-9c03-568cc18a2ce0";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/zlib";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
