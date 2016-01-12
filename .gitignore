@@ -70,3 +70,4 @@ test_output/
 *.certSigningRequest
 *.cer
 *.mobileprovision
+docs/
