@@ -44,8 +44,9 @@ class ViewController: UIViewController {
         resultTextView.textColor = UIColor.whiteColor()
         resultTextView.font = UIFont(name: "Courier", size: 20)
         resultTextView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
-        resultTextView.selectable = false
+        resultTextView.selectable = true
         resultTextView.editable = false
+        resultTextView.dataDetectorTypes = .Link
     }
 
     override func prefersStatusBarHidden() -> Bool {
@@ -76,6 +77,10 @@ class ViewController: UIViewController {
     func lookUpWord(word: String, type: String) {
         let currentAttrText = NSMutableAttributedString(attributedString:
             CommandHelper.attributedTextForTLDRCommand(Command(name: word, type: type)))
+        appendAttributeText(currentAttrText)
+    }
+
+    func appendAttributeText(currentAttrText: NSMutableAttributedString) {
         currentAttrText.appendAttributedString(NSAttributedString(string: "\n\n"))
         currentAttrText.appendAttributedString(resultTextView.attributedText)
         resultTextView.attributedText = currentAttrText
@@ -106,7 +111,7 @@ extension ViewController: UITextFieldDelegate {
         suggestions.removeAll()
         return true
     }
-    
+
     func textFieldShouldClear(textField: UITextField) -> Bool {
         suggestions.removeAll()
         return true
@@ -152,6 +157,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController {
 
-    @IBAction func dismiss(segue:UIStoryboardSegue) {
+    @IBAction func clearConsole(sender: AnyObject) {
+        resultTextView.attributedText = NSMutableAttributedString(string: "")
+    }
+
+    @IBAction func appendAboutUs(sender: AnyObject) {
+        let aboutUs = MarkDownParser.attributedStringOfMarkdownString(aboutUsMarkdown)
+        appendAttributeText(NSMutableAttributedString(attributedString: aboutUs))
     }
 }

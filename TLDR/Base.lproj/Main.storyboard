@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -54,7 +54,7 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="Q58-ZU-VUa" kind="presentation" id="v2I-ml-bIC"/>
+                                            <action selector="appendAboutUs:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7G0-0d-ZgZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -80,23 +80,37 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tV-yd-pti">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tV-yd-pti">
                                 <rect key="frame" x="0.0" y="90" width="600" height="510"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VI0-2e-6IZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VI0-2e-6IZ">
                                 <rect key="frame" x="0.0" y="90" width="600" height="160"/>
                                 <color key="backgroundColor" red="0.11299492801047117" green="0.11299492801047117" blue="0.11299492801047117" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="7Xl-5c-Rgr"/>
                                 </constraints>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3D-R2-8yZ">
+                                <rect key="frame" x="548" y="548" width="52" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="euT-PX-UiS"/>
+                                    <constraint firstAttribute="width" constant="52" id="kDb-OD-qG0"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="19" minY="14" maxX="0.0" maxY="15"/>
+                                <state key="normal" image="clearButton"/>
+                                <connections>
+                                    <action selector="clearConsole:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mGA-bd-J38"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="A3D-R2-8yZ" secondAttribute="bottom" id="7LR-tl-6zg"/>
                             <constraint firstItem="VI0-2e-6IZ" firstAttribute="leading" secondItem="jAk-Tc-51Z" secondAttribute="leading" id="E3q-rV-17z"/>
                             <constraint firstItem="3tV-yd-pti" firstAttribute="trailing" secondItem="jAk-Tc-51Z" secondAttribute="trailing" id="MKl-nh-fQt"/>
                             <constraint firstItem="jAk-Tc-51Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Sqr-Bn-Hg3"/>
@@ -107,6 +121,7 @@
                             <constraint firstItem="VI0-2e-6IZ" firstAttribute="top" secondItem="jAk-Tc-51Z" secondAttribute="bottom" id="ixD-65-mAC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jAk-Tc-51Z" secondAttribute="trailing" constant="-20" id="ixd-me-czM"/>
                             <constraint firstItem="3tV-yd-pti" firstAttribute="top" secondItem="jAk-Tc-51Z" secondAttribute="bottom" id="rxx-Vy-w9Y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="A3D-R2-8yZ" secondAttribute="trailing" constant="-20" id="uGB-CU-WGP"/>
                             <constraint firstItem="3tV-yd-pti" firstAttribute="top" secondItem="jAk-Tc-51Z" secondAttribute="bottom" id="vVZ-2t-d9O"/>
                         </constraints>
                         <variation key="default">
@@ -127,89 +142,8 @@
             </objects>
             <point key="canvasLocation" x="262" y="192"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="lSR-Ng-Sph">
-            <objects>
-                <viewController id="Q58-ZU-VUa" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YRy-Eq-yQl"/>
-                        <viewControllerLayoutGuide type="bottom" id="XBT-2Z-qIl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6V5-Wd-rW1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8EB-j1-hWo">
-                                <rect key="frame" x="520" y="20" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="6Dl-Ep-WHn"/>
-                                    <constraint firstAttribute="height" constant="50" id="ovr-W2-1Za"/>
-                                </constraints>
-                                <state key="normal" title="Close"/>
-                                <connections>
-                                    <segue destination="Wzp-6I-FbV" kind="unwind" unwindAction="dismiss:" id="UHH-aQ-InO"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEe-1e-wak">
-                                <rect key="frame" x="0.0" y="86" width="600" height="514"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">tldr is a collection of simplified and community-driven man pages.
-
-TL;DR stands for "Too Long; Didn't Read". It originates in Internet slang, where it is used to indicate parts of the text skipped as too lengthy. Read more in the TLDR article on Wikipedia.
-
-What is tldr?
-New to the command-line world? Or just a little rusty? Or perhaps you can't always remember the arguments to lsof, or tar?
-
-Compared to man, it provides a concise and most-used description of a command.
-
-Resources:
-----------
-tldr github page: https://github.com/tldr-pages/tldr
-
-my github page: https://github.com/freesuraj
-
-project open source page: https://github.com/freesuraj/TLDR</mutableString>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About this project" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQR-m4-yf1">
-                                <rect key="frame" x="30" y="20" width="480" height="50"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="24"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="8EB-j1-hWo" firstAttribute="leading" secondItem="pQR-m4-yf1" secondAttribute="trailing" constant="10" id="1Pv-cM-dtr"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8EB-j1-hWo" secondAttribute="trailing" constant="10" id="F6b-5V-ZYU"/>
-                            <constraint firstItem="pQR-m4-yf1" firstAttribute="bottom" secondItem="8EB-j1-hWo" secondAttribute="bottom" id="P99-nS-847"/>
-                            <constraint firstItem="EEe-1e-wak" firstAttribute="top" secondItem="YRy-Eq-yQl" secondAttribute="bottom" constant="66" id="QlF-pl-Sb4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="EEe-1e-wak" secondAttribute="trailing" constant="-20" id="SBB-zz-rma"/>
-                            <constraint firstItem="XBT-2Z-qIl" firstAttribute="top" secondItem="EEe-1e-wak" secondAttribute="bottom" id="UOe-kW-9eL"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="8EB-j1-hWo" secondAttribute="leading" id="aSU-gL-XZT"/>
-                            <constraint firstItem="pQR-m4-yf1" firstAttribute="leading" secondItem="8EB-j1-hWo" secondAttribute="trailing" constant="35" id="bET-A6-3rl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pQR-m4-yf1" secondAttribute="trailing" id="dlT-IR-pD3"/>
-                            <constraint firstItem="pQR-m4-yf1" firstAttribute="top" secondItem="8EB-j1-hWo" secondAttribute="top" id="e2U-Bf-FsC"/>
-                            <constraint firstItem="8EB-j1-hWo" firstAttribute="top" secondItem="YRy-Eq-yQl" secondAttribute="bottom" id="gZf-S5-03J"/>
-                            <constraint firstItem="pQR-m4-yf1" firstAttribute="leading" secondItem="6V5-Wd-rW1" secondAttribute="leadingMargin" constant="10" id="grs-Kf-peP"/>
-                            <constraint firstItem="EEe-1e-wak" firstAttribute="leading" secondItem="6V5-Wd-rW1" secondAttribute="leadingMargin" constant="-20" id="nKv-AH-MLd"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="bET-A6-3rl"/>
-                                <exclude reference="dlT-IR-pD3"/>
-                                <exclude reference="aSU-gL-XZT"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bs2-FG-WMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Wzp-6I-FbV" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="897" y="192"/>
-        </scene>
     </scenes>
+    <resources>
+        <image name="clearButton" width="33" height="33"/>
+    </resources>
 </document>

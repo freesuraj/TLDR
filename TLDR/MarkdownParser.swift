@@ -10,13 +10,17 @@ import UIKit
 
 struct MarkDownParser {
     static func attributedStringOfMarkdownString(markdown: String) -> NSAttributedString {
-        let regexTypes: [RegexType] = [.Title, .SubTitle, .Quote, .List, .Block,.Italic, .BoldRegex]
+        let regexTypes: [RegexType] = [.Title, .SubTitle, .Quote, .List, .Block,.Italic, .Bold, .Link]
         let output = NSMutableAttributedString(string: markdown, attributes: RegexType.Normal.attributes())
         var rangesToDelete: [NSRange] = []
         for regexType in regexTypes {
             let matches = regexType.regex().matchesInString(markdown)
             for aMatch in matches {
                 output.setAttributes(regexType.attributes(), range: aMatch.range)
+                if regexType == .Link {
+                    let linkValue = output.attributedSubstringFromRange(aMatch.range)
+                    output.addAttribute(NSLinkAttributeName, value: NSURL(string: linkValue.string)!, range: aMatch.range)
+                }
                 if let indices = regexType.rangeIndicesToDelete() {
                     for index in indices {
                         rangesToDelete.append(aMatch.rangeAtIndex(index))
@@ -38,7 +42,7 @@ struct MarkDownParser {
     }
     // MARK: Regex Types
     enum RegexType {
-        case Title, SubTitle, Quote, List, Block, Italic, BoldRegex, Normal
+        case Title, SubTitle, Quote, List, Block, Italic, Bold, Link, Normal
         func regex() -> Regex {
             switch self {
             case .Title:
@@ -52,9 +56,11 @@ struct MarkDownParser {
             case .Block:
                 return Regex(pattern: "(\\{\\{)([^{}]+)(\\}\\})")
             case .Italic:
-                return Regex(pattern: "(_)(.+)(_)")
-            case .BoldRegex:
+                return Regex(pattern: "(_)([^_\n]+)(_)")
+            case .Bold:
                 return Regex(pattern: "(\\*)(.+)(\\*)")
+            case .Link:
+                return Regex(pattern: "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
             case .Normal:
                 return Regex(pattern: ".+")
             }
@@ -80,9 +86,12 @@ struct MarkDownParser {
             case .Italic:
                 return [NSForegroundColorAttributeName:UIColor.whiteColor(),
                     NSFontAttributeName: UIFont(name: "Courier-Oblique", size: 18)!]
-            case .BoldRegex:
+            case .Bold:
                 return [NSForegroundColorAttributeName:UIColor.orangeColor(),
                     NSFontAttributeName: UIFont(name: "Courier-Bold", size: 18)!]
+            case .Link:
+                return [NSForegroundColorAttributeName:UIColor.blueColor(),
+                    NSFontAttributeName: UIFont(name: "Courier", size: 16)!]
             case .Normal:
                 return [NSForegroundColorAttributeName:UIColor.whiteColor(),
                     NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
@@ -103,8 +112,10 @@ struct MarkDownParser {
                 return ("$2", 2)
             case .Italic:
                 return ("$2", 2)
-            case .BoldRegex:
+            case .Bold:
                 return ("$2", 2)
+            case .Link:
+                return ("$0", 0)
             case .Normal:
                 return ("$0", 0)
             }
@@ -124,8 +135,10 @@ struct MarkDownParser {
                 return [1,3]
             case .Italic:
                 return [1,3]
-            case .BoldRegex:
+            case .Bold:
                 return [1,3]
+            case .Link:
+                return nil
             case .Normal:
                 return nil
             }

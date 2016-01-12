@@ -34,6 +34,7 @@ def build_app
   sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
 
   increment_build_number(xcodeproj: project_file) # version bump
+  # increment_version_number
 
   gym(
     workspace: 'TLDR.xcworkspace',
@@ -44,11 +45,11 @@ def build_app
     silent: true
   )
 
-  commit_version_bump(
-    message: 'Version Bump by fastlane',
-    xcodeproj: project_file,
-    force: true
-  )
+  # commit_version_bump(
+  #   message: 'Version Bump by fastlane',
+  #   xcodeproj: project_file,
+  #   force: true
+  # )
   #
   # push_to_git_remote
 end
@@ -77,11 +78,11 @@ def build_app_appstore
     silent: true
   )
 
-  commit_version_bump(
-    message: 'Version Bump by fastlane',
-    xcodeproj: project_file,
-    force: true
-  )
+  # commit_version_bump(
+  #   message: 'Version Bump by fastlane',
+  #   xcodeproj: project_file,
+  #   force: true
+  # )
   # push_to_git_remote
 
 end
@@ -134,12 +135,7 @@ platform :ios do
 
   desc "Create ipa"
   lane :build do
-    gym(
-      workspace: 'TLDR.xcworkspace',
-      scheme: 'TLDR',
-      export_method: 'enterprise',
-      use_legacy_build_api: true
-    )
+    build_app
   end
 
   desc "Uploads metadata only - no ipa file will be uploaded"
