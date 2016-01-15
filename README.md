@@ -3,7 +3,7 @@
 [TL;DR][href1] is a open source project which maintains a list of man pages. This project is the iOS Client of that.
 
 ## Download on App store
-This app is available in the [app][href2] store at
+This app is available in the [app store][href2].
 
 ## Contact
 Feel free to discuss issue or send PR if appropriate.
