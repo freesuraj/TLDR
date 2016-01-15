@@ -1,3 +1,4 @@
-first version of TLDR man page.
-* more than 2000 man commands
-* auto update
+Update App
+* Improve the Markdown parser
+* Improve the console UI
+* Remove about us page and bring it to console

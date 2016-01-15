@@ -30,9 +30,9 @@ def build_app
 
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
+  cocoapods
   cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
   sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
-
   increment_build_number(xcodeproj: project_file) # version bump
   # increment_version_number
 
@@ -64,9 +64,9 @@ def build_app_appstore
 
   # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
   # ENV["WATCHKIT_APP_UDID"] = udid
-
+  cocoapods
   increment_build_number(xcodeproj: project_file) # version bump
-
+  increment_version_number(bump_type: "minor")
   cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
   sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
 
@@ -90,7 +90,6 @@ end
 platform :ios do
   before_all do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
-    cocoapods
   end
 
   desc "Send test flight beta"
@@ -144,7 +143,7 @@ platform :ios do
     deliver(submit_for_review: false)
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "Create a new test build and submit to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
     build_app
@@ -154,7 +153,7 @@ platform :ios do
     # You can also use other beta testing services here
   end
 
-  desc "Deploy a new version to the App Store"
+  desc "Deploy a new version to the App Store. It will create a new build first, then upload it"
   lane :deploy do
     build_app_appstore
     deliver(force: true, skip_screenshots: true, submit_for_review: true, automatic_release: true)
@@ -163,6 +162,13 @@ platform :ios do
     push_to_git_remote
   end
 
+  desc "Deploy an existing build to the App Store"
+  lane :deployExisting do
+    deliver(force: true, skip_screenshots: true, submit_for_review: true, automatic_release: true)
+    # frameit
+    slack
+    push_to_git_remote
+  end
   # You can define as many lanes as you want
 
   after_all do |lane|
