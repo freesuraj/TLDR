@@ -1,4 +1,6 @@
-sudo: false
+sudo: required
+before_install:
+  - sudo gem install cocoapods
 language: swift
 osx_image: xcode7.2
 xcode_workspace: TLDR.xcworkspace
