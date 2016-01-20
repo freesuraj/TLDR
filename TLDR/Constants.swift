@@ -8,6 +8,9 @@
 
 import Foundation
 
+let remoteConfig = ["gitUrl": "https://github.com/", "user": "tldr-pages", "repo": "tldr", "branch": "master"]
+let tldrZipUrl = "http://tldr-pages.github.io/assets/tldr.zip"
+
 // swiftlint:disable line_length
 // swiftlint:disable trailing_whitespace
 let aboutUsMarkdown = "*About this project*\n\nTLDR is a collection of simplified and community-driven man pages." +

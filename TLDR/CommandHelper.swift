@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import SSZipArchive
-import CryptoSwift
 
 struct Command {
     let name: String
@@ -30,6 +28,7 @@ struct FileManager {
             let sourceUrl = fromUrl else { return }
         if fileManager.fileExistsAtPath(destinationPath) {
             if !replaceIfExist {
+                print("Directory exists. Not copying.")
                 return
             } else {
                 do {
@@ -94,54 +93,5 @@ struct FileManager {
         } catch {
             return nil
         }
-    }
-}
-
-struct NetworkManager {
-    static func checkAutoUpdate() {
-        let jsonSource = "https://raw.githubusercontent.com/tldr-pages/tldr/master/pages/index.json"
-        guard let jsonPath = FileManager.urlToIndexJson() else {
-            updateTldrLibrary()
-            return
-        }
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                do {
-                    let localJsonString = try String(contentsOfURL: jsonPath, encoding: NSUTF8StringEncoding)
-                    guard let url = NSURL(string: jsonSource) else {
-                        updateTldrLibrary()
-                        return
-                    }
-                    do {
-                        let serverJsonString = try String(contentsOfURL: url, encoding: NSUTF8StringEncoding)
-                        if localJsonString.md5() == serverJsonString.md5() {
-                            return
-                        } else {
-                            updateTldrLibrary()
-                        }
-                    } catch {}
-                } catch {}
-            })
-    }
-
-    static func updateTldrLibrary() {
-        print("updating tldr library ..")
-        let zipSource = "http://tldr-pages.github.io/assets/tldr.zip"
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            guard let url = NSURL(string: zipSource),
-                let data = NSData(contentsOfURL: url) else {
-                    print("zip could not be downloaded")
-                    return
-            }
-            if data.writeToFile(FileManager.urlToTldrUpdateFolder()!.path!, atomically: true) {
-                let destinationUrl = FileManager.urlToTldrUpdateFolder()!.URLByDeletingPathExtension!
-                if SSZipArchive.unzipFileAtPath(FileManager.urlToTldrUpdateFolder()!.path!, toDestination: destinationUrl.path!) {
-                    print("file unzipped")
-                    do {
-                        try FileManager.fileManager.removeItemAtURL(FileManager.urlToTldrUpdateFolder()!)
-                    } catch {}
-                    FileManager.copyFromSourceUrl(destinationUrl, to: FileManager.urlToTldrFolder(), replaceIfExist: true)
-                }
-            }
-        })
     }
 }
