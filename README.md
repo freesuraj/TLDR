@@ -12,3 +12,14 @@ Follow me at twitter [@iOSCook][href3]
 [href1]: https://github.com/tldr-pages/tldr
 [href2]: https://appsto.re/sg/IQ0-_.i
 [href3]: http://twitter.com/iOSCook
+## TODO
+- Add Travis CY
+- Only make build at pull request at Master
+- Write script to test
+- Write Unit test
+- Write UI test
+- If all tests + build pass, generate a Testflight beta and upload
+- When upload is done, send an email
+- Post a message on slack
+- Auto submit a new version to app store if certain 'keyword' is present at pull request comment.
+
