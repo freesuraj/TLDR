@@ -30,6 +30,5 @@ class TLDRUITests: XCTestCase {
         snapshot("01Git")
         app.buttons["More Info"].tap()
         snapshot("05moreInfo")
-        app.buttons["Close"].tap()
     }
 }
