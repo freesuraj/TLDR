@@ -48,9 +48,9 @@ struct Constant {
     
     static let helpPage = "\n\n*Help:*" +
         "\n" +
-        " --h: shows help\n" +
-        " --u: updates the library\n" +
-        " --r: shows a random command\n" +
-        " --i: shows info page\n" +
-    " -v: shows current version\n"
+        " -h: shows help\n" +
+        " -u: updates the library\n" +
+        " -r: shows a random command\n" +
+        " -i: shows info page\n" +
+        " -v: shows current version\n"
 }
