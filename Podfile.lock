@@ -1,5 +1,4 @@
 PODS:
-  - CryptoSwift (0.2.2)
   - Realm (0.97.0):
     - Realm/Headers (= 0.97.0)
   - Realm/Headers (0.97.0)
@@ -8,12 +7,10 @@ PODS:
   - SSZipArchive (1.0.1)
 
 DEPENDENCIES:
-  - CryptoSwift
   - RealmSwift
   - SSZipArchive (~> 1.0)
 
 SPEC CHECKSUMS:
-  CryptoSwift: d382228d6301c09474132417878a741c2a2e68cd
   Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
   RealmSwift: d014810dec75c9a3f1a33926d2dabfed855c582c
   SSZipArchive: 5f30a0af2cb3d48c0ff83b1e18029f7041ac3c38
