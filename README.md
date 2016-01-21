@@ -1,3 +1,6 @@
+![build-status](https://travis-ci.org/freesuraj/TLDR.svg?branch=master)
+[![Twitter](https://img.shields.io/badge/twitter-@iosCook-blue.svg?style=flat)](http://twitter.com/iosCook)
+
 ## TL;DR (iOS Version)
 
 [TL;DR][href1] is a open source project which maintains a list of man pages. This project is the iOS Client of that.
@@ -22,4 +25,3 @@ Follow me at twitter [@iOSCook][href3]
 - When upload is done, send an email
 - Post a message on slack
 - Auto submit a new version to app store if certain 'keyword' is present at pull request comment.
-
