@@ -31,7 +31,7 @@ class ViewController: UIViewController {
                 self.appendAttributeText(currentAttrText)
             })
         }
-        NetworkManager.checkAutoUpdate()
+        NetworkManager.checkAutoUpdate(printVerbose: false)
     }
 
     func updateUI() {

@@ -25,8 +25,10 @@ struct NetworkManager {
         return "\(gitUrl)\(user)/\(repo)/archive/\(branch).zip"
     }
 
-    static func checkAutoUpdate() {
-        Verbose.addToVerbose("{{🔍 Checking last update time}}")
+    static func checkAutoUpdate(printVerbose verbose: Bool) {
+        if verbose {
+            Verbose.addToVerbose("{{🔍 Checking last update time}}")
+        }
         guard let localLastUpdateTime = getLastModifiedDate() else {
             Verbose.addToVerbose("Library was never updated. Will update now")
             updateTldrLibrary()
@@ -39,7 +41,8 @@ struct NetworkManager {
         }
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "HEAD"
-        request.addValue(localLastUpdateTime.stringInHeaderFormat(), forHTTPHeaderField: "If-Modified-Since")
+        let dateString = localLastUpdateTime.stringInHeaderFormat()
+        request.addValue(dateString, forHTTPHeaderField: "If-Modified-Since")
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             guard let httpResponse = response as? NSHTTPURLResponse else {
@@ -49,7 +52,9 @@ struct NetworkManager {
             }
             if httpResponse.statusCode == 304 {
                 // swiftlint:disable line_length
-                Verbose.addToVerbose("The current version which was updated at _\(localLastUpdateTime.stringInHeaderFormat())_ is the latest version. Not auto updating now.")
+                if verbose {
+                    Verbose.addToVerbose("The current version which was updated at _\(localLastUpdateTime.stringInRedableFormat())_ is the latest version. Not auto updating now.")
+                }
                 // swiftlint:enable line_length
             } else {
                 Verbose.addToVerbose("There is a new update available. Updating a new version now.")
@@ -92,7 +97,6 @@ struct NetworkManager {
         }
         return NSDate(timeIntervalSince1970: date)
     }
-
 }
 
 extension NSDate {
@@ -101,5 +105,12 @@ extension NSDate {
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss z"
         formatter.timeZone = NSTimeZone(name: "GMT")
         return formatter.stringFromDate(self) // eg Wed, 20 Jan 2016 23:15:28 GMT
+    }
+
+    func stringInRedableFormat() -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .MediumStyle
+        return formatter.stringFromDate(self)
     }
 }

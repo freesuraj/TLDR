@@ -26,9 +26,17 @@ class TLDRUITests: XCTestCase {
     func testExample() {
         let app = XCUIApplication()
         let textField = app.textFields["_"]
-        textField.typeText("git\r")
-        snapshot("01Git")
-        app.buttons["More Info"].tap()
-        snapshot("05moreInfo")
+        textField.typeText("git")
+        snapshot("01_hint")
+        app.typeText("\r")
+        snapshot("02_command")
+        textField.typeText("-r")
+        app.typeText("\r")
+        snapshot("03_random")
+        textField.typeText("-i")
+        app.typeText("\r")
+        snapshot("03_info")
+        app.buttons["clearButton"].tap()
+        textField.typeText("man")
     }
 }

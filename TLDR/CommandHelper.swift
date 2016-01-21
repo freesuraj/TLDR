@@ -59,7 +59,7 @@ struct CommandHelper {
                 return attributedTextForTLDRCommand(command)
             }
         } else if object.name == "-u" {
-            NetworkManager.checkAutoUpdate()
+            NetworkManager.checkAutoUpdate(printVerbose: true)
         }
         return NSAttributedString()
     }

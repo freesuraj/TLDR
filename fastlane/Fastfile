@@ -34,7 +34,7 @@ def build_app
   cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
   sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
   increment_build_number(xcodeproj: project_file) # version bump
-  # increment_version_number
+  increment_version_number
 
   gym(
     workspace: 'TLDR.xcworkspace',
@@ -156,7 +156,9 @@ platform :ios do
   desc "Deploy a new version to the App Store. It will create a new build first, then upload it"
   lane :deploy do
     build_app_appstore
-    deliver(force: true, skip_screenshots: true, submit_for_review: true, automatic_release: true)
+    # scan
+    # snapshot
+    deliver(force: true, skip_screenshots: false, submit_for_review: true, automatic_release: true)
     # frameit
     slack
     push_to_git_remote
