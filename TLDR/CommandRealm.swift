@@ -57,6 +57,14 @@ struct StoreManager {
         return output
     }
 
+    static func getRandomCommand() -> Command? {
+        guard let realm = realm else { return nil}
+        let results = realm.objects(CommandRealm)
+        let index = Int(arc4random_uniform(UInt32(results.count)))
+        let randomCommand = results[index]
+        return Command(name: randomCommand.name, type: randomCommand.type)
+    }
+
     static func updateDB() {
         guard let jsonUrl = FileManager.urlToIndexJson(),
             let jsonData = NSData(contentsOfURL: jsonUrl) else {

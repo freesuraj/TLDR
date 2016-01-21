@@ -7,17 +7,67 @@
 //
 
 import Foundation
-import SSZipArchive
-import CryptoSwift
 
 struct Command {
     let name: String
     let type: String
+    var isSystemCommand: Bool = false
+
+    init(name: String, type: String) {
+        self.name = name
+        self.type = type
+        isSystemCommand = false
+    }
+
+    init(name: String, type: String, isSystemCommand: Bool) {
+        self.name = name
+        self.type = type
+        self.isSystemCommand = isSystemCommand
+    }
+
+    static func systemCommands(input: String) -> [Command] {
+        let commands = [
+            Command(name: "-h", type: "print help", isSystemCommand: true),
+            Command(name: "-u", type: "update library", isSystemCommand: true),
+            Command(name: "-i", type: "show info", isSystemCommand: true),
+            Command(name: "-r", type: "show a random command", isSystemCommand: true),
+            Command(name: "-v", type: "show current version", isSystemCommand: true)]
+        return commands.sort({ (c1, c2) -> Bool in
+            if c2.name.hasPrefix(input) {
+                return c1.name.hasPrefix(input) ? c2.name > c1.name : false
+            } else {
+                return c1.name.hasPrefix(input) ? true : c2.name > c1.name
+            }
+        })
+    }
 }
 
 struct CommandHelper {
+
+    static func attributedTextForSystemCommand(object: Command) -> NSAttributedString {
+        guard object.isSystemCommand else {
+            return NSAttributedString()
+        }
+        if object.name == "-h" {
+            return MarkDownParser.attributedStringOfMarkdownString(Constant.helpPage)
+        } else if object.name == "-i" {
+            return MarkDownParser.attributedStringOfMarkdownString(Constant.aboutUsMarkdown)
+        } else if object.name == "-v" {
+            return MarkDownParser.attributedStringOfMarkdownString("version: 1.0.0")
+        } else if object.name == "-r" {
+            if let command = StoreManager.getRandomCommand() {
+                return attributedTextForTLDRCommand(command)
+            }
+        } else if object.name == "-u" {
+            NetworkManager.checkAutoUpdate(printVerbose: true)
+        }
+        return NSAttributedString()
+    }
+
     static func attributedTextForTLDRCommand(object: Command) -> NSAttributedString {
-        guard let content = FileManager.contentOfFileAtTldrPages(object.type, name: object.name) else { return NSAttributedString() }
+        guard let content =
+            FileManager.contentOfFileAtTldrPages(object.type,
+                name: object.name) else { return MarkDownParser.attributedStringOfMarkdownString(Constant.pageNotFound) }
         return MarkDownParser.attributedStringOfMarkdownString(content)
     }
 }
@@ -30,6 +80,7 @@ struct FileManager {
             let sourceUrl = fromUrl else { return }
         if fileManager.fileExistsAtPath(destinationPath) {
             if !replaceIfExist {
+                print("Directory exists. Not copying.")
                 return
             } else {
                 do {
@@ -94,54 +145,5 @@ struct FileManager {
         } catch {
             return nil
         }
-    }
-}
-
-struct NetworkManager {
-    static func checkAutoUpdate() {
-        let jsonSource = "https://raw.githubusercontent.com/tldr-pages/tldr/master/pages/index.json"
-        guard let jsonPath = FileManager.urlToIndexJson() else {
-            updateTldrLibrary()
-            return
-        }
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-                do {
-                    let localJsonString = try String(contentsOfURL: jsonPath, encoding: NSUTF8StringEncoding)
-                    guard let url = NSURL(string: jsonSource) else {
-                        updateTldrLibrary()
-                        return
-                    }
-                    do {
-                        let serverJsonString = try String(contentsOfURL: url, encoding: NSUTF8StringEncoding)
-                        if localJsonString.md5() == serverJsonString.md5() {
-                            return
-                        } else {
-                            updateTldrLibrary()
-                        }
-                    } catch {}
-                } catch {}
-            })
-    }
-
-    static func updateTldrLibrary() {
-        print("updating tldr library ..")
-        let zipSource = "http://tldr-pages.github.io/assets/tldr.zip"
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            guard let url = NSURL(string: zipSource),
-                let data = NSData(contentsOfURL: url) else {
-                    print("zip could not be downloaded")
-                    return
-            }
-            if data.writeToFile(FileManager.urlToTldrUpdateFolder()!.path!, atomically: true) {
-                let destinationUrl = FileManager.urlToTldrUpdateFolder()!.URLByDeletingPathExtension!
-                if SSZipArchive.unzipFileAtPath(FileManager.urlToTldrUpdateFolder()!.path!, toDestination: destinationUrl.path!) {
-                    print("file unzipped")
-                    do {
-                        try FileManager.fileManager.removeItemAtURL(FileManager.urlToTldrUpdateFolder()!)
-                    } catch {}
-                    FileManager.copyFromSourceUrl(destinationUrl, to: FileManager.urlToTldrFolder(), replaceIfExist: true)
-                }
-            }
-        })
     }
 }
