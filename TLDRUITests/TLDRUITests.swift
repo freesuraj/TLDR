@@ -48,4 +48,40 @@ class TLDRUITests: XCTestCase {
         snapshot("03_info")
         clearbuttonButton.tap()
     }
-}
+    
+    func testUIElements() {
+        
+        let app = XCUIApplication()
+        let tfStaticText = app.staticTexts["tf"]
+        tfStaticText.tap()
+        tfStaticText.doubleTap()
+        app.buttons["infoButton"].tap()
+        
+        let clearbuttonButton = app.buttons["clearButton"]
+        clearbuttonButton.tap()
+        app.staticTexts["$ tldr"].tap()
+        
+        let inputTextField = app.textFields["input"]
+        inputTextField.tap()
+        inputTextField.typeText("-")
+        // Failed to find matching element please file bug (bugreport.apple.com) and provide output from Console.app
+        inputTextField.tap()
+        inputTextField.typeText("-hh")
+        
+        let deleteKey = app.keys["Delete"]
+        deleteKey.tap()
+        deleteKey.tap()
+        inputTextField.tap()
+        // Failed to find matching element please file bug (bugreport.apple.com) and provide output from Console.app
+        // Failed to find matching element please file bug (bugreport.apple.com) and provide output from Console.app
+        
+        let tfStaticText2 = app.staticTexts["tf"]
+        tfStaticText2.tap()
+        tfStaticText2.doubleTap()
+        inputTextField.tap()
+        tfStaticText2.tap()
+        tfStaticText2.pressForDuration(1.0);
+        tfStaticText2.doubleTap()
+        clearbuttonButton.tap()
+        
+    }}

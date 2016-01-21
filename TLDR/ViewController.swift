@@ -39,6 +39,10 @@ class ViewController: UIViewController {
         tableView.delegate = self
         commandTextField.delegate = self
         resultTextView.delegate = self
+        tableView.isAccessibilityElement = true
+        tableView.accessibilityIdentifier = "tb"
+        tableView.accessibilityElementsHidden = false
+        tableView.shouldGroupAccessibilityChildren = true
         updateTableView()
         // Customize text field
         commandTextField.attributedPlaceholder = NSAttributedString(string: "_", attributes:

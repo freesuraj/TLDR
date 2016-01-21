@@ -33,6 +33,9 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="tldr_" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="IoI-Iv-fQc">
                                         <rect key="frame" x="94" y="0.0" width="466" height="70"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Place to write command" identifier="input" label="inputTextView">
+                                            <accessibilityTraits key="traits" staticText="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ga6-kn-K1i"/>
                                             <constraint firstAttribute="height" constant="70" id="sNA-QA-TeA"/>
@@ -48,6 +51,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imw-0t-8vq">
                                         <rect key="frame" x="563" y="19" width="32" height="32"/>
+                                        <accessibility key="accessibilityConfiguration" label="infoButton"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="VUo-aI-Q5W"/>
                                             <constraint firstAttribute="height" constant="32" id="qtl-Cz-1cn"/>
@@ -83,6 +87,9 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tV-yd-pti">
                                 <rect key="frame" x="0.0" y="90" width="600" height="510"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" identifier="tf" label="textView">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
