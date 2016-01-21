@@ -2,6 +2,9 @@ sudo: false
 language: swift
 osx_image: xcode7.2
 before_install:
+    - gem install rubygems-update
+    - update_rubygems
+    - gem update --system
     - gem install fastlane --no-rdoc --no-ri --no-document --quiet
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
