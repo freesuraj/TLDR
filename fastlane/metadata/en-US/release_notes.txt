@@ -1,4 +1,4 @@
 Update App
-* Improve the Markdown parser
-* Improve the console UI
-* Remove about us page and bring it to console
+* A better new color for the console
+* Added a bunch of system commands for help, update, version, etc.
+* Added a method to automate the library update whenever there's a new update

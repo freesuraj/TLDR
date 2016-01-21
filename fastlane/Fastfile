@@ -166,7 +166,7 @@ platform :ios do
 
   desc "Deploy an existing build to the App Store"
   lane :deployExisting do
-    deliver(force: true, skip_screenshots: true, submit_for_review: true, automatic_release: true)
+    deliver(force: true, skip_screenshots: false, submit_for_review: true, automatic_release: true)
     # frameit
     slack
     push_to_git_remote
