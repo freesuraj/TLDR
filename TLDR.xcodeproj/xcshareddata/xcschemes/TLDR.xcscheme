@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ED269C2D1C414B1400BED358"
-               BuildableName = "TLDRTests.xctest"
-               BlueprintName = "TLDRTests"
+               BlueprintIdentifier = "ED1AACE31C427F10009B9F9F"
+               BuildableName = "TLDRUITests.xctest"
+               BlueprintName = "TLDRUITests"
                ReferencedContainer = "container:TLDR.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ED1AACE31C427F10009B9F9F"
-               BuildableName = "TLDRUITests.xctest"
-               BlueprintName = "TLDRUITests"
+               BlueprintIdentifier = "ED269C2D1C414B1400BED358"
+               BuildableName = "TLDRTests.xctest"
+               BlueprintName = "TLDRTests"
                ReferencedContainer = "container:TLDR.xcodeproj">
             </BuildableReference>
          </TestableReference>
