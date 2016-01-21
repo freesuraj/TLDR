@@ -1,18 +1,9 @@
 sudo: false
-language: swift
+language: objective-c
 osx_image: xcode7.2
-before_install:
-    - rvm install 2.1.0 --autolibs=enable
-    - rvm use 2.1.0
-    - gem install rubygems-update
-    - update_rubygems
-    - gem update --system
-    - gem install fastlane --no-rdoc --no-ri --no-document --quiet
-    - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-    - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 xcode_workspace: TLDR.xcworkspace
 xcode_scheme: TLDR
-xcode_sdk: iphonesimulator9.0
+xcode_sdk: iphonesimulator9.2
 
 branches:
   only:
