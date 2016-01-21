@@ -25,6 +25,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        Verbose.verboseUpdateBlock = { text in
+            let currentAttrText = NSMutableAttributedString(attributedString: text)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.appendAttributeText(currentAttrText)
+            })
+        }
         NetworkManager.checkAutoUpdate()
     }
 
@@ -43,7 +49,8 @@ class ViewController: UIViewController {
         resultTextView.backgroundColor = UIColor.clearColor()
         resultTextView.textColor = UIColor.whiteColor()
         resultTextView.font = UIFont(name: "Courier", size: 20)
-        resultTextView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
+        resultTextView.textContainer.lineFragmentPadding = 5
+        resultTextView.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 5)
         resultTextView.selectable = true
         resultTextView.editable = false
         resultTextView.dataDetectorTypes = .Link
@@ -71,12 +78,17 @@ class ViewController: UIViewController {
     }
 
     func updateSuggestion() {
-        suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
+        if commandTextField.text!.hasPrefix("-") {
+            suggestions = Command.systemCommands(commandTextField.text!)
+        } else {
+            suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
+        }
     }
 
-    func lookUpWord(word: String, type: String) {
-        let currentAttrText = NSMutableAttributedString(attributedString:
-            CommandHelper.attributedTextForTLDRCommand(Command(name: word, type: type)))
+    func lookUpCommand(command: Command) {
+        let result = command.isSystemCommand ? CommandHelper.attributedTextForSystemCommand(command) :
+            CommandHelper.attributedTextForTLDRCommand(command)
+        let currentAttrText = NSMutableAttributedString(attributedString: result)
         appendAttributeText(currentAttrText)
     }
 
@@ -92,7 +104,7 @@ class ViewController: UIViewController {
 
     func updateTableView() {
         tableView.reloadData()
-        let cellHeight = CGFloat(32.0)
+        let cellHeight = CGFloat(44.0)
         let maxCells = CGFloat(6.0)
         let cellsCount = min(maxCells, CGFloat(suggestions.count))
         tableViewHeightConstraint.constant = cellsCount * cellHeight
@@ -102,10 +114,10 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if suggestions.count > 0 {
-            lookUpWord(self.suggestions[0].name, type: self.suggestions[0].type)
+            lookUpCommand(self.suggestions[0])
         } else {
             if let commandName  = textField.text {
-                lookUpWord(commandName, type: "common")
+                lookUpCommand(Command(name: commandName, type: "common"))
             }
         }
         suggestions.removeAll()
@@ -151,7 +163,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         commandTextField.text = suggestions[indexPath.row].name
-        lookUpWord(suggestions[indexPath.row].name, type: suggestions[indexPath.row].type)
+        lookUpCommand(suggestions[indexPath.row])
     }
 }
 
@@ -162,7 +174,7 @@ extension ViewController {
     }
 
     @IBAction func appendAboutUs(sender: AnyObject) {
-        let aboutUs = MarkDownParser.attributedStringOfMarkdownString(aboutUsMarkdown)
+        let aboutUs = MarkDownParser.attributedStringOfMarkdownString(Constant.aboutUsMarkdown)
         appendAttributeText(NSMutableAttributedString(attributedString: aboutUs))
     }
 }

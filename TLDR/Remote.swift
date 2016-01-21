@@ -10,25 +10,25 @@ import Foundation
 import SSZipArchive
 
 struct NetworkManager {
-    
+
     static func cachedZipUrl() -> String {
-        return tldrZipUrl
+        return Constant.tldrZipUrl
     }
 
     static func remoteZipUrl() -> String {
-        guard let gitUrl = remoteConfig["gitUrl"],
-            let user = remoteConfig["user"],
-            let repo = remoteConfig["repo"],
-            let branch = remoteConfig["branch"] else {
-                return tldrZipUrl
+        guard let gitUrl = Constant.remoteConfig["gitUrl"],
+            let user = Constant.remoteConfig["user"],
+            let repo = Constant.remoteConfig["repo"],
+            let branch = Constant.remoteConfig["branch"] else {
+                return Constant.tldrZipUrl
         }
         return "\(gitUrl)\(user)/\(repo)/archive/\(branch).zip"
     }
 
     static func checkAutoUpdate() {
-        print("checking last update time..")
+        Verbose.addToVerbose("{{🔍 Checking last update time}}")
         guard let localLastUpdateTime = getLastModifiedDate() else {
-            print("library was never updated. Will update now")
+            Verbose.addToVerbose("Library was never updated. Will update now")
             updateTldrLibrary()
             return
         }
@@ -43,14 +43,16 @@ struct NetworkManager {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             guard let httpResponse = response as? NSHTTPURLResponse else {
-                print("The last modified date could not be found. Updating a new version now anyway.")
+                Verbose.addToVerbose("The last modified date could not be found. Updating a new version now anyway.")
                 updateTldrLibrary()
                 return
             }
             if httpResponse.statusCode == 304 {
-                print("Current version was updated very recently. Not auto updating now.")
+                // swiftlint:disable line_length
+                Verbose.addToVerbose("The current version which was updated at _\(localLastUpdateTime.stringInHeaderFormat())_ is the latest version. Not auto updating now.")
+                // swiftlint:enable line_length
             } else {
-                print("The update was too long ago. Updating a new version now.")
+                Verbose.addToVerbose("There is a new update available. Updating a new version now.")
                 updateTldrLibrary()
             }
         }
@@ -58,18 +60,18 @@ struct NetworkManager {
     }
 
     static func updateTldrLibrary() {
-        print("Updating tldr library. This might take few seconds.")
+        Verbose.addToVerbose("{{ 💿 Updating tldr library. This might take few seconds. }}")
         let zipSource = cachedZipUrl()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             guard let url = NSURL(string: zipSource),
                 let data = NSData(contentsOfURL: url) else {
-                    print("Zip could not be downloaded")
+                    Verbose.addToVerbose("Library could not be downloaded at this time. Please try again later.")
                     return
             }
             if data.writeToFile(FileManager.urlToTldrUpdateFolder()!.path!, atomically: true) {
                 let destinationUrl = FileManager.urlToTldrUpdateFolder()!.URLByDeletingPathExtension!
                 if SSZipArchive.unzipFileAtPath(FileManager.urlToTldrUpdateFolder()!.path!, toDestination: destinationUrl.path!) {
-                    print("Zip is downloaded, unzipped and saved")
+                    Verbose.addToVerbose("{{ 🍺 Library is downloaded and updated. }}")
                     do {
                         try FileManager.fileManager.removeItemAtURL(FileManager.urlToTldrUpdateFolder()!)
                     } catch {}
@@ -90,6 +92,7 @@ struct NetworkManager {
         }
         return NSDate(timeIntervalSince1970: date)
     }
+
 }
 
 extension NSDate {

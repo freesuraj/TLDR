@@ -11,11 +11,63 @@ import Foundation
 struct Command {
     let name: String
     let type: String
+    var isSystemCommand: Bool = false
+
+    init(name: String, type: String) {
+        self.name = name
+        self.type = type
+        isSystemCommand = false
+    }
+
+    init(name: String, type: String, isSystemCommand: Bool) {
+        self.name = name
+        self.type = type
+        self.isSystemCommand = isSystemCommand
+    }
+
+    static func systemCommands(input: String) -> [Command] {
+        let commands = [
+            Command(name: "-h", type: "print help", isSystemCommand: true),
+            Command(name: "-u", type: "update library", isSystemCommand: true),
+            Command(name: "-i", type: "show info", isSystemCommand: true),
+            Command(name: "-r", type: "show a random command", isSystemCommand: true),
+            Command(name: "-v", type: "show current version", isSystemCommand: true)]
+        return commands.sort({ (c1, c2) -> Bool in
+            if c2.name.hasPrefix(input) {
+                return c1.name.hasPrefix(input) ? c2.name > c1.name : false
+            } else {
+                return c1.name.hasPrefix(input) ? true : c2.name > c1.name
+            }
+        })
+    }
 }
 
 struct CommandHelper {
+
+    static func attributedTextForSystemCommand(object: Command) -> NSAttributedString {
+        guard object.isSystemCommand else {
+            return NSAttributedString()
+        }
+        if object.name == "-h" {
+            return MarkDownParser.attributedStringOfMarkdownString(Constant.helpPage)
+        } else if object.name == "-i" {
+            return MarkDownParser.attributedStringOfMarkdownString(Constant.aboutUsMarkdown)
+        } else if object.name == "-v" {
+            return MarkDownParser.attributedStringOfMarkdownString("version: 1.0.0")
+        } else if object.name == "-r" {
+            if let command = StoreManager.getRandomCommand() {
+                return attributedTextForTLDRCommand(command)
+            }
+        } else if object.name == "-u" {
+            NetworkManager.checkAutoUpdate()
+        }
+        return NSAttributedString()
+    }
+
     static func attributedTextForTLDRCommand(object: Command) -> NSAttributedString {
-        guard let content = FileManager.contentOfFileAtTldrPages(object.type, name: object.name) else { return NSAttributedString() }
+        guard let content =
+            FileManager.contentOfFileAtTldrPages(object.type,
+                name: object.name) else { return MarkDownParser.attributedStringOfMarkdownString(Constant.pageNotFound) }
         return MarkDownParser.attributedStringOfMarkdownString(content)
     }
 }
