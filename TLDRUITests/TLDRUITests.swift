@@ -27,13 +27,16 @@ class TLDRUITests: XCTestCase {
         
         let app = XCUIApplication()
         let clearbuttonButton = app.buttons["clearButton"]
+        let textView = app.otherElements.containingType(.Table, identifier:"Empty list").childrenMatchingType(.TextView).element
 
         let textField = app.textFields["_"]
         textField.tap()
         textField.typeText("git")
         app.typeText("\n")
+        XCTAssertEqual(textField.title, "")
         snapshot("01_git")
         clearbuttonButton.tap()
+        XCTAssertEqual(textView.title, "")
         
         textField.tap()
         textField.typeText("-r")
