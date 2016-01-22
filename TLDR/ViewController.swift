@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
+        setupView()
         Verbose.verboseUpdateBlock = { text in
             dispatch_async(dispatch_get_main_queue(), {
                 self.printOut(text)
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         NetworkManager.checkAutoUpdate(printVerbose: false)
     }
 
-    func updateUI() {
+    func setupView() {
         tableView.dataSource = self
         tableView.delegate = self
         commandTextField.delegate = self
@@ -109,8 +109,8 @@ extension ViewController: UITextFieldDelegate {
         if !self.suggestions.isEmpty {
             printOut(self.suggestions[0].output)
         } else {
-            if let commandName  = textField.text {
-                printOut(TLDRCommand(name: commandName, type: "common").output)
+            if let name  = textField.text {
+                printOut(TLDRCommand(name: name, type: "common").output)
             }
         }
         suggestions.removeAll()
@@ -149,15 +149,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.textLabel?.textColor = UIColor.lightTextColor()
         }
         let command = suggestions[indexPath.row]
-        cell!.textLabel!.text = command.commandName
-        cell!.detailTextLabel!.text = command.commandType
+        cell!.textLabel!.text = command.name
+        cell!.detailTextLabel!.text = command.type
         return cell!
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let command = suggestions[indexPath.row]
-        commandTextField.text = command.commandName
+        commandTextField.text = command.name
         printOut(command.output)
     }
 }

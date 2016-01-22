@@ -13,7 +13,11 @@ class Verbose {
     static var verboseUpdateBlock: UpdateVerbose?
     static var verboseOutput: String = ""
 
-    static func addToVerbose(text: String) {
+    static func addToVerbose(text: String, verbose: Bool? = true) {
+        if let v = verbose where v == false {
+            print(text)
+            return
+        }
         self.verboseOutput = text + "\n"
         if let block = self.verboseUpdateBlock {
             block(verbose: MarkDownParser.attributedStringOfMarkdownString(self.verboseOutput))

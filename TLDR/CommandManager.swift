@@ -12,17 +12,17 @@ import Foundation
  *  All Types of Commands must conform to this Protocol
  */
 protocol Command {
-    var commandName: String { get }
-    var commandType: String { get }
+    var name: String { get }
+    var type: String { get }
     var output: NSAttributedString { get }
 }
 
 struct TLDRCommand: Command {
     let nameTypeTuple : (String, String)
-    var commandName: String {
+    var name: String {
         return nameTypeTuple.0
     }
-    var commandType: String {
+    var type: String {
         return nameTypeTuple.1
     }
     var output: NSAttributedString {
@@ -45,7 +45,7 @@ enum SystemCommand: Command {
     case Version
     case Random
 
-    var commandName: String {
+    var name: String {
         switch self {
         case Help:
             return "-h"
@@ -59,7 +59,7 @@ enum SystemCommand: Command {
             return "-v"
         }
     }
-    var commandType: String {
+    var type: String {
         switch self {
         case Help:
             return "print help"

@@ -102,11 +102,8 @@ struct NetworkManager {
     }
 
     static func checkAutoUpdate(printVerbose verbose: Bool) {
-        if verbose {
-            Verbose.addToVerbose("{{🔍 Checking last update time}}")
-        }
+        Verbose.addToVerbose("{{🔍 Checking last update time}}", verbose: verbose)
         guard let localLastUpdateTime = getLastModifiedDate() else {
-            Verbose.addToVerbose("Library was never updated. Will update now")
             updateTldrLibrary()
             return
         }
@@ -128,20 +125,24 @@ struct NetworkManager {
             }
             if httpResponse.statusCode == 304 {
                 // swiftlint:disable line_length
-                if verbose {
-                    Verbose.addToVerbose("The current version which was updated at _\(localLastUpdateTime.stringInRedableFormat())_ is the latest version. Not auto updating now.")
-                }
-                // swiftlint:enable line_length
+                Verbose.addToVerbose("The current version which was updated at _\(localLastUpdateTime.stringInRedableFormat())_ is the latest version. Not auto updating now.", verbose: verbose)
             } else {
-                Verbose.addToVerbose("There is a new update available. Updating a new version now.")
-                updateTldrLibrary()
+                // Sometimes there's a bug with the returned header.Even though status is 200, the content has not been actually modified. We'll check for that here
+                guard let lastModifiedAt = httpResponse.allHeaderFields["Last-Modified-Date"] as? String,
+                let remoteUpdateDate = NSDate.dateFromHttpDateString(lastModifiedAt) else {
+                    updateTldrLibrary()
+                    return
+                }
+                if remoteUpdateDate.compare(localLastUpdateTime) == .OrderedAscending {
+                    updateTldrLibrary()
+                }
             }
         }
         task.resume()
     }
 
     static func updateTldrLibrary() {
-        Verbose.addToVerbose("💿 Updating tldr library. This might take few seconds.")
+        Verbose.addToVerbose("💿 There is a new update available. Updating a new version now. This might take few seconds.")
         let zipSource = cachedZipUrl()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             guard let url = NSURL(string: zipSource),
@@ -163,6 +164,7 @@ struct NetworkManager {
         })
     }
 
+    // swiftlint:enable line_length
     static func updateLastUpdateDate() {
         NSUserDefaults.standardUserDefaults().setObject(NSNumber(double: NSDate().timeIntervalSince1970), forKey: "LastModifiedDate")
     }
@@ -176,11 +178,20 @@ struct NetworkManager {
 }
 
 extension NSDate {
-    func stringInHeaderFormat() -> String {
+
+    static func httpDateFormat() -> NSDateFormatter {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss z"
         formatter.timeZone = NSTimeZone(name: "GMT")
-        return formatter.stringFromDate(self) // eg Wed, 20 Jan 2016 23:15:28 GMT
+        return formatter
+    }
+
+    func stringInHeaderFormat() -> String {
+        return NSDate.httpDateFormat().stringFromDate(self) // eg Wed, 20 Jan 2016 23:15:28 GMT
+    }
+
+    static func dateFromHttpDateString(dateString: String) -> NSDate? {
+        return httpDateFormat().dateFromString(dateString)
     }
 
     func stringInRedableFormat() -> String {
