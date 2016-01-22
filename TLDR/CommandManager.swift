@@ -14,7 +14,7 @@ import Foundation
 protocol Command {
     var commandName: String { get }
     var commandType: String { get }
-    func output() -> NSAttributedString
+    var output: NSAttributedString { get }
 }
 
 struct TLDRCommand: Command {
@@ -25,7 +25,7 @@ struct TLDRCommand: Command {
     var commandType: String {
         return nameTypeTuple.1
     }
-    func output() -> NSAttributedString {
+    var output: NSAttributedString {
         guard let content =
             FileManager.contentOfFileAtTldrPages(self.nameTypeTuple.1,
                 name: self.nameTypeTuple.0) else { return MarkDownParser.attributedStringOfMarkdownString(Constant.pageNotFound) }
@@ -73,7 +73,7 @@ enum SystemCommand: Command {
             return "show current version"
         }
     }
-    func output() -> NSAttributedString {
+    var output: NSAttributedString {
         switch self {
         case .Help:
             return MarkDownParser.attributedStringOfMarkdownString(Constant.helpPage)
@@ -83,7 +83,7 @@ enum SystemCommand: Command {
             return MarkDownParser.attributedStringOfMarkdownString("Version: 1.0.0")
         case .Random:
             if let command = StoreManager.getRandomCommand() {
-                return command.output()
+                return command.output
             }
         case .Update:
             NetworkManager.checkAutoUpdate(printVerbose: true)

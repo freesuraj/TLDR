@@ -107,10 +107,10 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if !self.suggestions.isEmpty {
-            printOut(self.suggestions[0].output())
+            printOut(self.suggestions[0].output)
         } else {
             if let commandName  = textField.text {
-                printOut(TLDRCommand(name: commandName, type: "common").output())
+                printOut(TLDRCommand(name: commandName, type: "common").output)
             }
         }
         suggestions.removeAll()
@@ -158,7 +158,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let command = suggestions[indexPath.row]
         commandTextField.text = command.commandName
-        printOut(command.output())
+        printOut(command.output)
     }
 }
 
@@ -169,10 +169,10 @@ extension ViewController {
     }
 
     @IBAction func showRandomCommand(sender: AnyObject) {
-        printOut(SystemCommand.Random.output())
+        printOut(SystemCommand.Random.output)
     }
 
     @IBAction func appendAboutUs(sender: AnyObject) {
-        printOut(SystemCommand.Info.output())
+        printOut(SystemCommand.Info.output)
     }
 }

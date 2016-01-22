@@ -141,7 +141,7 @@ struct NetworkManager {
     }
 
     static func updateTldrLibrary() {
-        Verbose.addToVerbose("{{ 💿 Updating tldr library. This might take few seconds. }}")
+        Verbose.addToVerbose("💿 Updating tldr library. This might take few seconds.")
         let zipSource = cachedZipUrl()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             guard let url = NSURL(string: zipSource),
@@ -152,7 +152,7 @@ struct NetworkManager {
             if data.writeToFile(FileManager.urlToTldrUpdateFolder()!.path!, atomically: true) {
                 let destinationUrl = FileManager.urlToTldrUpdateFolder()!.URLByDeletingPathExtension!
                 if SSZipArchive.unzipFileAtPath(FileManager.urlToTldrUpdateFolder()!.path!, toDestination: destinationUrl.path!) {
-                    Verbose.addToVerbose("{{ 🍺 Library is downloaded and updated. }}")
+                    Verbose.addToVerbose("🍺 Library is downloaded and updated.")
                     do {
                         try FileManager.fileManager.removeItemAtURL(FileManager.urlToTldrUpdateFolder()!)
                     } catch {}
