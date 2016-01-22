@@ -28,7 +28,7 @@ struct StoreManager {
         }
     }
 
-    static func addCommand(command: Command) {
+    static func addCommand(command: TLDRCommand) {
         guard let realm = realm else { return }
         if realm.inWriteTransaction {
             writeToRealmDb(command)
@@ -41,28 +41,28 @@ struct StoreManager {
         }
     }
 
-    static func writeToRealmDb(command: Command) {
+    static func writeToRealmDb(command: TLDRCommand) {
         guard let realm = realm else { return }
-        realm.create(CommandRealm.self, value: ["name": command.name, "type": command.type], update: true)
+        realm.create(CommandRealm.self, value: ["name": command.nameTypeTuple.0, "type": command.nameTypeTuple.1], update: true)
     }
 
-    static func getMatchingCommands(keyword: String) -> [Command] {
+    static func getMatchingTLDRCommands(keyword: String) -> [Command] {
         guard let realm = realm else { return []}
         let predicate = NSPredicate(format: "name CONTAINS[c] %@", keyword)
         let results = realm.objects(CommandRealm).filter(predicate)
         var output: [Command] = []
         for result in results {
-            output.append(Command(name: result.name, type: result.type))
+            output.append(TLDRCommand(name: result.name, type: result.type))
         }
         return output
     }
 
-    static func getRandomCommand() -> Command? {
+    static func getRandomCommand() -> TLDRCommand? {
         guard let realm = realm else { return nil}
         let results = realm.objects(CommandRealm)
         let index = Int(arc4random_uniform(UInt32(results.count)))
         let randomCommand = results[index]
-        return Command(name: randomCommand.name, type: randomCommand.type)
+        return TLDRCommand(name: randomCommand.name, type: randomCommand.type)
     }
 
     static func updateDB() {
@@ -78,10 +78,34 @@ struct StoreManager {
                         let platforms = aCommand["platform"] as? [String] else {
                             break
                     }
-                    let command = Command(name: name, type: platforms[0])
+                    let command = TLDRCommand(name: name, type: platforms[0])
                     StoreManager.addCommand(command)
                 }
             }
         } catch {}
+    }
+
+    static func getMatchingSystemCommands(input: String) -> [Command] {
+        let commands: [Command] = [
+            SystemCommand.Info,
+            SystemCommand.Update,
+            SystemCommand.Help,
+            SystemCommand.Version,
+            SystemCommand.Random]
+
+        return commands.sort({ (c1, c2) -> Bool in
+            if c2.commandName.hasPrefix(input) {
+                return c1.commandName.hasPrefix(input) ? c2.commandName > c1.commandName : false
+            } else {
+                return c1.commandName.hasPrefix(input) ? true : c2.commandName > c1.commandName
+            }
+        })
+    }
+
+    static func getMatchingCommands(keyword: String) -> [Command] {
+        if keyword.hasPrefix("-") {
+            return getMatchingSystemCommands(keyword)
+        }
+        return getMatchingTLDRCommands(keyword)
     }
 }

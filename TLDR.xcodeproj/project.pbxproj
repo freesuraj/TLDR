@@ -14,7 +14,7 @@
 		ED1AACE71C427F10009B9F9F /* TLDRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */; };
 		ED1AACEF1C428093009B9F9F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACEE1C428093009B9F9F /* SnapshotHelper.swift */; };
 		ED269C311C414B1400BED358 /* TLDRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C301C414B1400BED358 /* TLDRTests.swift */; };
-		ED269C431C41870300BED358 /* CommandRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C421C41870300BED358 /* CommandRealm.swift */; };
+		ED269C431C41870300BED358 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C421C41870300BED358 /* StorageManager.swift */; };
 		ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3531C3FA76500613214 /* MarkdownParser.swift */; };
 		ED4EC35A1C4496A600613214 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3591C4496A600613214 /* Constant.swift */; };
 		ED6E86F11C50B0B000BB7DEF /* Verbose.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6E86F01C50B0B000BB7DEF /* Verbose.swift */; };
@@ -23,7 +23,7 @@
 		EDB0818F1C3F70E8002BB783 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB0818D1C3F70E8002BB783 /* Main.storyboard */; };
 		EDB081911C3F70E8002BB783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB081901C3F70E8002BB783 /* Assets.xcassets */; };
 		EDB081941C3F70E8002BB783 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB081921C3F70E8002BB783 /* LaunchScreen.storyboard */; };
-		EDB0819C1C3F8D6A002BB783 /* CommandHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */; };
+		EDB0819C1C3F8D6A002BB783 /* CommandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0819B1C3F8D6A002BB783 /* CommandManager.swift */; };
 		EDF72B471C41493A00BF5067 /* tldr.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EDF72B461C41493A00BF5067 /* tldr.bundle */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +82,7 @@
 		ED269C2E1C414B1400BED358 /* TLDRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLDRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED269C301C414B1400BED358 /* TLDRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRTests.swift; sourceTree = "<group>"; };
 		ED269C321C414B1400BED358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED269C421C41870300BED358 /* CommandRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandRealm.swift; sourceTree = "<group>"; };
+		ED269C421C41870300BED358 /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		ED4EC3531C3FA76500613214 /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		ED4EC3591C4496A600613214 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		EDB081901C3F70E8002BB783 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDB081931C3F70E8002BB783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EDB081951C3F70E8002BB783 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandHelper.swift; sourceTree = "<group>"; };
+		EDB0819B1C3F8D6A002BB783 /* CommandManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandManager.swift; sourceTree = "<group>"; };
 		EDF72B461C41493A00BF5067 /* tldr.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = tldr.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,8 +188,8 @@
 			children = (
 				EDB081891C3F70E8002BB783 /* AppDelegate.swift */,
 				EDB0818B1C3F70E8002BB783 /* ViewController.swift */,
-				EDB0819B1C3F8D6A002BB783 /* CommandHelper.swift */,
-				ED269C421C41870300BED358 /* CommandRealm.swift */,
+				EDB0819B1C3F8D6A002BB783 /* CommandManager.swift */,
+				ED269C421C41870300BED358 /* StorageManager.swift */,
 				ED4EC3531C3FA76500613214 /* MarkdownParser.swift */,
 				ED0865431C4FD5DB00CEA222 /* Remote.swift */,
 				ED6E86F01C50B0B000BB7DEF /* Verbose.swift */,
@@ -421,8 +421,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */,
-				EDB0819C1C3F8D6A002BB783 /* CommandHelper.swift in Sources */,
-				ED269C431C41870300BED358 /* CommandRealm.swift in Sources */,
+				EDB0819C1C3F8D6A002BB783 /* CommandManager.swift in Sources */,
+				ED269C431C41870300BED358 /* StorageManager.swift in Sources */,
 				ED0865441C4FD5DB00CEA222 /* Remote.swift in Sources */,
 				EDB0818C1C3F70E8002BB783 /* ViewController.swift in Sources */,
 				EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */,
