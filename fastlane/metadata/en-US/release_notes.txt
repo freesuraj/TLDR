@@ -1,4 +1,5 @@
 Update App
 * A better new color for the console
+* Add a random generator for fun/learning 
 * Added a bunch of system commands for help, update, version, etc.
 * Added a method to automate the library update whenever there's a new update

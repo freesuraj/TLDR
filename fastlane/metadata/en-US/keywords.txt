@@ -1,4 +1,5 @@
 tldr
 man page
-too long
-tldr ios
+linux command
+terminal
+command line
