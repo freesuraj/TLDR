@@ -33,6 +33,9 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="tldr_" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="IoI-Iv-fQc">
                                         <rect key="frame" x="94" y="0.0" width="466" height="70"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Place to write command" identifier="input" label="inputTextView">
+                                            <accessibilityTraits key="traits" staticText="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ga6-kn-K1i"/>
                                             <constraint firstAttribute="height" constant="70" id="sNA-QA-TeA"/>
@@ -48,6 +51,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imw-0t-8vq">
                                         <rect key="frame" x="563" y="19" width="32" height="32"/>
+                                        <accessibility key="accessibilityConfiguration" label="infoButton"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="VUo-aI-Q5W"/>
                                             <constraint firstAttribute="height" constant="32" id="qtl-Cz-1cn"/>
@@ -83,6 +87,9 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tV-yd-pti">
                                 <rect key="frame" x="0.0" y="90" width="600" height="510"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" identifier="tf" label="textView">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                </accessibility>
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -118,6 +125,19 @@
                                     <action selector="clearConsole:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mGA-bd-J38"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jE-ng-DNa" userLabel="randomButton">
+                                <rect key="frame" x="0.0" y="548" width="52" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="1ke-sh-SNG"/>
+                                    <constraint firstAttribute="width" constant="52" id="6Eg-ct-0q7"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="randomButton"/>
+                                <connections>
+                                    <action selector="clearConsole:" destination="BYZ-38-t0r" eventType="touchUpInside" id="npP-wN-zGr"/>
+                                    <action selector="showRandomCommand:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zQf-dO-KaQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14901960784313725" green="0.16078431372549018" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -133,7 +153,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="jAk-Tc-51Z" secondAttribute="trailing" constant="-20" id="ixd-me-czM"/>
                             <constraint firstItem="3tV-yd-pti" firstAttribute="top" secondItem="jAk-Tc-51Z" secondAttribute="bottom" id="rxx-Vy-w9Y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="A3D-R2-8yZ" secondAttribute="trailing" constant="-15" id="uGB-CU-WGP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6jE-ng-DNa" secondAttribute="bottom" id="vKm-ee-pOx"/>
                             <constraint firstItem="3tV-yd-pti" firstAttribute="top" secondItem="jAk-Tc-51Z" secondAttribute="bottom" id="vVZ-2t-d9O"/>
+                            <constraint firstItem="6jE-ng-DNa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ypj-ge-lpd"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -156,5 +178,6 @@
     </scenes>
     <resources>
         <image name="clearButton" width="33" height="33"/>
+        <image name="randomButton" width="34" height="34"/>
     </resources>
 </document>

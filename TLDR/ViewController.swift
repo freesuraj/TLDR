@@ -26,9 +26,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         updateUI()
         Verbose.verboseUpdateBlock = { text in
-            let currentAttrText = NSMutableAttributedString(attributedString: text)
             dispatch_async(dispatch_get_main_queue(), {
-                self.appendAttributeText(currentAttrText)
+                self.printOut(text)
             })
         }
         NetworkManager.checkAutoUpdate(printVerbose: false)
@@ -39,6 +38,10 @@ class ViewController: UIViewController {
         tableView.delegate = self
         commandTextField.delegate = self
         resultTextView.delegate = self
+        tableView.isAccessibilityElement = true
+        tableView.accessibilityIdentifier = "tb"
+        tableView.accessibilityElementsHidden = false
+        tableView.shouldGroupAccessibilityChildren = true
         updateTableView()
         // Customize text field
         commandTextField.attributedPlaceholder = NSAttributedString(string: "_", attributes:
@@ -78,21 +81,11 @@ class ViewController: UIViewController {
     }
 
     func updateSuggestion() {
-        if commandTextField.text!.hasPrefix("-") {
-            suggestions = Command.systemCommands(commandTextField.text!)
-        } else {
-            suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
-        }
+        suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
     }
 
-    func lookUpCommand(command: Command) {
-        let result = command.isSystemCommand ? CommandHelper.attributedTextForSystemCommand(command) :
-            CommandHelper.attributedTextForTLDRCommand(command)
-        let currentAttrText = NSMutableAttributedString(attributedString: result)
-        appendAttributeText(currentAttrText)
-    }
-
-    func appendAttributeText(currentAttrText: NSMutableAttributedString) {
+    func printOut(text: NSAttributedString) {
+        let currentAttrText = NSMutableAttributedString(attributedString: text)
         currentAttrText.appendAttributedString(NSAttributedString(string: "\n\n"))
         currentAttrText.appendAttributedString(resultTextView.attributedText)
         resultTextView.attributedText = currentAttrText
@@ -113,11 +106,11 @@ class ViewController: UIViewController {
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if suggestions.count > 0 {
-            lookUpCommand(self.suggestions[0])
+        if !self.suggestions.isEmpty {
+            printOut(self.suggestions[0].output)
         } else {
             if let commandName  = textField.text {
-                lookUpCommand(Command(name: commandName, type: "common"))
+                printOut(TLDRCommand(name: commandName, type: "common").output)
             }
         }
         suggestions.removeAll()
@@ -155,15 +148,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.backgroundColor = UIColor.clearColor()
             cell?.textLabel?.textColor = UIColor.lightTextColor()
         }
-        cell!.textLabel!.text = suggestions[indexPath.row].name
-        cell!.detailTextLabel!.text = suggestions[indexPath.row].type
+        let command = suggestions[indexPath.row]
+        cell!.textLabel!.text = command.commandName
+        cell!.detailTextLabel!.text = command.commandType
         return cell!
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        commandTextField.text = suggestions[indexPath.row].name
-        lookUpCommand(suggestions[indexPath.row])
+        let command = suggestions[indexPath.row]
+        commandTextField.text = command.commandName
+        printOut(command.output)
     }
 }
 
@@ -173,8 +168,11 @@ extension ViewController {
         resultTextView.attributedText = NSMutableAttributedString(string: "")
     }
 
+    @IBAction func showRandomCommand(sender: AnyObject) {
+        printOut(SystemCommand.Random.output)
+    }
+
     @IBAction func appendAboutUs(sender: AnyObject) {
-        let aboutUs = MarkDownParser.attributedStringOfMarkdownString(Constant.aboutUsMarkdown)
-        appendAttributeText(NSMutableAttributedString(attributedString: aboutUs))
+        printOut(SystemCommand.Info.output)
     }
 }

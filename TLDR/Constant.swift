@@ -14,6 +14,7 @@ struct Constant {
 
     // swiftlint:disable line_length
     // swiftlint:disable trailing_whitespace
+    // swiftlint:disable opening_brace
     static let aboutUsMarkdown = "*About this project*" +
         "\n" +
         "\n" +
@@ -53,4 +54,5 @@ struct Constant {
         " -r: shows a random command\n" +
         " -i: shows info page\n" +
         " -v: shows current version\n"
+    
 }
