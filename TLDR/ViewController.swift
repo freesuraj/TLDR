@@ -177,8 +177,11 @@ extension ViewController {
         resultTextView.attributedText = NSMutableAttributedString(string: "")
     }
 
+    @IBAction func showRandomCommand(sender: AnyObject) {
+        lookUpCommand(Command(name: "-r", type: "Random", isSystemCommand: true))
+    }
+
     @IBAction func appendAboutUs(sender: AnyObject) {
-        let aboutUs = MarkDownParser.attributedStringOfMarkdownString(Constant.aboutUsMarkdown)
-        appendAttributeText(NSMutableAttributedString(attributedString: aboutUs))
+        lookUpCommand(Command(name: "-i", type: "About us", isSystemCommand: true))
     }
 }
