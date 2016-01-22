@@ -80,7 +80,7 @@ enum SystemCommand: Command {
         case .Info:
             return MarkDownParser.attributedStringOfMarkdownString(Constant.aboutUsMarkdown)
         case .Version:
-            return MarkDownParser.attributedStringOfMarkdownString("Version: 1.0.0")
+            return MarkDownParser.attributedStringOfMarkdownString(Constant.version)
         case .Random:
             if let command = StoreManager.getRandomCommand() {
                 return command.output

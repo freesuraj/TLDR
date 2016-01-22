@@ -85,6 +85,7 @@ struct FileManager {
     }
 }
 
+/// Manages Network connection, including downloading and checking for update
 struct NetworkManager {
 
     static func cachedZipUrl() -> String {
@@ -102,7 +103,7 @@ struct NetworkManager {
     }
 
     static func checkAutoUpdate(printVerbose verbose: Bool) {
-        Verbose.addToVerbose("{{🔍 Checking last update time}}", verbose: verbose)
+        Verbose.out("{{🔍 Checking last update time}}", verbose: verbose)
         guard let localLastUpdateTime = getLastModifiedDate() else {
             updateTldrLibrary()
             return
@@ -119,13 +120,13 @@ struct NetworkManager {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             guard let httpResponse = response as? NSHTTPURLResponse else {
-                Verbose.addToVerbose("The last modified date could not be found. Updating a new version now anyway.")
+                Verbose.out("The last modified date could not be found. Updating a new version now anyway.")
                 updateTldrLibrary()
                 return
             }
             if httpResponse.statusCode == 304 {
                 // swiftlint:disable line_length
-                Verbose.addToVerbose("The current version which was updated at _\(localLastUpdateTime.stringInRedableFormat())_ is the latest version. Not auto updating now.", verbose: verbose)
+                Verbose.out("The current version which was updated at _\(localLastUpdateTime.stringInRedableFormat())_ is the latest version. Not auto updating now.", verbose: verbose)
             } else {
                 // Sometimes there's a bug with the returned header.Even though status is 200, the content has not been actually modified. We'll check for that here
                 guard let lastModifiedAt = httpResponse.allHeaderFields["Last-Modified-Date"] as? String,
@@ -142,18 +143,18 @@ struct NetworkManager {
     }
 
     static func updateTldrLibrary() {
-        Verbose.addToVerbose("💿 There is a new update available. Updating a new version now. This might take few seconds.")
+        Verbose.out("💿 There is a new update available. Updating a new version now. This might take few seconds.")
         let zipSource = cachedZipUrl()
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             guard let url = NSURL(string: zipSource),
                 let data = NSData(contentsOfURL: url) else {
-                    Verbose.addToVerbose("Library could not be downloaded at this time. Please try again later.")
+                    Verbose.out("Library could not be downloaded at this time. Please try again later.")
                     return
             }
             if data.writeToFile(FileManager.urlToTldrUpdateFolder()!.path!, atomically: true) {
                 let destinationUrl = FileManager.urlToTldrUpdateFolder()!.URLByDeletingPathExtension!
                 if SSZipArchive.unzipFileAtPath(FileManager.urlToTldrUpdateFolder()!.path!, toDestination: destinationUrl.path!) {
-                    Verbose.addToVerbose("🍺 Library is downloaded and updated.")
+                    Verbose.out("🍺 Library is downloaded and updated.")
                     do {
                         try FileManager.fileManager.removeItemAtURL(FileManager.urlToTldrUpdateFolder()!)
                     } catch {}
@@ -186,12 +187,12 @@ extension NSDate {
         return formatter
     }
 
-    func stringInHeaderFormat() -> String {
-        return NSDate.httpDateFormat().stringFromDate(self) // eg Wed, 20 Jan 2016 23:15:28 GMT
-    }
-
     static func dateFromHttpDateString(dateString: String) -> NSDate? {
         return httpDateFormat().dateFromString(dateString)
+    }
+
+    func stringInHeaderFormat() -> String {
+        return NSDate.httpDateFormat().stringFromDate(self) // eg Wed, 20 Jan 2016 23:15:28 GMT
     }
 
     func stringInRedableFormat() -> String {

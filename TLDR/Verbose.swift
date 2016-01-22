@@ -8,12 +8,13 @@
 
 import Foundation
 
-class Verbose {
+/// Handler to print live verbose (message) to console.
+struct Verbose {
     typealias UpdateVerbose = (verbose: NSAttributedString) -> Void
     static var verboseUpdateBlock: UpdateVerbose?
     static var verboseOutput: String = ""
 
-    static func addToVerbose(text: String, verbose: Bool? = true) {
+    static func out(text: String, verbose: Bool? = true) {
         if let v = verbose where v == false {
             print(text)
             return
