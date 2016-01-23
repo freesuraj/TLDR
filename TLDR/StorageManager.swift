@@ -94,10 +94,10 @@ struct StoreManager {
             SystemCommand.Random]
 
         return commands.sort({ (c1, c2) -> Bool in
-            if c2.commandName.hasPrefix(input) {
-                return c1.commandName.hasPrefix(input) ? c2.commandName > c1.commandName : false
+            if c2.name.hasPrefix(input) {
+                return c1.name.hasPrefix(input) ? c2.name > c1.name : false
             } else {
-                return c1.commandName.hasPrefix(input) ? true : c2.commandName > c1.commandName
+                return c1.name.hasPrefix(input) ? true : c2.name > c1.name
             }
         })
     }

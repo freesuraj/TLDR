@@ -55,4 +55,6 @@ struct Constant {
         " -i: shows info page\n" +
         " -v: shows current version\n"
     
+    static let version = "Version: 0.0.8"
+
 }
