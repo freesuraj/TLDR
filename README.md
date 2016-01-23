@@ -5,6 +5,8 @@
 
 [TL;DR][href1] is a open source project which maintains a list of man pages. This project is the iOS Client of that.
 
+![screenshot](https://github.com/freesuraj/tldr/blob/master/assets/tldr_gif.gif?raw=true)
+
 ## Download on App store
 This app is available in the [app store][href2].
 
