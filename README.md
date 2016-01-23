@@ -1,5 +1,6 @@
 [![build-status](https://travis-ci.org/freesuraj/TLDR.svg?branch=master)](https://travis-ci.org/freesuraj/TLDR)
 [![Twitter](https://img.shields.io/badge/twitter-@iosCook-blue.svg?style=flat)](http://twitter.com/iosCook)
+[![appStore](https://img.shields.io/badge/App%20Store-TLDR-yellowgreen.svg)][href2]
 
 ## TL;DR (iOS Version)
 
