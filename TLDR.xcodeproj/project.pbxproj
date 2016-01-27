@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A924DE91E956F100E9747CF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */; };
 		ED0865441C4FD5DB00CEA222 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0865431C4FD5DB00CEA222 /* Remote.swift */; };
+		ED0865C61C590F7C00CEA222 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0865C51C590F7C00CEA222 /* FileManager.swift */; };
 		ED10A1F01C50F349006231CB /* libcommonCrypto.tbd in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */; };
 		ED10A1F11C50F349006231CB /* Pods.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED1AACE71C427F10009B9F9F /* TLDRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */; };
@@ -75,6 +76,7 @@
 		BC706F10FDA7F86B0D3249C8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E579B7D4846F39B201D66542 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		ED0865431C4FD5DB00CEA222 /* Remote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
+		ED0865C51C590F7C00CEA222 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		ED1AACE41C427F10009B9F9F /* TLDRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLDRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRUITests.swift; sourceTree = "<group>"; };
 		ED1AACE81C427F10009B9F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				ED269C421C41870300BED358 /* StorageManager.swift */,
 				ED4EC3531C3FA76500613214 /* MarkdownParser.swift */,
 				ED0865431C4FD5DB00CEA222 /* Remote.swift */,
+				ED0865C51C590F7C00CEA222 /* FileManager.swift */,
 				ED6E86F01C50B0B000BB7DEF /* Verbose.swift */,
 				ED4EC3591C4496A600613214 /* Constant.swift */,
 				EDB0818D1C3F70E8002BB783 /* Main.storyboard */,
@@ -426,6 +429,7 @@
 				ED0865441C4FD5DB00CEA222 /* Remote.swift in Sources */,
 				EDB0818C1C3F70E8002BB783 /* ViewController.swift in Sources */,
 				EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */,
+				ED0865C61C590F7C00CEA222 /* FileManager.swift in Sources */,
 				ED6E86F11C50B0B000BB7DEF /* Verbose.swift in Sources */,
 				ED4EC35A1C4496A600613214 /* Constant.swift in Sources */,
 			);
