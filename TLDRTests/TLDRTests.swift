@@ -37,7 +37,7 @@ class TLDRTests: XCTestCase {
     }
     
     func testFileManager_pathInDownloadFolder_exist() {
-        FileManager.copyBundleToDocument(true)
+        FileManager.copyBundleToDocument(replace: true)
         let folder = FileManager.urlToTldrFolder()!
         let fileExist = FileManager.fileManager.fileExistsAtPath(folder.path!)
         XCTAssertTrue(fileExist)
