@@ -39,10 +39,12 @@ struct FileManager {
 }
 
 extension FileManager {
-    static func copyBundleToDocument(replace replaceIfExist: Bool, onSuccess successBlock: (() -> Void)? = nil) {
+    static func copyBundleToDocument(replace replaceIfExist: Bool) {
         let destinationUrl = FileManager.urlToTldrFolder()
         let sourceUrl = FileManager.urlToBundleFolder()
-        copyFromSourceUrl(sourceUrl, to: destinationUrl, replaceIfExist: replaceIfExist, onSuccess: successBlock)
+        copyFromSourceUrl(sourceUrl, to: destinationUrl, replaceIfExist: replaceIfExist, onSuccess: {
+            StoreManager.updateDB()
+        })
     }
 
     static func urlToTldrFolder() -> NSURL? {

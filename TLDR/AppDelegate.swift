@@ -14,9 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        FileManager.copyBundleToDocument(replace: false, onSuccess: {
-            StoreManager.updateDB()
-        })
+        FileManager.copyBundleToDocument(replace: false)
         return true
     }
 
