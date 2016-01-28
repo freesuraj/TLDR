@@ -38,7 +38,6 @@ platform :ios do
   before_all do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
     ensure_git_status_clean
-    project_file = 'TLDR.xcodeproj'
   end
 
   # Lane 1: test
@@ -75,6 +74,7 @@ platform :ios do
   # Lane 4: testflight
   desc "Send test flight beta"
   lane :testflight do
+    project_file = 'TLDR.xcodeproj'
     increment_version_number(bump_type: "patch")
     increment_build_number(xcodeproj: project_file)
     build
