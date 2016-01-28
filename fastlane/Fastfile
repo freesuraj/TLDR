@@ -1,192 +1,143 @@
-# Customise this file, documentation can be found here:
-# https://github.com/KrauseFx/fastlane/tree/master/docs
-# All available actions: https://github.com/KrauseFx/fastlane/blob/master/docs/Actions.md
-# can also be listed using the `fastlane actions` command
-
-# Change the syntax highlighting to Ruby
-# All lines starting with a # are ignored when running `fastlane`
-
-# By default, fastlane will send which actions are used
-# No personal data is shared, more information on https://github.com/fastlane/enhancer
-# Uncomment the following line to opt out
-# opt_out_usage
-
-# If you want to automatically update fastlane if a new version is available:
-# update_fastlane
-
-# This is the minimum version number required.
-# Update this, if you use features of a newer version
-fastlane_version "1.49.0"
-
+fastlane_version "1.53.0"
 default_platform :ios
 
-def build_app
-  project_file = 'TLDR.xcodeproj'
-
-  # Get the latest provisionnig profiles from the Dev Portal and
-  # More information about code signing: https://github.com/KrauseFx/fastlane/blob/master/docs/CodeSigning.md
-  # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitextension", output_path: "/tmp")
-  # ENV["WATCHKIT_EXTENSIONS_UDID"] = udid
-
-  # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
-  # ENV["WATCHKIT_APP_UDID"] = udid
-  cocoapods
-  cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
-  sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
-  increment_build_number(xcodeproj: project_file) # version bump
-  increment_version_number
-
-  gym(
-    workspace: 'TLDR.xcworkspace',
-    scheme: 'TLDR',
-    export_method: 'enterprise',
-    use_legacy_build_api: true,
-    # suppress_xcode_output: true,
-    silent: true
+def commit
+  commit_version_bump(
+    message: 'Version Bump by fastlane',
+    xcodeproj: project_file,
+    force: true
   )
-
-  # commit_version_bump(
-  #   message: 'Version Bump by fastlane',
-  #   xcodeproj: project_file,
-  #   force: true
-  # )
-  #
-  # push_to_git_remote
+  push_to_git_remote
 end
 
-def build_app_appstore
-  project_file = 'TLDR.xcodeproj'
-
-  # Get the latest provisionnig profiles from the Dev Portal and
-  # More information about code signing: https://github.com/KrauseFx/fastlane/blob/master/docs/CodeSigning.md
-  # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitextension", output_path: "/tmp")
-  # ENV["WATCHKIT_EXTENSIONS_UDID"] = udid
-
-  # udid = sigh(app_identifier: "com.mindnode.mindnodetouch.watchkitapp", output_path: "/tmp")
-  # ENV["WATCHKIT_APP_UDID"] = udid
-  cocoapods
-  increment_build_number(xcodeproj: project_file) # version bump
-  increment_version_number(bump_type: "minor")
+def codesign
   cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
   sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
-
-  gym(
-    workspace: 'TLDR.xcworkspace',
-    scheme: 'TLDR',
-    export_method: 'app-store',
-    use_legacy_build_api: true,
-    silent: true
-  )
-
-  # commit_version_bump(
-  #   message: 'Version Bump by fastlane',
-  #   xcodeproj: project_file,
-  #   force: true
-  # )
-  # push_to_git_remote
-
 end
+
+def provision
+  produce(
+      username: 'freesuraj@gmail.com',
+      app_identifier: 'com.suraj.tldr',
+      app_name: 'TLDR Man Page',
+      language: 'English',
+      app_version: '1.0.0',
+      sku: '20160110tldrios',
+      team_id: '74HVZ53TRR',
+      team_name: 'Suraj Pathak'
+  )
+  cert
+  sigh(force: true)
+end
+
+# ===================================================
+#           Start of Fastlane actions
+# ===================================================
 
 platform :ios do
   before_all do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    ensure_git_status_clean
+    project_file = 'TLDR.xcodeproj'
   end
 
-  desc "Send test flight beta"
-  lane :testflight do
-    build_app
-    pilot(
-    distribute_external: true
-    )
-    slack
-  end
-
-  desc "Pilot to test flight if ipa exists"
-  lane :pilot do
-    pilot(distribute_external: true)
-    slack
-  end
-
-  desc "Creating a code signing certificate and provisioning profile"
-  lane :provision do
-    produce(
-        username: 'freesuraj@gmail.com',
-        app_identifier: 'com.suraj.tldr',
-        app_name: 'TLDR Man Page',
-        language: 'English',
-        app_version: '1.0.0',
-        sku: '20160110tldrios',
-        team_id: '74HVZ53TRR',
-        team_name: 'Suraj Pathak'
-    )
-    cert
-    sigh(force: true)
-  end
-
+  # Lane 1: test
   desc "Runs all the tests"
   lane :test do
     scan
   end
 
-  lane :screenshot do
+  # Lane 2: testX
+  desc "Runs the tests of the iOS App using xctest"
+  lane :testX do
+    xctest(
+      workspace: './TLDR.xcworkspace',
+      scheme: 'TLDR',
+      sdk: 'iphonesimulator',
+      destination: "name=iPhone 6"
+    )
+  end
+
+  # Lane 3: build (using the default version number)
+  desc "Build an app"
+  private_lane :build do
+    codesign
+    cocoapods
+    scan
+    gym(
+      workspace: 'TLDR.xcworkspace',
+      scheme: 'TLDR',
+      use_legacy_build_api: true,
+      silent: true
+    )
+  end
+
+  # Lane 4: testflight
+  desc "Send test flight beta"
+  lane :testflight do
+    increment_version_number(bump_type: "patch")
+    increment_build_number(xcodeproj: project_file)
+    build
+    pilot(
+    distribute_external: true
+    )
+    commit
+  end
+
+  # Lane 5: testflightE (provided ipa exists)
+  desc "Pilot to test flight if ipa exists"
+  lane :testflightE do
+    pilot(distribute_external: true)
+  end
+
+  # Lane 6: snapshot
+  lane :snapshot do
     snapshot
   end
 
-  desc "Create ipa"
-  lane :build do
-    build_app
-  end
-
+  # Lane 7: metadata
   desc "Uploads metadata only - no ipa file will be uploaded"
   desc "You'll get a summary of the collected metadata before it's uploaded"
-  lane :upload_metadata do
+  lane :metadata do
     deliver(submit_for_review: false)
   end
 
-  desc "Create a new test build and submit to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
-    build_app
-    pilot(distribute_external: true)
-    slack
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
-  end
-
+  # Lane 8: deploy
   desc "Deploy a new version to the App Store. It will create a new build first, then upload it"
   lane :deploy do
-    build_app_appstore
-    # scan
-    # snapshot
+    increment_version_number(bump_type: "minor")
+    build
     deliver(force: true, skip_screenshots: false, submit_for_review: true, automatic_release: true)
-    # frameit
-    slack
-    push_to_git_remote
+    add_git_tag
+    commit
   end
 
+  # Lane 9: deployE (Provided ipa exists)
   desc "Deploy an existing build to the App Store"
-  lane :deployExisting do
+  lane :deployE do
     deliver(force: true, skip_screenshots: true, submit_for_review: true, automatic_release: true)
-    # frameit
-    slack
-    push_to_git_remote
+    add_git_tag
+    push_git_tags
   end
-  # You can define as many lanes as you want
 
   after_all do |lane|
     # This block is called, only if the executed lane was successful
+    slack(
+      message: "fastlane was successful :rocket:",
+      success: true,
+      default_payloads: [:lane, :test_result, :git_branch, :git_author]
+    )
 
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
-    # add_git_tag # drop a git tag
+    clean_build_artifacts(
+      exclude_pattern: ".*\.mobileprovision" # don't clear provisioning profiles, as we store them in git
+    )
   end
 
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+    slack(
+      message: exception.message,
+      success: false
+    )
   end
 end
 
