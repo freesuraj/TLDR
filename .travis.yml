@@ -1,5 +1,10 @@
 sudo: false
 language: objective-c
+
+before_install: rvm use $RVM_RUBY_VERSION
+install: bundle install --without=documentation --path ../travis_bundle_dir
+after_success: slather
+
 osx_image: xcode7.2
 xcode_workspace: TLDR.xcworkspace
 xcode_scheme: TLDR
