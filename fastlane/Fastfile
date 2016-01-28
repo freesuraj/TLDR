@@ -119,7 +119,7 @@ platform :ios do
   lane :deploy do
     increment_version_number(bump_type: "minor")
     build
-    deliver(force: true, skip_screenshots: false, submit_for_review: true, automatic_release: true)
+    deliver(force: true, skip_screenshots: true, submit_for_review: true, automatic_release: true)
     add_git_tag
     commit
   end
