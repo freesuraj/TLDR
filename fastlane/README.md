@@ -16,6 +16,11 @@ Runs all the tests
 fastlane ios testX
 ```
 Runs the tests of the iOS App using xctest
+### ios buildV
+```
+fastlane ios buildV
+```
+Build an app quickly
 ### ios testflight
 ```
 fastlane ios testflight
