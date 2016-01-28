@@ -11,8 +11,8 @@ def commit
 end
 
 def codesign
-  cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
-  sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak')
+  cert(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: false)
+  sigh(team_id: '74HVZ53TRR', team_name: 'Suraj Pathak', force: false)
 end
 
 def provision
@@ -43,6 +43,7 @@ platform :ios do
   # Lane 1: test
   desc "Runs all the tests"
   lane :test do
+    swiftlint
     scan
   end
 
