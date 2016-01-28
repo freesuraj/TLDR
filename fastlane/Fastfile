@@ -72,6 +72,17 @@ platform :ios do
     )
   end
 
+  # Lane 3.1: buildV (build to verify)
+  desc "Build an app quickly"
+  lane :buildV do
+    gym(
+      workspace: 'TLDR.xcworkspace',
+      scheme: 'TLDR',
+      use_legacy_build_api: true,
+      silent: true
+    )
+  end
+
   # Lane 4: testflight
   desc "Send test flight beta"
   lane :testflight do
