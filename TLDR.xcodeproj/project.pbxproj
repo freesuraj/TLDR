@@ -288,7 +288,7 @@
 					};
 					EDB081851C3F70E8002BB783 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = WZQCH4CE4Y;
+						DevelopmentTeam = 74HVZ53TRR;
 					};
 				};
 			};
@@ -608,7 +608,7 @@
 			baseConfigurationReference = BC706F10FDA7F86B0D3249C8 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 36;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -630,7 +630,7 @@
 			baseConfigurationReference = E579B7D4846F39B201D66542 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 36;
 				INFOPLIST_FILE = TLDR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
