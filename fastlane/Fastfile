@@ -37,7 +37,12 @@ end
 platform :ios do
   before_all do
     ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
-    ensure_git_status_clean
+    # ensure_git_status_clean
+  end
+
+  # Lane 0: snapshot
+  lane :snapshot do
+    snapshot
   end
 
   # Lane 1: test
@@ -47,18 +52,18 @@ platform :ios do
     scan
   end
 
-  # Lane 2: testX
+  # Lane 1.2: testX
   desc "Runs the tests of the iOS App using xctest"
   lane :testX do
     xctest(
       workspace: './TLDR.xcworkspace',
       scheme: 'TLDR',
       sdk: 'iphonesimulator',
-      destination: "name=iPhone 6"
+      destination: "name=iPhone 6,OS=9.2"
     )
   end
 
-  # Lane 3: build (using the default version number)
+  # Lane 2: build (using the default version number)
   desc "Build an app"
   private_lane :build do
     codesign
@@ -72,7 +77,7 @@ platform :ios do
     )
   end
 
-  # Lane 3.1: buildV (build to verify)
+  # Lane 2.1: buildV (build to verify)
   desc "Build an app quickly"
   lane :buildV do
     gym(
@@ -83,7 +88,7 @@ platform :ios do
     )
   end
 
-  # Lane 4: testflight
+  # Lane 3: testflight
   desc "Send test flight beta"
   lane :testflight do
     project_file = 'TLDR.xcodeproj'
@@ -96,25 +101,13 @@ platform :ios do
     commit
   end
 
-  # Lane 5: testflightE (provided ipa exists)
+  # Lane 3.1: testflightE (provided ipa exists)
   desc "Pilot to test flight if ipa exists"
   lane :testflightE do
     pilot(distribute_external: true)
   end
 
-  # Lane 6: snapshot
-  lane :snapshot do
-    snapshot
-  end
-
-  # Lane 7: metadata
-  desc "Uploads metadata only - no ipa file will be uploaded"
-  desc "You'll get a summary of the collected metadata before it's uploaded"
-  lane :metadata do
-    deliver(submit_for_review: false)
-  end
-
-  # Lane 8: deploy
+  # Lane 4: deploy
   desc "Deploy a new version to the App Store. It will create a new build first, then upload it"
   lane :deploy do
     increment_version_number(bump_type: "minor")
@@ -124,12 +117,19 @@ platform :ios do
     commit
   end
 
-  # Lane 9: deployE (Provided ipa exists)
+  # Lane 4.1: deployE (Provided ipa exists)
   desc "Deploy an existing build to the App Store"
   lane :deployE do
     deliver(force: true, skip_screenshots: true, submit_for_review: true, automatic_release: true)
     add_git_tag
     push_git_tags
+  end
+
+  # Lane 4.2: metadata
+  desc "Uploads metadata only - no ipa file will be uploaded"
+  desc "You'll get a summary of the collected metadata before it's uploaded"
+  lane :metadata do
+    deliver(submit_for_review: false)
   end
 
   after_all do |lane|

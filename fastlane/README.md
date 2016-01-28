@@ -6,6 +6,11 @@ sudo gem install fastlane
 ```
 # Available Actions
 ## iOS
+### ios snapshot
+```
+fastlane ios snapshot
+```
+
 ### ios test
 ```
 fastlane ios test
@@ -31,18 +36,6 @@ Send test flight beta
 fastlane ios testflightE
 ```
 Pilot to test flight if ipa exists
-### ios snapshot
-```
-fastlane ios snapshot
-```
-
-### ios metadata
-```
-fastlane ios metadata
-```
-Uploads metadata only - no ipa file will be uploaded
-
-You'll get a summary of the collected metadata before it's uploaded
 ### ios deploy
 ```
 fastlane ios deploy
@@ -53,6 +46,13 @@ Deploy a new version to the App Store. It will create a new build first, then up
 fastlane ios deployE
 ```
 Deploy an existing build to the App Store
+### ios metadata
+```
+fastlane ios metadata
+```
+Uploads metadata only - no ipa file will be uploaded
+
+You'll get a summary of the collected metadata before it's uploaded
 
 ----
 
