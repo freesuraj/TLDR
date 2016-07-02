@@ -2,7 +2,7 @@
 [![Twitter](https://img.shields.io/badge/twitter-@iosCook-blue.svg?style=flat)](http://twitter.com/iosCook)
 [![appStore](https://img.shields.io/badge/App%20Store-TLDR-yellowgreen.svg)][href2]
 
-## TL;DR (iOS Version)
+## TL;DR (iOS Version 0.2)
 
 [TL;DR][href1] is a open source project which maintains a list of man pages. This project is the iOS Client of that.
 
