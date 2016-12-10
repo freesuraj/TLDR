@@ -17,13 +17,8 @@ struct NetworkManager {
     }
 
     static func remoteZipUrl() -> String {
-        guard let gitUrl = Constant.remoteConfig["gitUrl"],
-            let user = Constant.remoteConfig["user"],
-            let repo = Constant.remoteConfig["repo"],
-            let branch = Constant.remoteConfig["branch"] else {
-                return Constant.tldrZipUrl
-        }
-        return "\(gitUrl)\(user)/\(repo)/archive/\(branch).zip"
+        let repo = Repository.master
+        return "\(repo.gitUrl)\(repo.user)/\(repo.name)/archive/\(repo.branch).zip"
     }
 
     static func checkAutoUpdate(printVerbose verbose: Bool) {
@@ -34,16 +29,16 @@ struct NetworkManager {
         }
         // Do a head request to see if remote is updated since this date
         let source = cachedZipUrl()
-        guard let url = NSURL(string: source) else {
+        guard let url = URL(string: source) else {
             return
         }
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "HEAD"
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "HEAD"
         let dateString = localLastUpdateTime.stringInHeaderFormat()
-        request.addValue(dateString, forHTTPHeaderField: "If-Modified-Since")
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            guard let httpResponse = response as? NSHTTPURLResponse else {
+        urlRequest.allHTTPHeaderFields = ["If-Modified-Since" : dateString]
+        
+        let task = URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else {
                 Verbose.out("The last modified date could not be found. Updating a new version now anyway.")
                 updateTldrLibrary()
                 return
@@ -54,35 +49,35 @@ struct NetworkManager {
             } else {
                 // Sometimes there's a bug with the returned header.Even though status is 200, the content has not been actually modified. We'll check for that here
                 guard let lastModifiedAt = httpResponse.allHeaderFields["Last-Modified-Date"] as? String,
-                let remoteUpdateDate = NSDate.dateFromHttpDateString(lastModifiedAt) else {
+                let remoteUpdateDate = Date.dateFromHttpDateString(lastModifiedAt) else {
                     updateTldrLibrary()
                     return
                 }
-                if remoteUpdateDate.compare(localLastUpdateTime) == .OrderedAscending {
+                if remoteUpdateDate.compare(localLastUpdateTime) == .orderedAscending {
                     updateTldrLibrary()
                 }
             }
-        }
+        }) 
         task.resume()
     }
 
     static func updateTldrLibrary() {
         Verbose.out("💿 There is a new update available. Updating a new version now. This might take few seconds.")
         let zipSource = cachedZipUrl()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            guard let url = NSURL(string: zipSource),
-                let data = NSData(contentsOfURL: url) else {
+        DispatchQueue.global().async(execute: {
+            guard let url = URL(string: zipSource),
+                let data = try? Data(contentsOf: url) else {
                     Verbose.out("Library could not be downloaded at this time. Please try again later.")
                     return
             }
-            if data.writeToFile(FileManager.urlToTldrUpdateFolder()!.path!, atomically: true) {
-                let destinationUrl = FileManager.urlToTldrUpdateFolder()!.URLByDeletingPathExtension!
-                if SSZipArchive.unzipFileAtPath(FileManager.urlToTldrUpdateFolder()!.path!, toDestination: destinationUrl.path!) {
+            if (try? data.write(to: URL(fileURLWithPath: FileManager.urlToTldrUpdateFolder()!.path), options: [.atomic])) != nil {
+                let destinationUrl = FileManager.urlToTldrUpdateFolder()!.deletingPathExtension
+                if SSZipArchive.unzipFile(atPath: FileManager.urlToTldrUpdateFolder()!.path, toDestination: destinationUrl().path) {
                     Verbose.out("🍺 Library is downloaded and updated.")
                     do {
-                        try FileManager.fileManager.removeItemAtURL(FileManager.urlToTldrUpdateFolder()!)
+                        try FileManager.fileManager.removeItem(at: FileManager.urlToTldrUpdateFolder()!)
                     } catch {}
-                    FileManager.copyFromSourceUrl(destinationUrl, to: FileManager.urlToTldrFolder(), replaceIfExist: true, onSuccess: {
+                    FileManager.copyFromSourceUrl(destinationUrl(), to: FileManager.urlToTldrFolder(), replaceIfExist: true, onSuccess: {
                         StoreManager.updateDB()
                     })
                     updateLastUpdateDate()
@@ -93,38 +88,38 @@ struct NetworkManager {
 
     // swiftlint:enable line_length
     static func updateLastUpdateDate() {
-        NSUserDefaults.standardUserDefaults().setObject(NSNumber(double: NSDate().timeIntervalSince1970), forKey: "LastModifiedDate")
+        UserDefaults.standard.set(NSNumber(value: Date().timeIntervalSince1970 as Double), forKey: "LastModifiedDate")
     }
 
-    static func getLastModifiedDate() -> NSDate? {
-        guard let date = NSUserDefaults.standardUserDefaults().valueForKey("LastModifiedDate") as? Double else {
+    static func getLastModifiedDate() -> Date? {
+        guard let date = UserDefaults.standard.value(forKey: "LastModifiedDate") as? Double else {
             return nil
         }
-        return NSDate(timeIntervalSince1970: date)
+        return Date(timeIntervalSince1970: date)
     }
 }
 
-extension NSDate {
+extension Date {
 
-    static func httpDateFormat() -> NSDateFormatter {
-        let formatter = NSDateFormatter()
+    static func httpDateFormat() -> DateFormatter {
+        let formatter = DateFormatter()
         formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss z"
-        formatter.timeZone = NSTimeZone(name: "GMT")
+        formatter.timeZone = TimeZone(identifier: "GMT")
         return formatter
     }
 
-    static func dateFromHttpDateString(dateString: String) -> NSDate? {
-        return httpDateFormat().dateFromString(dateString)
+    static func dateFromHttpDateString(_ dateString: String) -> Date? {
+        return httpDateFormat().date(from: dateString)
     }
 
     func stringInHeaderFormat() -> String {
-        return NSDate.httpDateFormat().stringFromDate(self) // eg Wed, 20 Jan 2016 23:15:28 GMT
+        return Date.httpDateFormat().string(from: self) // eg Wed, 20 Jan 2016 23:15:28 GMT
     }
 
     func stringInRedableFormat() -> String {
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .MediumStyle
-        return formatter.stringFromDate(self)
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        return formatter.string(from: self)
     }
 }

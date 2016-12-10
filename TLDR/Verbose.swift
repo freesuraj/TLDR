@@ -10,18 +10,18 @@ import Foundation
 
 /// Handler to print live verbose (message) to console.
 struct Verbose {
-    typealias UpdateVerbose = (verbose: NSAttributedString) -> Void
+    typealias UpdateVerbose = (_ verbose: NSAttributedString) -> Void
     static var verboseUpdateBlock: UpdateVerbose?
     static var verboseOutput: String = ""
 
-    static func out(text: String, verbose: Bool? = true) {
-        if let v = verbose where v == false {
+    static func out(_ text: String, verbose: Bool? = true) {
+        if let v = verbose , v == false {
             print(text)
             return
         }
         self.verboseOutput = text + "\n"
         if let block = self.verboseUpdateBlock {
-            block(verbose: MarkDownParser.attributedStringOfMarkdownString(self.verboseOutput))
+            block(MarkDownParser.attributedStringOfMarkdownString(self.verboseOutput))
         }
     }
 }
