@@ -9,6 +9,7 @@
 import UIKit
 
 struct MarkDownParser {
+    
     static func attributedStringOfMarkdownString(_ markdown: String) -> NSAttributedString {
         let regexTypes: [RegexType] = [.title, .subTitle, .quote, .list, .block,.italic, .bold, .link]
         let output = NSMutableAttributedString(string: markdown, attributes: RegexType.normal.attributes())
@@ -40,6 +41,7 @@ struct MarkDownParser {
         output.endEditing()
         return filteredOutput
     }
+    
     // MARK: Regex Types
     enum RegexType {
         case title, subTitle, quote, list, block, italic, bold, link, normal
@@ -65,6 +67,7 @@ struct MarkDownParser {
                 return Regex(pattern: ".+")
             }
         }
+        
         // Return the attributes for the regex type
         func attributes() -> [String: AnyObject] {
             switch self {
@@ -97,6 +100,7 @@ struct MarkDownParser {
                     NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
             }
         }
+        
         // Returns a tuple of Template and index of the regex group that should remain
         func templateIndexToRetain() -> (String, Int) {
             switch self {
@@ -120,6 +124,7 @@ struct MarkDownParser {
                 return ("$0", 0)
             }
         }
+        
         // Returns the ranges of indices of the regex group that should be deleted
         func rangeIndicesToDelete() -> [Int]? {
             switch self {
@@ -149,6 +154,7 @@ struct MarkDownParser {
 struct Regex {
     let internalExpression: NSRegularExpression
     let pattern: String
+    
     // Initialization
     init(pattern: String) {
         self.pattern = pattern
@@ -158,9 +164,11 @@ struct Regex {
             internalExpression = NSRegularExpression()
         }
     }
+    
     func matchesInString(_ input: String) -> [NSTextCheckingResult] {
         // swiftlint:disable legacy_constructor
         let matches = self.internalExpression.matches(in: input, options: [], range: NSMakeRange(0, input.characters.count))
         return matches
     }
+    
 }
