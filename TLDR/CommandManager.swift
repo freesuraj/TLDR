@@ -25,6 +25,7 @@ struct TLDRCommand: Command {
     var type: String {
         return nameTypeTuple.1
     }
+    
     var output: NSAttributedString {
         guard let content =
             FileManager.contentOfFileAtTldrPages(self.nameTypeTuple.1,
