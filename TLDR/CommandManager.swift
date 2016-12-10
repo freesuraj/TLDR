@@ -39,53 +39,53 @@ struct TLDRCommand: Command {
 }
 
 enum SystemCommand: Command {
-    case Info
-    case Update
-    case Help
-    case Version
-    case Random
+    case info
+    case update
+    case help
+    case version
+    case random
 
     var name: String {
         switch self {
-        case Help:
+        case .help:
             return "-h"
-        case Update:
+        case .update:
             return "-u"
-        case Info:
+        case .info:
             return "-i"
-        case Random:
+        case .random:
             return "-r"
-        case Version:
+        case .version:
             return "-v"
         }
     }
     var type: String {
         switch self {
-        case Help:
+        case .help:
             return "print help"
-        case Update:
+        case .update:
             return "update library"
-        case Info:
+        case .info:
             return "show info"
-        case Random:
+        case .random:
             return "show a random command"
-        case Version:
+        case .version:
             return "show current version"
         }
     }
     var output: NSAttributedString {
         switch self {
-        case .Help:
+        case .help:
             return MarkDownParser.attributedStringOfMarkdownString(Constant.helpPage)
-        case .Info:
+        case .info:
             return MarkDownParser.attributedStringOfMarkdownString(Constant.aboutUsMarkdown)
-        case .Version:
+        case .version:
             return MarkDownParser.attributedStringOfMarkdownString(Constant.version)
-        case .Random:
+        case .random:
             if let command = StoreManager.getRandomCommand() {
                 return command.output
             }
-        case .Update:
+        case .update:
             NetworkManager.checkAutoUpdate(printVerbose: true)
         }
         return NSAttributedString()

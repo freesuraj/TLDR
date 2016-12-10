@@ -28,9 +28,9 @@ struct StoreManager {
         }
     }
 
-    static func addCommand(command: TLDRCommand) {
+    static func addCommand(_ command: TLDRCommand) {
         guard let realm = realm else { return }
-        if realm.inWriteTransaction {
+        if realm.isInWriteTransaction {
             writeToRealmDb(command)
         } else {
             do {
@@ -41,15 +41,15 @@ struct StoreManager {
         }
     }
 
-    static func writeToRealmDb(command: TLDRCommand) {
+    static func writeToRealmDb(_ command: TLDRCommand) {
         guard let realm = realm else { return }
         realm.create(CommandRealm.self, value: ["name": command.nameTypeTuple.0, "type": command.nameTypeTuple.1], update: true)
     }
 
-    static func getMatchingTLDRCommands(keyword: String) -> [Command] {
+    static func getMatchingTLDRCommands(_ keyword: String) -> [Command] {
         guard let realm = realm else { return []}
         let predicate = NSPredicate(format: "name CONTAINS[c] %@", keyword)
-        let results = realm.objects(CommandRealm).filter(predicate)
+        let results = realm.objects(CommandRealm.self).filter(predicate)
         var output: [Command] = []
         for result in results {
             output.append(TLDRCommand(name: result.name, type: result.type))
@@ -59,7 +59,7 @@ struct StoreManager {
 
     static func getRandomCommand() -> TLDRCommand? {
         guard let realm = realm else { return nil}
-        let results = realm.objects(CommandRealm)
+        let results = realm.objects(CommandRealm.self)
         let index = Int(arc4random_uniform(UInt32(results.count)))
         let randomCommand = results[index]
         return TLDRCommand(name: randomCommand.name, type: randomCommand.type)
@@ -67,12 +67,12 @@ struct StoreManager {
 
     static func updateDB() {
         guard let jsonUrl = FileManager.urlToIndexJson(),
-            let jsonData = NSData(contentsOfURL: jsonUrl) else {
+            let jsonData = try? Data(contentsOf: jsonUrl as URL) else {
                 return
         }
         do {
-            let json = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments)
-            if let commands = json["commands"] as? [AnyObject] {
+            let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
+            if let jsonDict = json as? [String: Any], let commands = jsonDict["commands"] as? [[String: Any]] {
                 for aCommand in commands {
                     guard let name = aCommand["name"]  as? String,
                         let platforms = aCommand["platform"] as? [String] else {
@@ -85,15 +85,15 @@ struct StoreManager {
         } catch {}
     }
 
-    static func getMatchingSystemCommands(input: String) -> [Command] {
+    static func getMatchingSystemCommands(_ input: String) -> [Command] {
         let commands: [Command] = [
-            SystemCommand.Info,
-            SystemCommand.Update,
-            SystemCommand.Help,
-            SystemCommand.Version,
-            SystemCommand.Random]
+            SystemCommand.info,
+            SystemCommand.update,
+            SystemCommand.help,
+            SystemCommand.version,
+            SystemCommand.random]
 
-        return commands.sort({ (c1, c2) -> Bool in
+        return commands.sorted(by: { (c1, c2) -> Bool in
             if c2.name.hasPrefix(input) {
                 return c1.name.hasPrefix(input) ? c2.name > c1.name : false
             } else {
@@ -102,7 +102,7 @@ struct StoreManager {
         })
     }
 
-    static func getMatchingCommands(keyword: String) -> [Command] {
+    static func getMatchingCommands(_ keyword: String) -> [Command] {
         if keyword.hasPrefix("-") {
             return getMatchingSystemCommands(keyword)
         }

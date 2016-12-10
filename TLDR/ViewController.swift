@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         Verbose.verboseUpdateBlock = { text in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.printOut(text)
             })
         }
@@ -45,34 +45,34 @@ class ViewController: UIViewController {
         updateTableView()
         // Customize text field
         commandTextField.attributedPlaceholder = NSAttributedString(string: "_", attributes:
-            [NSForegroundColorAttributeName:UIColor.lightTextColor()])
-        commandTextField.clearButtonMode = .Always
+            [NSForegroundColorAttributeName:UIColor.lightText])
+        commandTextField.clearButtonMode = .always
         commandTextField.clearsOnBeginEditing = true
         // Customize text view
-        resultTextView.backgroundColor = UIColor.clearColor()
-        resultTextView.textColor = UIColor.whiteColor()
+        resultTextView.backgroundColor = UIColor.clear
+        resultTextView.textColor = UIColor.white
         resultTextView.font = UIFont(name: "Courier", size: 20)
         resultTextView.textContainer.lineFragmentPadding = 5
         resultTextView.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 5)
-        resultTextView.selectable = true
-        resultTextView.editable = false
-        resultTextView.dataDetectorTypes = .Link
+        resultTextView.isSelectable = true
+        resultTextView.isEditable = false
+        resultTextView.dataDetectorTypes = .link
     }
 
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         commandTextField.becomeFirstResponder()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateSuggestion", name:
-            UITextFieldTextDidChangeNotification, object: commandTextField)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateSuggestion), name:
+            NSNotification.Name.UITextFieldTextDidChange, object: commandTextField)
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: commandTextField)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: commandTextField)
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,12 +84,12 @@ class ViewController: UIViewController {
         suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
     }
 
-    func printOut(text: NSAttributedString) {
+    func printOut(_ text: NSAttributedString) {
         let currentAttrText = NSMutableAttributedString(attributedString: text)
-        currentAttrText.appendAttributedString(NSAttributedString(string: "\n\n"))
-        currentAttrText.appendAttributedString(resultTextView.attributedText)
+        currentAttrText.append(NSAttributedString(string: "\n\n"))
+        currentAttrText.append(resultTextView.attributedText)
         resultTextView.attributedText = currentAttrText
-        resultTextView.scrollRectToVisible(CGRect(origin: CGPointZero, size: resultTextView.frame.size), animated: true)
+        resultTextView.scrollRectToVisible(CGRect(origin: CGPoint.zero, size: resultTextView.frame.size), animated: true)
         commandTextField.text = ""
         commandTextField.resignFirstResponder()
         suggestions.removeAll()
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if !self.suggestions.isEmpty {
             printOut(self.suggestions[0].output)
         } else {
@@ -117,46 +117,46 @@ extension ViewController: UITextFieldDelegate {
         return true
     }
 
-    func textFieldShouldClear(textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         suggestions.removeAll()
         return true
     }
 }
 
 extension ViewController: UITextViewDelegate {
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         commandTextField.resignFirstResponder()
     }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return suggestions.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
-        if let cachedCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
+        if let cachedCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) {
             cell = cachedCell
         } else {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: cellIdentifier)
-            cell?.backgroundColor = UIColor.clearColor()
-            cell?.textLabel?.textColor = UIColor.lightTextColor()
+            cell = UITableViewCell(style: .value1, reuseIdentifier: cellIdentifier)
+            cell?.backgroundColor = UIColor.clear
+            cell?.textLabel?.textColor = UIColor.lightText
         }
-        let command = suggestions[indexPath.row]
+        let command = suggestions[(indexPath as NSIndexPath).row]
         cell!.textLabel!.text = command.name
         cell!.detailTextLabel!.text = command.type
         return cell!
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let command = suggestions[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let command = suggestions[(indexPath as NSIndexPath).row]
         commandTextField.text = command.name
         printOut(command.output)
     }
@@ -164,15 +164,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController {
 
-    @IBAction func clearConsole(sender: AnyObject) {
+    @IBAction func clearConsole(_ sender: AnyObject) {
         resultTextView.attributedText = NSMutableAttributedString(string: "")
     }
 
-    @IBAction func showRandomCommand(sender: AnyObject) {
-        printOut(SystemCommand.Random.output)
+    @IBAction func showRandomCommand(_ sender: AnyObject) {
+        printOut(SystemCommand.random.output)
     }
 
-    @IBAction func appendAboutUs(sender: AnyObject) {
-        printOut(SystemCommand.Info.output)
+    @IBAction func appendAboutUs(_ sender: AnyObject) {
+        printOut(SystemCommand.info.output)
     }
 }

@@ -10,24 +10,23 @@ import Foundation
 
 /// FileManager manages copying, deleting, checking for existence of files in app documents directory
 struct FileManager {
-    static let fileManager = NSFileManager.defaultManager()
-    static func copyFromSourceUrl(fromUrl: NSURL?, to toUrl: NSURL?, replaceIfExist: Bool, onSuccess successBlock: (() -> Void)? = nil) {
+    static let fileManager = Foundation.FileManager.default
+    static func copyFromSourceUrl(_ fromUrl: URL?, to toUrl: URL?, replaceIfExist: Bool, onSuccess successBlock: (() -> Void)? = nil) {
         guard let destinationUrl = toUrl,
-            let destinationPath = destinationUrl.path,
             let sourceUrl = fromUrl else { return }
-        if fileManager.fileExistsAtPath(destinationPath) {
+        if fileManager.fileExists(atPath: destinationUrl.path) {
             if !replaceIfExist {
                 print("Directory exists. Not copying.")
                 return
             } else {
                 do {
-                    try fileManager.removeItemAtURL(destinationUrl)
+                    try fileManager.removeItem(at: destinationUrl)
                 } catch {}
             }
         }
         do {
-            try fileManager.copyItemAtURL(sourceUrl, toURL: destinationUrl)
-            dispatch_async(dispatch_get_main_queue(), {
+            try fileManager.copyItem(at: sourceUrl, to: destinationUrl)
+            DispatchQueue.main.async(execute: {
                 if let block = successBlock {
                     block()
                 }
@@ -47,43 +46,43 @@ extension FileManager {
         })
     }
 
-    static func urlToTldrFolder() -> NSURL? {
-        guard let documentUrl = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first else {
+    static func urlToTldrFolder() -> URL? {
+        guard let documentUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             // Create Directory and Copy
             return nil
         }
-        let tldrUrl = documentUrl.URLByAppendingPathComponent("tldr")
+        let tldrUrl = documentUrl.appendingPathComponent("tldr")
         return tldrUrl
     }
 
-    static func urlToIndexJson() -> NSURL? {
+    static func urlToIndexJson() -> URL? {
         guard let tldrFolder = urlToTldrFolder() else {
             return nil
         }
-        return tldrFolder.URLByAppendingPathComponent("/pages/index.json")
+        return tldrFolder.appendingPathComponent("/pages/index.json")
     }
 
-    static func urlToTldrUpdateFolder() -> NSURL? {
-        guard let documentUrl = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first else {
+    static func urlToTldrUpdateFolder() -> URL? {
+        guard let documentUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
             // Create Directory and Copy
             return nil
         }
-        let tldrUrl = documentUrl.URLByAppendingPathComponent("tldr-update.zip")
+        let tldrUrl = documentUrl.appendingPathComponent("tldr-update.zip")
         return tldrUrl
     }
 
-    static func urlToBundleFolder() -> NSURL? {
-        let path = NSBundle.mainBundle().URLForResource("tldr", withExtension: "bundle")
+    static func urlToBundleFolder() -> URL? {
+        let path = Bundle.main.url(forResource: "tldr", withExtension: "bundle")
         return path
     }
 
-    static func contentOfFileAtTldrPages(type: String, name: String) -> String? {
+    static func contentOfFileAtTldrPages(_ type: String, name: String) -> String? {
         guard let tldrFolderUrl = FileManager.urlToTldrFolder() else {
             return nil
         }
-        let filePath = tldrFolderUrl.URLByAppendingPathComponent("/pages/\(type)/\(name).md")
+        let filePath = tldrFolderUrl.appendingPathComponent("/pages/\(type)/\(name).md")
         do {
-            let value = try String(contentsOfURL: filePath, encoding: NSUTF8StringEncoding)
+            let value = try String(contentsOf: filePath, encoding: String.Encoding.utf8)
             return value
         } catch {
             return nil

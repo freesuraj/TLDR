@@ -8,8 +8,18 @@
 
 import Foundation
 
+struct Repository {
+    let gitUrl: String
+    let user: String
+    let name: String
+    let branch: String
+    
+    static let master = Repository(gitUrl: "https://github.com/", user: "tldr-pages", name: "tldr", branch: "master")
+}
+
 struct Constant {
-    static let remoteConfig = ["gitUrl": "https://github.com/", "user": "tldr-pages", "repo": "tldr", "branch": "master"]
+    
+    
     static let tldrZipUrl = "http://tldr-pages.github.io/assets/tldr.zip"
 
     // swiftlint:disable line_length
