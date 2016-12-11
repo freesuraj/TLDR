@@ -1,11 +1,9 @@
-sudo: false
 language: objective-c
-
-osx_image: xcode8.0
-xcode_workspace: TLDR.xcworkspace
-xcode_scheme: TLDR
-xcode_sdk: iphonesimulator9.2
-
-branches:
-  only:
-    - master
+osx_image: xcode8.1
+before_install:
+  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+  - gem install slather --no-ri --no-rdoc
+script:
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -workspace TLDR.xcworkspace -scheme TLDR -destination 'platform=iOS Simulator,name=iPhone 6s' build | xcpretty
