@@ -4,4 +4,5 @@ inhibit_all_warnings!
 target 'TLDR' do
     pod 'SSZipArchive', '~> 1.0'
     pod 'RealmSwift'
+    pod 'Down'
 end

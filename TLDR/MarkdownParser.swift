@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Down
 
 struct MarkDownParser {
+    
+    static func converted(_ markdown: String) -> NSAttributedString? {
+        return try? Down(markdownString: markdown).toAttributedString()
+    }
     
     static func attributedStringOfMarkdownString(_ markdown: String) -> NSAttributedString {
         let regexTypes: [RegexType] = [.title, .subTitle, .quote, .list, .block,.italic, .bold, .link]

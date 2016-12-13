@@ -45,6 +45,20 @@ struct StoreManager {
         guard let realm = realm else { return }
         realm.create(CommandRealm.self, value: ["name": command.nameTypeTuple.0, "type": command.nameTypeTuple.1], update: true)
     }
+    
+    static func commands(withKeyword keyword: String? = nil) -> [Command] {
+        guard let realm = realm else { return []}
+        if let key = keyword {
+            return getMatchingCommands(key)
+        }
+        
+        let results = realm.objects(CommandRealm.self)
+        var output: [Command] = []
+        for result in results {
+            output.append(TLDRCommand(name: result.name, type: result.type))
+        }
+        return output
+    }
 
     static func getMatchingTLDRCommands(_ keyword: String) -> [Command] {
         guard let realm = realm else { return []}
