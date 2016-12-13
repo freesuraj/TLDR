@@ -18,6 +18,8 @@
 		ED269C431C41870300BED358 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C421C41870300BED358 /* StorageManager.swift */; };
 		ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3531C3FA76500613214 /* MarkdownParser.swift */; };
 		ED4EC35A1C4496A600613214 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3591C4496A600613214 /* Constant.swift */; };
+		ED61BF511E002401008E45EB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61BF501E002401008E45EB /* MasterViewController.swift */; };
+		ED61BF531E002413008E45EB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61BF521E002413008E45EB /* DetailViewController.swift */; };
 		ED6E86F11C50B0B000BB7DEF /* Verbose.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6E86F01C50B0B000BB7DEF /* Verbose.swift */; };
 		EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB081891C3F70E8002BB783 /* AppDelegate.swift */; };
 		EDB0818C1C3F70E8002BB783 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0818B1C3F70E8002BB783 /* ViewController.swift */; };
@@ -89,6 +91,8 @@
 		ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		ED4EC3531C3FA76500613214 /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		ED4EC3591C4496A600613214 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		ED61BF501E002401008E45EB /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		ED61BF521E002413008E45EB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		ED6E86F01C50B0B000BB7DEF /* Verbose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Verbose.swift; sourceTree = "<group>"; };
 		EDB081861C3F70E8002BB783 /* TLDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB081891C3F70E8002BB783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 			children = (
 				EDB081891C3F70E8002BB783 /* AppDelegate.swift */,
 				EDB0818B1C3F70E8002BB783 /* ViewController.swift */,
+				ED61BF501E002401008E45EB /* MasterViewController.swift */,
+				ED61BF521E002413008E45EB /* DetailViewController.swift */,
 				EDB0819B1C3F8D6A002BB783 /* CommandManager.swift */,
 				ED269C421C41870300BED358 /* StorageManager.swift */,
 				ED4EC3531C3FA76500613214 /* MarkdownParser.swift */,
@@ -277,7 +283,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Suraj Pathak";
 				TargetAttributes = {
 					ED1AACE31C427F10009B9F9F = {
@@ -426,6 +432,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED61BF531E002413008E45EB /* DetailViewController.swift in Sources */,
+				ED61BF511E002401008E45EB /* MasterViewController.swift in Sources */,
 				ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */,
 				EDB0819C1C3F8D6A002BB783 /* CommandManager.swift in Sources */,
 				ED269C431C41870300BED358 /* StorageManager.swift in Sources */,
@@ -538,8 +546,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -586,8 +596,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -608,6 +620,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -618,6 +631,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 296B62561BCB0419E0DE5B02 /* Pods-TLDR.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 37;
@@ -642,6 +656,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 42C13A638051D16B48CD5DD4 /* Pods-TLDR.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 37;
