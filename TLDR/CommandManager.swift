@@ -37,6 +37,25 @@ struct TLDRCommand: Command {
     init(name: String, type: String) {
         self.nameTypeTuple = (name, type)
     }
+    
+    var isFavorited: Bool {
+        set {
+            StoreManager.addCommand(self, table: .favs)
+        }
+        get {
+            return StoreManager.doesExist(self, table: .favs)
+        }
+    }
+    
+    var isVisited: Bool {
+        set {
+            StoreManager.addCommand(self, table: .history)
+        }
+        get {
+            return StoreManager.doesExist(self, table: .favs)
+        }
+    }
+    
 }
 
 enum SystemCommand: Command {

@@ -9,15 +9,33 @@
 import Foundation
 import RealmSwift
 
+enum DBTable {
+    case all, favs, history, top
+    
+    var tableType: CommandRealm.Type {
+        switch self {
+        case .favs: return Favs.self
+        case .history: return History.self
+        default: return CommandRealm.self
+        }
+    }
+}
+
 class CommandRealm: Object {
     dynamic var name = ""
     dynamic var type = ""
     override static func primaryKey() -> String? {
         return "name"
     }
+    
 }
 
+class Favs: CommandRealm {}
+
+class History: CommandRealm {}
+
 struct StoreManager {
+    
     static let realm = StoreManager.safeRealm()
     static func safeRealm() -> Realm? {
         do {
@@ -27,32 +45,36 @@ struct StoreManager {
             return nil
         }
     }
+    
+    static func doesExist(_ command: TLDRCommand, table: DBTable = .all) -> Bool {
+        return getMatchingCommands(command.name, table: table).count > 0
+    }
 
-    static func addCommand(_ command: TLDRCommand) {
+    static func addCommand(_ command: TLDRCommand, table: DBTable = .all) {
         guard let realm = realm else { return }
         if realm.isInWriteTransaction {
-            writeToRealmDb(command)
+            writeToRealmDb(command, table: table)
         } else {
             do {
                 try realm.write({
-                    writeToRealmDb(command)
+                    writeToRealmDb(command, table: table)
                 })
             } catch {}
         }
     }
 
-    static func writeToRealmDb(_ command: TLDRCommand) {
+    static func writeToRealmDb(_ command: TLDRCommand, table: DBTable = .all) {
         guard let realm = realm else { return }
-        realm.create(CommandRealm.self, value: ["name": command.nameTypeTuple.0, "type": command.nameTypeTuple.1], update: true)
+        realm.create(table.tableType, value: ["name": command.nameTypeTuple.0, "type": command.nameTypeTuple.1], update: true)
     }
     
-    static func commands(withKeyword keyword: String? = nil) -> [Command] {
+    static func commands(withKeyword keyword: String? = nil, table: DBTable = .all) -> [Command] {
         guard let realm = realm else { return []}
         if let key = keyword {
-            return getMatchingCommands(key)
+            return getMatchingCommands(key, table: table)
         }
         
-        let results = realm.objects(CommandRealm.self)
+        let results = realm.objects(table.tableType)
         var output: [Command] = []
         for result in results {
             output.append(TLDRCommand(name: result.name, type: result.type))
@@ -60,10 +82,10 @@ struct StoreManager {
         return output
     }
 
-    static func getMatchingTLDRCommands(_ keyword: String) -> [Command] {
+    static func getMatchingTLDRCommands(_ keyword: String, table: DBTable = .all) -> [Command] {
         guard let realm = realm else { return []}
         let predicate = NSPredicate(format: "name CONTAINS[c] %@", keyword)
-        let results = realm.objects(CommandRealm.self).filter(predicate)
+        let results = realm.objects(table.tableType).filter(predicate)
         var output: [Command] = []
         for result in results {
             output.append(TLDRCommand(name: result.name, type: result.type))
@@ -116,10 +138,17 @@ struct StoreManager {
         })
     }
 
-    static func getMatchingCommands(_ keyword: String) -> [Command] {
+    static func getMatchingCommands(_ keyword: String, table: DBTable = .all) -> [Command] {
         if keyword.hasPrefix("-") {
             return getMatchingSystemCommands(keyword)
         }
-        return getMatchingTLDRCommands(keyword)
+        return getMatchingTLDRCommands(keyword, table: table)
     }
+    
+    static func printRealmLocation() {
+        if let url = Realm.Configuration.defaultConfiguration.fileURL {
+            print("open ", url.absoluteString.replacingOccurrences(of: "file://", with: ""))
+        }
+    }
+    
 }

@@ -29,11 +29,23 @@ class MasterViewController: UITableViewController {
         var commands: [Command] {
             switch self {
             case .search(let keyword):
-                return StoreManager.commands(withKeyword: keyword)
-            case .favs:
-                return []
+                return StoreManager.commands(withKeyword: keyword, table: .all)
+            case .favs(let keyword):
+                return StoreManager.commands(withKeyword: keyword, table: .favs)
+            case .history(let keyword):
+                return StoreManager.commands(withKeyword: keyword, table: .history)
             default:
                 return []
+            }
+        }
+        
+        func updated(withText text: String?) -> State {
+            switch self {
+            case .search(_): return .search(text)
+            case .favs(_): return .favs(text)
+            case .history(_): return .history(text)
+            default:
+                return self
             }
         }
         
@@ -59,6 +71,7 @@ class MasterViewController: UITableViewController {
         setupHeader()
         self.title = "Commands"
         appState = .search(nil)
+        tableView.keyboardDismissMode = .onDrag
     }
     
     func setupHeader() {
@@ -92,6 +105,7 @@ class MasterViewController: UITableViewController {
         if sender.selectedSegmentIndex == 2 { self.appState = State.history(searchBar.text) }
     }
 
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -122,7 +136,7 @@ class MasterViewController: UITableViewController {
         let command = list[indexPath.row]
         self.delegate?.commandSelected(command: command)
         if let detailViewController = self.delegate as? DetailViewController {
-        splitViewController?.showDetailViewController(detailViewController, sender: nil)
+            splitViewController?.showDetailViewController(detailViewController, sender: nil)
         }
     }
 
@@ -131,12 +145,12 @@ class MasterViewController: UITableViewController {
 extension MasterViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        appState = .search(searchBar.text)
+        appState = appState.updated(withText: searchText)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
-        appState = .search(nil)
+        appState = appState.updated(withText: nil)
         searchBar.resignFirstResponder()
     }
     
