@@ -12,10 +12,11 @@
 		ED0865C61C590F7C00CEA222 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0865C51C590F7C00CEA222 /* FileManager.swift */; };
 		ED10A1F01C50F349006231CB /* libcommonCrypto.tbd in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */; };
 		ED10A1F11C50F349006231CB /* Pods.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ED1897161E0422CB00EA8297 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1897151E0422CB00EA8297 /* UIView+Constraints.swift */; };
 		ED1AACE71C427F10009B9F9F /* TLDRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */; };
 		ED1AACEF1C428093009B9F9F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACEE1C428093009B9F9F /* SnapshotHelper.swift */; };
 		ED269C311C414B1400BED358 /* TLDRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C301C414B1400BED358 /* TLDRTests.swift */; };
-		ED269C431C41870300BED358 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C421C41870300BED358 /* StorageManager.swift */; };
+		ED269C431C41870300BED358 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C421C41870300BED358 /* Database.swift */; };
 		ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3531C3FA76500613214 /* MarkdownParser.swift */; };
 		ED4EC35A1C4496A600613214 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3591C4496A600613214 /* Constant.swift */; };
 		ED61BF511E002401008E45EB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61BF501E002401008E45EB /* MasterViewController.swift */; };
@@ -80,6 +81,7 @@
 		9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0865431C4FD5DB00CEA222 /* Remote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
 		ED0865C51C590F7C00CEA222 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		ED1897151E0422CB00EA8297 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		ED1AACE41C427F10009B9F9F /* TLDRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLDRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRUITests.swift; sourceTree = "<group>"; };
 		ED1AACE81C427F10009B9F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 		ED269C2E1C414B1400BED358 /* TLDRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLDRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED269C301C414B1400BED358 /* TLDRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRTests.swift; sourceTree = "<group>"; };
 		ED269C321C414B1400BED358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED269C421C41870300BED358 /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		ED269C421C41870300BED358 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		ED4EC3531C3FA76500613214 /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		ED4EC3591C4496A600613214 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -150,6 +152,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ED1897171E0422EF00EA8297 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EDB0819B1C3F8D6A002BB783 /* CommandManager.swift */,
+				ED269C421C41870300BED358 /* Database.swift */,
+				ED4EC3531C3FA76500613214 /* MarkdownParser.swift */,
+				ED0865431C4FD5DB00CEA222 /* Remote.swift */,
+				ED0865C51C590F7C00CEA222 /* FileManager.swift */,
+				ED6E86F01C50B0B000BB7DEF /* Verbose.swift */,
+				ED4EC3591C4496A600613214 /* Constant.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		ED1897181E0422F800EA8297 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EDB0818D1C3F70E8002BB783 /* Main.storyboard */,
+				EDB0818B1C3F70E8002BB783 /* ViewController.swift */,
+				ED61BF501E002401008E45EB /* MasterViewController.swift */,
+				ED61BF521E002413008E45EB /* DetailViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		ED1897191E04231A00EA8297 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ED1897151E0422CB00EA8297 /* UIView+Constraints.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		ED1AACE51C427F10009B9F9F /* TLDRUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,18 +229,10 @@
 		EDB081881C3F70E8002BB783 /* TLDR */ = {
 			isa = PBXGroup;
 			children = (
+				ED1897191E04231A00EA8297 /* View */,
+				ED1897181E0422F800EA8297 /* Controller */,
+				ED1897171E0422EF00EA8297 /* Model */,
 				EDB081891C3F70E8002BB783 /* AppDelegate.swift */,
-				EDB0818B1C3F70E8002BB783 /* ViewController.swift */,
-				ED61BF501E002401008E45EB /* MasterViewController.swift */,
-				ED61BF521E002413008E45EB /* DetailViewController.swift */,
-				EDB0819B1C3F8D6A002BB783 /* CommandManager.swift */,
-				ED269C421C41870300BED358 /* StorageManager.swift */,
-				ED4EC3531C3FA76500613214 /* MarkdownParser.swift */,
-				ED0865431C4FD5DB00CEA222 /* Remote.swift */,
-				ED0865C51C590F7C00CEA222 /* FileManager.swift */,
-				ED6E86F01C50B0B000BB7DEF /* Verbose.swift */,
-				ED4EC3591C4496A600613214 /* Constant.swift */,
-				EDB0818D1C3F70E8002BB783 /* Main.storyboard */,
 				EDB081901C3F70E8002BB783 /* Assets.xcassets */,
 				EDB081921C3F70E8002BB783 /* LaunchScreen.storyboard */,
 				EDB081951C3F70E8002BB783 /* Info.plist */,
@@ -435,8 +462,9 @@
 				ED61BF531E002413008E45EB /* DetailViewController.swift in Sources */,
 				ED61BF511E002401008E45EB /* MasterViewController.swift in Sources */,
 				ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */,
+				ED1897161E0422CB00EA8297 /* UIView+Constraints.swift in Sources */,
 				EDB0819C1C3F8D6A002BB783 /* CommandManager.swift in Sources */,
-				ED269C431C41870300BED358 /* StorageManager.swift in Sources */,
+				ED269C431C41870300BED358 /* Database.swift in Sources */,
 				ED0865441C4FD5DB00CEA222 /* Remote.swift in Sources */,
 				EDB0818C1C3F70E8002BB783 /* ViewController.swift in Sources */,
 				EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */,

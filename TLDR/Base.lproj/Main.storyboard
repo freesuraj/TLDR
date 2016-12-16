@@ -181,7 +181,6 @@
         <!--Detail View Controller-->
         <scene sceneID="lxv-6F-4Fg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RVF-Qe-550" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="YMV-5u-zzw" customClass="DetailViewController" customModule="TLDR" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JF2-8g-iUP"/>
@@ -213,13 +212,13 @@
                         <outlet property="textView" destination="Eb1-gX-DMr" id="t4k-J9-3XB"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RVF-Qe-550" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1424.8" y="461.91904047976016"/>
+            <point key="canvasLocation" x="1694" y="654"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="Ho9-yv-WwQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PeU-H1-EVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="Bfn-eN-NVO" customClass="MasterViewController" customModule="TLDR" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="iaj-VJ-zLd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -232,13 +231,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="bgt-o5-iWc"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PeU-H1-EVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1694" y="-90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="seZ-0U-YWF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uso-Vi-78i" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Ipi-cU-c2z" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SIa-ip-Qzz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -248,19 +247,20 @@
                         <segue destination="Bfn-eN-NVO" kind="relationship" relationship="rootViewController" id="k1j-g4-btT"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uso-Vi-78i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="948" y="-237"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="uE4-mv-R5x">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hpv-Qp-1Xe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <splitViewController id="Dr6-66-3ut" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Ipi-cU-c2z" kind="relationship" relationship="masterViewController" id="962-m5-hal"/>
                         <segue destination="YMV-5u-zzw" kind="relationship" relationship="detailViewController" id="Ugc-Ss-ekA"/>
                     </connections>
                 </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hpv-Qp-1Xe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-10" y="-158"/>
         </scene>

@@ -16,11 +16,15 @@ class MasterViewController: UITableViewController {
     
     weak var delegate: CommandSelectionDelegate?
     
+    var themeColor: UIColor {
+        return #colorLiteral(red: 0.7882352941, green: 0.7882352941, blue: 0.8078431373, alpha: 1)
+    }
+    
     enum State {
         case search(String?)
-        case favs
-        case history
-        case top
+        case favs(String?)
+        case history(String?)
+        case top(String?)
         
         var commands: [Command] {
             switch self {
@@ -47,19 +51,45 @@ class MasterViewController: UITableViewController {
         }
     }
     
+    var header: UIView!
     var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupHeader()
         self.title = "Commands"
-        searchBar = UISearchBar(frame: CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: 44)))
-        tableView.tableHeaderView = searchBar
-        searchBar.delegate = self
         appState = .search(nil)
+    }
+    
+    func setupHeader() {
+        searchBar = UISearchBar(frame: CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: 44)))
+        searchBar.delegate = self
+        let segControl = UISegmentedControl(items: [#imageLiteral(resourceName: "list"), #imageLiteral(resourceName: "fav"), #imageLiteral(resourceName: "history")])
+        segControl.frame = CGRect(x: 0, y: searchBar.frame.height, width: view.frame.width, height: 44)
+        searchBar.tintColor = themeColor
+        segControl.tintColor = themeColor
+        segControl.addTarget(self, action: #selector(segValueChanged), for: .valueChanged)
+        segControl.selectedSegmentIndex = 0
+        searchBar.autoresizingMask = [.flexibleWidth]
+        segControl.autoresizingMask = [.flexibleWidth]
+        segControl.removeBorders(withThemeColor: themeColor)
+        let separator = UIView(frame: CGRect(x: 0, y: segControl.frame.maxY, width: view.frame.width, height: 1))
+        header = UIView(frame: CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: searchBar.frame.height + segControl.frame.height+1)))
+        separator.backgroundColor = themeColor
+        header.addSubview(searchBar)
+        header.addSubview(segControl)
+        header.addSubview(separator)
+        tableView.tableHeaderView = header
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func segValueChanged(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 { self.appState = State.search(searchBar.text) }
+        if sender.selectedSegmentIndex == 1 { self.appState = State.favs(searchBar.text) }
+        if sender.selectedSegmentIndex == 2 { self.appState = State.history(searchBar.text) }
     }
 
     // MARK: - Table view data source
@@ -112,6 +142,29 @@ extension MasterViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+}
+
+extension UISegmentedControl {
+    
+    func removeBorders(withThemeColor themeColor: UIColor) {
+        self.tintColor = themeColor
+        setBackgroundImage(imageWithColor(color: UIColor.white), for: .normal, barMetrics: .default)
+        setBackgroundImage(imageWithColor(color: themeColor), for: .selected, barMetrics: .default)
+        setDividerImage(imageWithColor(color: UIColor.clear), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
+    }
+    
+    // create a 1x1 image with this color
+    private func imageWithColor(color: UIColor) -> UIImage? {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
     
 }
