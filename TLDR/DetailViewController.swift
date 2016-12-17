@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("my navigation item is ", navigationItem)
         StoreManager.printRealmLocation()
         favButton = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         favButton.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
@@ -32,6 +33,10 @@ class DetailViewController: UIViewController {
         favButton.setImage(#imageLiteral(resourceName: "favRed"), for: .highlighted)
         favButton.addTarget(self, action: #selector(addFav), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favButton)
+    }
+    
+    func forceGoBack() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -62,6 +62,16 @@ struct StoreManager {
             } catch {}
         }
     }
+    
+    static func removeCommand(_ command: TLDRCommand, table: DBTable = .all) {
+        guard let realm = realm else { return }
+        realm.beginWrite()
+        let predicate = NSPredicate(format: "name CONTAINS[c] %@", command.name)
+        let results = realm.objects(table.tableType).filter(predicate)
+        realm.delete(results)
+        try? realm.commitWrite()
+    }
+
 
     static func writeToRealmDb(_ command: TLDRCommand, table: DBTable = .all) {
         guard let realm = realm else { return }

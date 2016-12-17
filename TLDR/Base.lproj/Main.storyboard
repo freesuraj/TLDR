@@ -191,7 +191,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eb1-gX-DMr">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <accessibility key="accessibilityConfiguration" identifier="tf" label="textView">
                                     <accessibilityTraits key="traits" staticText="YES"/>
                                 </accessibility>
@@ -208,13 +208,14 @@
                             <constraint firstItem="Eb1-gX-DMr" firstAttribute="leading" secondItem="ccF-tz-FPc" secondAttribute="leadingMargin" constant="-16" id="vVP-vl-KgU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="cvA-GY-4kC"/>
                     <connections>
                         <outlet property="textView" destination="Eb1-gX-DMr" id="t4k-J9-3XB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVF-Qe-550" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1694" y="654"/>
+            <point key="canvasLocation" x="2632.8000000000002" y="653.52323838080963"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="Ho9-yv-WwQ">
@@ -239,9 +240,14 @@
         <scene sceneID="seZ-0U-YWF">
             <objects>
                 <navigationController id="Ipi-cU-c2z" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SIa-ip-Qzz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="SIa-ip-Qzz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.32549020649999999" green="0.1294117719" blue="0.32941177490000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Bfn-eN-NVO" kind="relationship" relationship="rootViewController" id="k1j-g4-btT"/>
@@ -257,12 +263,32 @@
                 <splitViewController id="Dr6-66-3ut" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Ipi-cU-c2z" kind="relationship" relationship="masterViewController" id="962-m5-hal"/>
-                        <segue destination="YMV-5u-zzw" kind="relationship" relationship="detailViewController" id="Ugc-Ss-ekA"/>
+                        <segue destination="EGn-Jr-jed" kind="relationship" relationship="detailViewController" id="Ugc-Ss-ekA"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hpv-Qp-1Xe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-10" y="-158"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nQI-dZ-Ev3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EGn-Jr-jed" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" autoresizesSubviews="NO" contentMode="scaleToFill" misplaced="YES" id="I3v-EK-L5z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.32549020648002625" green="0.12941177189350128" blue="0.32941177487373352" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YMV-5u-zzw" kind="relationship" relationship="rootViewController" id="d9E-Aq-Zwm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iVZ-tg-227" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1693.5999999999999" y="653.52323838080963"/>
         </scene>
     </scenes>
     <resources>

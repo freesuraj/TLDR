@@ -89,6 +89,7 @@ class MasterViewController: UITableViewController {
         let separator = UIView(frame: CGRect(x: 0, y: segControl.frame.maxY, width: view.frame.width, height: 1))
         header = UIView(frame: CGRect(origin: .zero, size: CGSize(width: view.frame.width, height: searchBar.frame.height + segControl.frame.height+1)))
         separator.backgroundColor = themeColor
+        separator.autoresizingMask = [.flexibleWidth]
         header.addSubview(searchBar)
         header.addSubview(segControl)
         header.addSubview(separator)
@@ -136,7 +137,7 @@ class MasterViewController: UITableViewController {
         let command = list[indexPath.row]
         self.delegate?.commandSelected(command: command)
         if let detailViewController = self.delegate as? DetailViewController {
-            splitViewController?.showDetailViewController(detailViewController, sender: nil)
+            splitViewController?.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: nil)
         }
     }
 

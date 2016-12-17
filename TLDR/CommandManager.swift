@@ -40,7 +40,11 @@ struct TLDRCommand: Command {
     
     var isFavorited: Bool {
         set {
-            StoreManager.addCommand(self, table: .favs)
+            if newValue {
+                StoreManager.addCommand(self, table: .favs)
+            } else {
+                StoreManager.removeCommand(self, table: .favs)
+            }
         }
         get {
             return StoreManager.doesExist(self, table: .favs)
