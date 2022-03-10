@@ -24,22 +24,21 @@ class TLDRTests: XCTestCase {
     }
     
     func testFileManager_readAFile() {
-        let url = FileManager.urlToBundleFolder()!
-        let fileurl = url.URLByAppendingPathComponent("/pages/common/git.md")
+        let fileurl = FileManager.urlToBundleFolder()!.appendingPathComponent("/pages/common/git.md")
         print("file url \(fileurl)")
         XCTAssertNotNil(fileurl)
     }
     
     func testFileManager_pathInDownloadFolder_doesnotexist() {
-        let folder = FileManager.urlToTldrFolder()!.URLByAppendingPathComponent("InoExist")
-        let fileExist = FileManager.fileManager.fileExistsAtPath(folder.path!)
+        let folder = FileManager.urlToTldrFolder()!.appendingPathComponent("InoExist")
+        let fileExist = FileManager.fileManager.fileExists(atPath: folder.path)
         XCTAssertFalse(fileExist)
     }
     
     func testFileManager_pathInDownloadFolder_exist() {
         FileManager.copyBundleToDocument(replace: true)
         let folder = FileManager.urlToTldrFolder()!
-        let fileExist = FileManager.fileManager.fileExistsAtPath(folder.path!)
+        let fileExist = FileManager.fileManager.fileExists(atPath: folder.path)
         XCTAssertTrue(fileExist)
     }
     

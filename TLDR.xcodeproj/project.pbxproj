@@ -11,11 +11,13 @@
 		4F3A119E27D9A43300ED44AB /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A119D27D9A43300ED44AB /* ZipArchive */; };
 		4F3A11A127D9AB6600ED44AB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A11A027D9AB6600ED44AB /* Realm */; };
 		4F3A11A327D9AB6600ED44AB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A11A227D9AB6600ED44AB /* RealmSwift */; };
+		4F3A11A527D9D76C00ED44AB /* MasterViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A11A427D9D76C00ED44AB /* MasterViewDataSource.swift */; };
+		4F3A11A727D9DA7300ED44AB /* MasterViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A11A627D9DA7300ED44AB /* MasterViewState.swift */; };
+		4F3A11AA27D9DD3200ED44AB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A11A927D9DD3200ED44AB /* UIView+Extension.swift */; };
 		ED0865441C4FD5DB00CEA222 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0865431C4FD5DB00CEA222 /* Remote.swift */; };
 		ED0865C61C590F7C00CEA222 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0865C51C590F7C00CEA222 /* FileManager.swift */; };
 		ED10A1F01C50F349006231CB /* libcommonCrypto.tbd in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */; };
 		ED10A1F11C50F349006231CB /* Pods.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ED1897161E0422CB00EA8297 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1897151E0422CB00EA8297 /* UIView+Constraints.swift */; };
 		ED1AACE71C427F10009B9F9F /* TLDRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */; };
 		ED1AACEF1C428093009B9F9F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1AACEE1C428093009B9F9F /* SnapshotHelper.swift */; };
 		ED269C311C414B1400BED358 /* TLDRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C301C414B1400BED358 /* TLDRTests.swift */; };
@@ -26,7 +28,6 @@
 		ED61BF531E002413008E45EB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61BF521E002413008E45EB /* DetailViewController.swift */; };
 		ED6E86F11C50B0B000BB7DEF /* Verbose.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6E86F01C50B0B000BB7DEF /* Verbose.swift */; };
 		EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB081891C3F70E8002BB783 /* AppDelegate.swift */; };
-		EDB0818C1C3F70E8002BB783 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0818B1C3F70E8002BB783 /* ViewController.swift */; };
 		EDB0818F1C3F70E8002BB783 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB0818D1C3F70E8002BB783 /* Main.storyboard */; };
 		EDB081911C3F70E8002BB783 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB081901C3F70E8002BB783 /* Assets.xcassets */; };
 		EDB081941C3F70E8002BB783 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB081921C3F70E8002BB783 /* LaunchScreen.storyboard */; };
@@ -80,10 +81,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F3A11A427D9D76C00ED44AB /* MasterViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewDataSource.swift; sourceTree = "<group>"; };
+		4F3A11A627D9DA7300ED44AB /* MasterViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewState.swift; sourceTree = "<group>"; };
+		4F3A11A927D9DD3200ED44AB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0865431C4FD5DB00CEA222 /* Remote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
 		ED0865C51C590F7C00CEA222 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
-		ED1897151E0422CB00EA8297 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		ED1AACE41C427F10009B9F9F /* TLDRUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLDRUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED1AACE61C427F10009B9F9F /* TLDRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLDRUITests.swift; sourceTree = "<group>"; };
 		ED1AACE81C427F10009B9F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,7 +103,6 @@
 		ED6E86F01C50B0B000BB7DEF /* Verbose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Verbose.swift; sourceTree = "<group>"; };
 		EDB081861C3F70E8002BB783 /* TLDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB081891C3F70E8002BB783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EDB0818B1C3F70E8002BB783 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EDB0818E1C3F70E8002BB783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EDB081901C3F70E8002BB783 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDB081931C3F70E8002BB783 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -138,6 +140,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F3A11A827D9DD2100ED44AB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4F3A11A927D9DD3200ED44AB /* UIView+Extension.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		EA39B605F5CD8DF8ACE9901F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,19 +175,19 @@
 			isa = PBXGroup;
 			children = (
 				EDB0818D1C3F70E8002BB783 /* Main.storyboard */,
-				EDB0818B1C3F70E8002BB783 /* ViewController.swift */,
 				ED61BF501E002401008E45EB /* MasterViewController.swift */,
 				ED61BF521E002413008E45EB /* DetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		ED1897191E04231A00EA8297 /* View */ = {
+		ED1897191E04231A00EA8297 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				ED1897151E0422CB00EA8297 /* UIView+Constraints.swift */,
+				4F3A11A427D9D76C00ED44AB /* MasterViewDataSource.swift */,
+				4F3A11A627D9DA7300ED44AB /* MasterViewState.swift */,
 			);
-			name = View;
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		ED1AACE51C427F10009B9F9F /* TLDRUITests */ = {
@@ -223,7 +233,8 @@
 		EDB081881C3F70E8002BB783 /* TLDR */ = {
 			isa = PBXGroup;
 			children = (
-				ED1897191E04231A00EA8297 /* View */,
+				4F3A11A827D9DD2100ED44AB /* Utilities */,
+				ED1897191E04231A00EA8297 /* ViewModel */,
 				ED1897181E0422F800EA8297 /* Controller */,
 				ED1897171E0422EF00EA8297 /* Model */,
 				EDB081891C3F70E8002BB783 /* AppDelegate.swift */,
@@ -417,14 +428,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3A11A727D9DA7300ED44AB /* MasterViewState.swift in Sources */,
 				ED61BF531E002413008E45EB /* DetailViewController.swift in Sources */,
 				ED61BF511E002401008E45EB /* MasterViewController.swift in Sources */,
 				ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */,
-				ED1897161E0422CB00EA8297 /* UIView+Constraints.swift in Sources */,
+				4F3A11A527D9D76C00ED44AB /* MasterViewDataSource.swift in Sources */,
 				EDB0819C1C3F8D6A002BB783 /* CommandManager.swift in Sources */,
 				ED269C431C41870300BED358 /* Database.swift in Sources */,
 				ED0865441C4FD5DB00CEA222 /* Remote.swift in Sources */,
-				EDB0818C1C3F70E8002BB783 /* ViewController.swift in Sources */,
+				4F3A11AA27D9DD3200ED44AB /* UIView+Extension.swift in Sources */,
 				EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */,
 				ED0865C61C590F7C00CEA222 /* FileManager.swift in Sources */,
 				ED6E86F11C50B0B000BB7DEF /* Verbose.swift in Sources */,
@@ -575,7 +587,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -619,7 +631,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -639,7 +651,7 @@
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TLDR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -666,7 +678,7 @@
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TLDR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -17,13 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FileManager.copyBundleToDocument(replace: false)
         
         let splitViewController = self.window!.rootViewController as! UISplitViewController
-        splitViewController.preferredDisplayMode = .allVisible
         let leftNavController = splitViewController.viewControllers.first as! UINavigationController
         let masterViewController = leftNavController.topViewController as! MasterViewController
         let rightNavController = splitViewController.viewControllers.last as! UINavigationController
         let detailViewController = rightNavController.viewControllers.last as! DetailViewController
         masterViewController.delegate = detailViewController
-        
         return true
     }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import ZipArchive
+import Combine
 
 /// Manages Network connection, including downloading and checking for update
 struct NetworkManager {

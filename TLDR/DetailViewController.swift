@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     var command: Command? {
         didSet {
             if let value = command {
-                textView.attributedText = value.output
+                textView?.attributedText = value.output
                 self.title = value.name
             }
         }
@@ -25,7 +25,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("my navigation item is ", navigationItem)
         StoreManager.printRealmLocation()
         favButton = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         favButton.setImage(#imageLiteral(resourceName: "fav"), for: .normal)
@@ -36,7 +35,7 @@ class DetailViewController: UIViewController {
     }
     
     func forceGoBack() {
-        self.dismiss(animated: true, completion: nil)
+        (splitViewController?.viewControllers.first as? UINavigationController)?.popViewController(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,6 +43,8 @@ class DetailViewController: UIViewController {
         if var tldrCommand = command as? TLDRCommand {
             favButton.isSelected = tldrCommand.isFavorited
             tldrCommand.isVisited = true
+        } else {
+            forceGoBack()
         }
     }
     
@@ -52,10 +53,6 @@ class DetailViewController: UIViewController {
             favButton.isSelected = !tldrCommand.isFavorited
             tldrCommand.isFavorited = favButton.isSelected
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
 }
