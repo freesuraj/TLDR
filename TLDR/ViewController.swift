@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         updateTableView()
         // Customize text field
         commandTextField.attributedPlaceholder = NSAttributedString(string: "_", attributes:
-            [NSForegroundColorAttributeName:UIColor.lightText])
+                                                                        [NSAttributedString.Key.foregroundColor:UIColor.lightText])
         commandTextField.clearButtonMode = .always
         commandTextField.clearsOnBeginEditing = true
         // Customize text view
@@ -67,12 +67,12 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         commandTextField.becomeFirstResponder()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateSuggestion), name:
-            NSNotification.Name.UITextFieldTextDidChange, object: commandTextField)
+                                                UITextField.textDidChangeNotification, object: commandTextField)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: commandTextField)
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: commandTextField)
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func updateSuggestion() {
+    @objc func updateSuggestion() {
         suggestions = StoreManager.getMatchingCommands(commandTextField.text!)
     }
 

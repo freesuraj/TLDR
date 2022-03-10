@@ -47,7 +47,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func addFav(sender: UIButton) {
+    @objc func addFav(sender: UIButton) {
         if var tldrCommand = command as? TLDRCommand {
             favButton.isSelected = !tldrCommand.isFavorited
             tldrCommand.isFavorited = favButton.isSelected

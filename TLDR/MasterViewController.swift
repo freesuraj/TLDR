@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CommandSelectionDelegate: class {
+protocol CommandSelectionDelegate: AnyObject {
     func commandSelected(command: Command)
 }
 
@@ -35,15 +35,15 @@ class MasterViewController: UITableViewController {
             case .history(let keyword):
                 return StoreManager.commands(withKeyword: keyword, table: .history)
             default:
-                return []
+                return StoreManager.commands(withKeyword: nil, table: .all)
             }
         }
         
         func updated(withText text: String?) -> State {
             switch self {
-            case .search(_): return .search(text)
-            case .favs(_): return .favs(text)
-            case .history(_): return .history(text)
+            case .search: return .search(text)
+            case .favs: return .favs(text)
+            case .history: return .history(text)
             default:
                 return self
             }
@@ -100,7 +100,7 @@ class MasterViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func segValueChanged(sender: UISegmentedControl) {
+    @objc func segValueChanged(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 { self.appState = State.search(searchBar.text) }
         if sender.selectedSegmentIndex == 1 { self.appState = State.favs(searchBar.text) }
         if sender.selectedSegmentIndex == 2 { self.appState = State.history(searchBar.text) }
