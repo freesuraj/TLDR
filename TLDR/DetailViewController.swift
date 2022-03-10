@@ -31,7 +31,9 @@ class DetailViewController: UIViewController {
         favButton.setImage(#imageLiteral(resourceName: "favRed"), for: .selected)
         favButton.setImage(#imageLiteral(resourceName: "favRed"), for: .highlighted)
         favButton.addTarget(self, action: #selector(addFav), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favButton)
+        
+        let infoButton = UIBarButtonItem(image: #imageLiteral(resourceName: "iconInfo"), style: .done, target: self, action: #selector(onInfo))
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: favButton), infoButton]
     }
     
     func forceGoBack() {
@@ -46,6 +48,10 @@ class DetailViewController: UIViewController {
         } else {
             forceGoBack()
         }
+    }
+    
+    @objc func onInfo() {
+        textView.attributedText = MarkDownParser.converted(Constant.aboutUsMarkdown)
     }
     
     @objc func addFav(sender: UIButton) {

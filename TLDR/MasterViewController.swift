@@ -35,16 +35,15 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         setupHeader()
         self.title = "Commands"
-        appState = .search(nil)
         tableView.keyboardDismissMode = .onDrag
         dataSource = MasterViewDataSource(tableView: self.tableView)
-        dataSource?.updateCommands(appState.commands)
         dataSource?.didSelectCommand = { [weak self] command in
             self?.delegate?.commandSelected(command: command)
             if let detailViewController = self?.delegate as? DetailViewController {
                 self?.splitViewController?.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: nil)
             }
         }
+        appState = .search(nil)
     }
     
     func setupHeader() {
