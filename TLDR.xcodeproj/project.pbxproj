@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E5F1FA0196E5E542F78B6244 /* Pods_TLDR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CA00BBEF3BC273F190B068 /* Pods_TLDR.framework */; };
+		4F3A119B27D9A3E100ED44AB /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A119A27D9A3E100ED44AB /* Down */; };
+		4F3A119E27D9A43300ED44AB /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A119D27D9A43300ED44AB /* ZipArchive */; };
+		4F3A11A127D9AB6600ED44AB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A11A027D9AB6600ED44AB /* Realm */; };
+		4F3A11A327D9AB6600ED44AB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A11A227D9AB6600ED44AB /* RealmSwift */; };
 		ED0865441C4FD5DB00CEA222 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0865431C4FD5DB00CEA222 /* Remote.swift */; };
 		ED0865C61C590F7C00CEA222 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0865C51C590F7C00CEA222 /* FileManager.swift */; };
 		ED10A1F01C50F349006231CB /* libcommonCrypto.tbd in CopyFiles */ = {isa = PBXBuildFile; fileRef = ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */; };
@@ -41,7 +44,7 @@
 			isEditable = 1;
 			outputFiles = (
 			);
-			script = "";
+			script = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 /* End PBXBuildRule section */
 
@@ -77,9 +80,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		296B62561BCB0419E0DE5B02 /* Pods-TLDR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TLDR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TLDR/Pods-TLDR.debug.xcconfig"; sourceTree = "<group>"; };
-		36CA00BBEF3BC273F190B068 /* Pods_TLDR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TLDR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		42C13A638051D16B48CD5DD4 /* Pods-TLDR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TLDR.release.xcconfig"; path = "Pods/Target Support Files/Pods-TLDR/Pods-TLDR.release.xcconfig"; sourceTree = "<group>"; };
 		9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0865431C4FD5DB00CEA222 /* Remote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
 		ED0865C51C590F7C00CEA222 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
@@ -128,28 +128,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5F1FA0196E5E542F78B6244 /* Pods_TLDR.framework in Frameworks */,
+				4F3A119B27D9A3E100ED44AB /* Down in Frameworks */,
+				4F3A11A127D9AB6600ED44AB /* Realm in Frameworks */,
+				4F3A11A327D9AB6600ED44AB /* RealmSwift in Frameworks */,
+				4F3A119E27D9A43300ED44AB /* ZipArchive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		28E535877EB659A2F924C4EF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				296B62561BCB0419E0DE5B02 /* Pods-TLDR.debug.xcconfig */,
-				42C13A638051D16B48CD5DD4 /* Pods-TLDR.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		EA39B605F5CD8DF8ACE9901F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */,
 				9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */,
-				36CA00BBEF3BC273F190B068 /* Pods_TLDR.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,7 +207,6 @@
 				ED1AACE51C427F10009B9F9F /* TLDRUITests */,
 				EDB081871C3F70E8002BB783 /* Products */,
 				EA39B605F5CD8DF8ACE9901F /* Frameworks */,
-				28E535877EB659A2F924C4EF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -287,12 +279,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDB081981C3F70E8002BB783 /* Build configuration list for PBXNativeTarget "TLDR" */;
 			buildPhases = (
-				BF43CDA1B87263D267A62CCA /* [CP] Check Pods Manifest.lock */,
 				EDB081821C3F70E8002BB783 /* Sources */,
 				EDB081831C3F70E8002BB783 /* Frameworks */,
 				EDB081841C3F70E8002BB783 /* Resources */,
 				ED1AACDF1C426619009B9F9F /* ShellScript */,
-				C954CDCA29D52273517E29C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 				ED1AACDE1C4265FC009B9F9F /* PBXBuildRule */,
@@ -300,6 +290,12 @@
 			dependencies = (
 			);
 			name = TLDR;
+			packageProductDependencies = (
+				4F3A119A27D9A3E100ED44AB /* Down */,
+				4F3A119D27D9A43300ED44AB /* ZipArchive */,
+				4F3A11A027D9AB6600ED44AB /* Realm */,
+				4F3A11A227D9AB6600ED44AB /* RealmSwift */,
+			);
 			productName = TLDR;
 			productReference = EDB081861C3F70E8002BB783 /* TLDR.app */;
 			productType = "com.apple.product-type.application";
@@ -339,6 +335,11 @@
 				Base,
 			);
 			mainGroup = EDB0817D1C3F70E8002BB783;
+			packageReferences = (
+				4F3A119927D9A3E100ED44AB /* XCRemoteSwiftPackageReference "Down" */,
+				4F3A119C27D9A43300ED44AB /* XCRemoteSwiftPackageReference "ZipArchive" */,
+				4F3A119F27D9AB6600ED44AB /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = EDB081871C3F70E8002BB783 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -379,48 +380,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BF43CDA1B87263D267A62CCA /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TLDR-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C954CDCA29D52273517E29C3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TLDR/Pods-TLDR-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TLDR/Pods-TLDR-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ED1AACDF1C426619009B9F9F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,7 +471,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = TLDRUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.TLDRUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = TLDR;
@@ -524,7 +487,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = TLDRUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.TLDRUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = TLDR;
@@ -537,7 +504,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TLDRTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.TLDRTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
@@ -551,7 +522,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TLDRTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.suraj.TLDRTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
@@ -600,7 +575,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -644,10 +619,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -656,7 +632,6 @@
 		};
 		EDB081991C3F70E8002BB783 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 296B62561BCB0419E0DE5B02 /* Pods-TLDR.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -664,8 +639,11 @@
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TLDR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
@@ -681,7 +659,6 @@
 		};
 		EDB0819A1C3F70E8002BB783 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42C13A638051D16B48CD5DD4 /* Pods-TLDR.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -689,8 +666,11 @@
 				CURRENT_PROJECT_VERSION = 37;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TLDR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
@@ -744,6 +724,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4F3A119927D9A3E100ED44AB /* XCRemoteSwiftPackageReference "Down" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnxnguyen/Down";
+			requirement = {
+				kind = exactVersion;
+				version = 0.11.0;
+			};
+		};
+		4F3A119C27D9A43300ED44AB /* XCRemoteSwiftPackageReference "ZipArchive" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ZipArchive/ZipArchive.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.4.3;
+			};
+		};
+		4F3A119F27D9AB6600ED44AB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 10.24.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4F3A119A27D9A3E100ED44AB /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F3A119927D9A3E100ED44AB /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
+		};
+		4F3A119D27D9A43300ED44AB /* ZipArchive */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F3A119C27D9A43300ED44AB /* XCRemoteSwiftPackageReference "ZipArchive" */;
+			productName = ZipArchive;
+		};
+		4F3A11A027D9AB6600ED44AB /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F3A119F27D9AB6600ED44AB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		4F3A11A227D9AB6600ED44AB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F3A119F27D9AB6600ED44AB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EDB0817E1C3F70E8002BB783 /* Project object */;
 }

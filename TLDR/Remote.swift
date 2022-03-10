@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SSZipArchive
+import ZipArchive
 
 /// Manages Network connection, including downloading and checking for update
 struct NetworkManager {
