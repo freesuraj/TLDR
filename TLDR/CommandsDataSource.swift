@@ -1,5 +1,5 @@
 //
-//  MasterViewDataSource.swift
+//  CommandsDataSource.swift
 //  TLDR
 //
 //  Created by Suraj Pathak on 10/3/2022.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MasterViewDataSource: NSObject {
+class CommandsDataSource: NSObject {
     
     var didSelectCommand: ((Command) -> Void)?
     
@@ -33,7 +33,7 @@ class MasterViewDataSource: NSObject {
     }
 }
 
-extension MasterViewDataSource: UITableViewDataSource, UITableViewDelegate {
+extension CommandsDataSource: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         commands.count

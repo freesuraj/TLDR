@@ -29,14 +29,14 @@ class MasterViewController: UITableViewController {
     var header: UIView!
     var searchBar: UISearchBar!
     
-    var dataSource: MasterViewDataSource?
+    var dataSource: CommandsDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupHeader()
         self.title = "Commands"
         tableView.keyboardDismissMode = .onDrag
-        dataSource = MasterViewDataSource(tableView: self.tableView)
+        dataSource = CommandsDataSource(tableView: self.tableView)
         dataSource?.didSelectCommand = { [weak self] command in
             self?.delegate?.commandSelected(command: command)
             if let detailViewController = self?.delegate as? DetailViewController {
