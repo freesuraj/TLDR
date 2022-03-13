@@ -12,7 +12,6 @@
 		4F3A11A127D9AB6600ED44AB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A11A027D9AB6600ED44AB /* Realm */; };
 		4F3A11A327D9AB6600ED44AB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A11A227D9AB6600ED44AB /* RealmSwift */; };
 		4F3A11A527D9D76C00ED44AB /* CommandsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A11A427D9D76C00ED44AB /* CommandsDataSource.swift */; };
-		4F3A11A727D9DA7300ED44AB /* MasterViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A11A627D9DA7300ED44AB /* MasterViewState.swift */; };
 		4F3A11AA27D9DD3200ED44AB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A11A927D9DD3200ED44AB /* UIView+Extension.swift */; };
 		4F3A11AC27D9F8B300ED44AB /* SinglePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A11AB27D9F8B300ED44AB /* SinglePageViewController.swift */; };
 		ED0865441C4FD5DB00CEA222 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0865431C4FD5DB00CEA222 /* Remote.swift */; };
@@ -25,8 +24,6 @@
 		ED269C431C41870300BED358 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED269C421C41870300BED358 /* Database.swift */; };
 		ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3531C3FA76500613214 /* MarkdownParser.swift */; };
 		ED4EC35A1C4496A600613214 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4EC3591C4496A600613214 /* Constant.swift */; };
-		ED61BF511E002401008E45EB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61BF501E002401008E45EB /* MasterViewController.swift */; };
-		ED61BF531E002413008E45EB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED61BF521E002413008E45EB /* DetailViewController.swift */; };
 		ED6E86F11C50B0B000BB7DEF /* Verbose.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6E86F01C50B0B000BB7DEF /* Verbose.swift */; };
 		EDB0818A1C3F70E8002BB783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB081891C3F70E8002BB783 /* AppDelegate.swift */; };
 		EDB0818F1C3F70E8002BB783 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB0818D1C3F70E8002BB783 /* Main.storyboard */; };
@@ -83,7 +80,6 @@
 
 /* Begin PBXFileReference section */
 		4F3A11A427D9D76C00ED44AB /* CommandsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandsDataSource.swift; sourceTree = "<group>"; };
-		4F3A11A627D9DA7300ED44AB /* MasterViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewState.swift; sourceTree = "<group>"; };
 		4F3A11A927D9DD3200ED44AB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		4F3A11AB27D9F8B300ED44AB /* SinglePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePageViewController.swift; sourceTree = "<group>"; };
 		9E8ACF7C43B9BFF0B0235F8F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,8 +96,6 @@
 		ED269C451C4195CF00BED358 /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		ED4EC3531C3FA76500613214 /* MarkdownParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownParser.swift; sourceTree = "<group>"; };
 		ED4EC3591C4496A600613214 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		ED61BF501E002401008E45EB /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		ED61BF521E002413008E45EB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		ED6E86F01C50B0B000BB7DEF /* Verbose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Verbose.swift; sourceTree = "<group>"; };
 		EDB081861C3F70E8002BB783 /* TLDR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLDR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB081891C3F70E8002BB783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,8 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				EDB0818D1C3F70E8002BB783 /* Main.storyboard */,
-				ED61BF501E002401008E45EB /* MasterViewController.swift */,
-				ED61BF521E002413008E45EB /* DetailViewController.swift */,
 				4F3A11AB27D9F8B300ED44AB /* SinglePageViewController.swift */,
 			);
 			name = Controller;
@@ -188,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				4F3A11A427D9D76C00ED44AB /* CommandsDataSource.swift */,
-				4F3A11A627D9DA7300ED44AB /* MasterViewState.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -431,9 +422,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F3A11A727D9DA7300ED44AB /* MasterViewState.swift in Sources */,
-				ED61BF531E002413008E45EB /* DetailViewController.swift in Sources */,
-				ED61BF511E002401008E45EB /* MasterViewController.swift in Sources */,
 				ED4EC3541C3FA76500613214 /* MarkdownParser.swift in Sources */,
 				4F3A11A527D9D76C00ED44AB /* CommandsDataSource.swift in Sources */,
 				EDB0819C1C3F8D6A002BB783 /* CommandManager.swift in Sources */,
