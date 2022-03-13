@@ -35,10 +35,15 @@ class SinglePageViewController: UIViewController {
         setupViewModel()
         setupVerboseListener()
         NetworkManager.checkAutoUpdate(printVerbose: false)
+        showStartupInstruction()
     }
 
     override var prefersStatusBarHidden : Bool {
         return true
+    }
+    
+    private func showStartupInstruction() {
+        printOut(SystemCommand.startupInstruction)
     }
     
     private func setupViewModel() {

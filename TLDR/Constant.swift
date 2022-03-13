@@ -65,6 +65,15 @@ struct Constant {
         " -i: shows info page\n" +
         " -v: shows current version\n"
     
-    static let version = "Version: 0.0.8"
+    static let startUpInstruction = """
+    Type in a command to look up. eg.
+    
+    {{curl}}
+    {{zip}}
+    {{ssh}}
+    
+    """
+    
+    static let version = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.1")"
 
 }

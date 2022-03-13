@@ -120,4 +120,8 @@ enum SystemCommand: Command {
         }
         return NSAttributedString()
     }
+    
+    static var startupInstruction: NSAttributedString {
+        MarkDownParser.attributedStringOfMarkdownString(Constant.startUpInstruction)
+    }
 }
