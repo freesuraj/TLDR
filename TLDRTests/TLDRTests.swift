@@ -44,7 +44,6 @@ class TLDRTests: XCTestCase {
     
     func testFileManager_readAFileFromDownloadFolder() {
         let content = FileManager.contentOfFileAtTldrPages("common", name: "git")
-        print("content \(content)")
         XCTAssertNotNil(content)
         
     }
