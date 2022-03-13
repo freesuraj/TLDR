@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F3A119B27D9A3E100ED44AB /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A119A27D9A3E100ED44AB /* Down */; };
 		4F3A119E27D9A43300ED44AB /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A119D27D9A43300ED44AB /* ZipArchive */; };
 		4F3A11A127D9AB6600ED44AB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A11A027D9AB6600ED44AB /* Realm */; };
 		4F3A11A327D9AB6600ED44AB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3A11A227D9AB6600ED44AB /* RealmSwift */; };
@@ -128,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F3A119B27D9A3E100ED44AB /* Down in Frameworks */,
 				4F3A11A127D9AB6600ED44AB /* Realm in Frameworks */,
 				4F3A11A327D9AB6600ED44AB /* RealmSwift in Frameworks */,
 				4F3A119E27D9A43300ED44AB /* ZipArchive in Frameworks */,
@@ -299,7 +297,6 @@
 			);
 			name = TLDR;
 			packageProductDependencies = (
-				4F3A119A27D9A3E100ED44AB /* Down */,
 				4F3A119D27D9A43300ED44AB /* ZipArchive */,
 				4F3A11A027D9AB6600ED44AB /* Realm */,
 				4F3A11A227D9AB6600ED44AB /* RealmSwift */,
@@ -344,7 +341,6 @@
 			);
 			mainGroup = EDB0817D1C3F70E8002BB783;
 			packageReferences = (
-				4F3A119927D9A3E100ED44AB /* XCRemoteSwiftPackageReference "Down" */,
 				4F3A119C27D9A43300ED44AB /* XCRemoteSwiftPackageReference "ZipArchive" */,
 				4F3A119F27D9AB6600ED44AB /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
@@ -734,14 +730,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4F3A119927D9A3E100ED44AB /* XCRemoteSwiftPackageReference "Down" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/johnxnguyen/Down";
-			requirement = {
-				kind = exactVersion;
-				version = 0.11.0;
-			};
-		};
 		4F3A119C27D9A43300ED44AB /* XCRemoteSwiftPackageReference "ZipArchive" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ZipArchive/ZipArchive.git";
@@ -761,11 +749,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4F3A119A27D9A3E100ED44AB /* Down */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4F3A119927D9A3E100ED44AB /* XCRemoteSwiftPackageReference "Down" */;
-			productName = Down;
-		};
 		4F3A119D27D9A43300ED44AB /* ZipArchive */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4F3A119C27D9A43300ED44AB /* XCRemoteSwiftPackageReference "ZipArchive" */;

@@ -29,8 +29,10 @@ struct TLDRCommand: Command {
     var output: NSAttributedString {
         guard let content =
             FileManager.contentOfFileAtTldrPages(self.nameTypeTuple.1,
-                name: self.nameTypeTuple.0), let value = MarkDownParser.converted(content) else { return MarkDownParser.attributedStringOfMarkdownString(Constant.pageNotFound) }
-        return value
+                name: self.nameTypeTuple.0) else {
+                return MarkDownParser.attributedStringOfMarkdownString(Constant.pageNotFound)
+            }
+        return  MarkDownParser.attributedStringOfMarkdownString(content)
 
     }
     
