@@ -22,8 +22,8 @@ enum DBTable {
 }
 
 class CommandRealm: Object {
-    dynamic var name = ""
-    dynamic var type = ""
+    @Persisted var name = ""
+    @Persisted var type = ""
     override static func primaryKey() -> String? {
         return "name"
     }
@@ -75,12 +75,12 @@ struct StoreManager {
 
     static func writeToRealmDb(_ command: TLDRCommand, table: DBTable = .all) {
         guard let realm = realm else { return }
-        realm.create(table.tableType, value: ["name": command.nameTypeTuple.0, "type": command.nameTypeTuple.1], update: true)
+        realm.create(table.tableType, value: ["name": command.nameTypeTuple.0, "type": command.nameTypeTuple.1], update: .all)
     }
     
     static func commands(withKeyword keyword: String? = nil, table: DBTable = .all) -> [Command] {
         guard let realm = realm else { return []}
-        if let key = keyword {
+        if let key = keyword, !key.isEmpty {
             return getMatchingCommands(key, table: table)
         }
         

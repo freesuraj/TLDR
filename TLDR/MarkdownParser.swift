@@ -7,13 +7,8 @@
 //
 
 import UIKit
-import Down
 
 struct MarkDownParser {
-    
-    static func converted(_ markdown: String) -> NSAttributedString? {
-        return try? Down(markdownString: markdown).toAttributedString()
-    }
     
     static func attributedStringOfMarkdownString(_ markdown: String) -> NSAttributedString {
         let regexTypes: [RegexType] = [.title, .subTitle, .quote, .list, .block,.italic, .bold, .link]
@@ -25,11 +20,11 @@ struct MarkDownParser {
                 output.setAttributes(regexType.attributes(), range: aMatch.range)
                 if regexType == .link {
                     let linkValue = output.attributedSubstring(from: aMatch.range)
-                    output.addAttribute(NSLinkAttributeName, value: URL(string: linkValue.string)!, range: aMatch.range)
+                    output.addAttribute(NSAttributedString.Key.link, value: URL(string: linkValue.string)!, range: aMatch.range)
                 }
                 if let indices = regexType.rangeIndicesToDelete() {
                     for index in indices {
-                        rangesToDelete.append(aMatch.rangeAt(index))
+                        rangesToDelete.append(aMatch.range(at: index))
                     }
                 }
             }
@@ -74,35 +69,35 @@ struct MarkDownParser {
         }
         
         // Return the attributes for the regex type
-        func attributes() -> [String: AnyObject] {
+        func attributes() -> [NSAttributedString.Key: AnyObject] {
             switch self {
             case .title:
-                return [NSForegroundColorAttributeName:UIColor.white,
-                    NSFontAttributeName: UIFont(name: "Courier", size: 22)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.white,
+                        NSAttributedString.Key.font: UIFont(name: "Courier", size: 22)!]
             case .subTitle:
-                return [NSForegroundColorAttributeName:UIColor.lightText,
-                    NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.lightText,
+                        NSAttributedString.Key.font: UIFont(name: "Courier", size: 18)!]
             case .quote:
-                return [NSForegroundColorAttributeName:UIColor.green,
-                    NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.green,
+                        NSAttributedString.Key.font: UIFont(name: "Courier", size: 18)!]
             case .list:
-                return [NSForegroundColorAttributeName:UIColor.red,
-                    NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.red,
+                        NSAttributedString.Key.font: UIFont(name: "Courier", size: 18)!]
             case .block:
-                return [NSForegroundColorAttributeName:UIColor.lightText,
-                    NSFontAttributeName: UIFont(name: "Courier-Bold", size: 18)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.lightText,
+                        NSAttributedString.Key.font: UIFont(name: "Courier-Bold", size: 18)!]
             case .italic:
-                return [NSForegroundColorAttributeName:UIColor.white,
-                    NSFontAttributeName: UIFont(name: "Courier-Oblique", size: 18)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.white,
+                        NSAttributedString.Key.font: UIFont(name: "Courier-Oblique", size: 18)!]
             case .bold:
-                return [NSForegroundColorAttributeName:UIColor.orange,
-                    NSFontAttributeName: UIFont(name: "Courier-Bold", size: 18)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.orange,
+                        NSAttributedString.Key.font: UIFont(name: "Courier-Bold", size: 18)!]
             case .link:
-                return [NSForegroundColorAttributeName:UIColor.blue,
-                    NSFontAttributeName: UIFont(name: "Courier", size: 16)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.blue,
+                        NSAttributedString.Key.font: UIFont(name: "Courier", size: 16)!]
             case .normal:
-                return [NSForegroundColorAttributeName:UIColor.white,
-                    NSFontAttributeName: UIFont(name: "Courier", size: 18)!]
+                return [NSAttributedString.Key.foregroundColor:UIColor.white,
+                        NSAttributedString.Key.font: UIFont(name: "Courier", size: 18)!]
             }
         }
         
@@ -172,7 +167,7 @@ struct Regex {
     
     func matchesInString(_ input: String) -> [NSTextCheckingResult] {
         // swiftlint:disable legacy_constructor
-        let matches = self.internalExpression.matches(in: input, options: [], range: NSMakeRange(0, input.characters.count))
+        let matches = self.internalExpression.matches(in: input, options: [], range: NSMakeRange(0, input.count))
         return matches
     }
     
