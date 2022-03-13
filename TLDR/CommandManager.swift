@@ -33,6 +33,10 @@ struct TLDRCommand: Command {
         return value
 
     }
+    
+    static func commonType(with name: String) -> TLDRCommand {
+        return Self.init(name: name, type: "common")
+    }
 
     init(name: String, type: String) {
         self.nameTypeTuple = (name, type)
