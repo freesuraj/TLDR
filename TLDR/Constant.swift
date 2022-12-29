@@ -14,7 +14,7 @@ struct Repository {
     let name: String
     let branch: String
     
-    static let master = Repository(gitUrl: "https://github.com/", user: "tldr-pages", name: "tldr", branch: "master")
+    static let master = Repository(gitUrl: "https://github.com/", user: "tldr-pages", name: "tldr", branch: "main")
 }
 
 struct Constant {
