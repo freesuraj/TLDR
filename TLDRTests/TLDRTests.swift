@@ -20,24 +20,25 @@ class TLDRTests: XCTestCase {
     }
     
     func testFileManager_bundlePath() {
-        XCTAssertNotNil(FileManager.urlToBundleFolder())
+        XCTAssertNotNil(FileManager.bundleFolderUrl())
     }
     
     func testFileManager_readAFile() {
-        let fileurl = FileManager.urlToBundleFolder()!.appendingPathComponent("/pages/common/git.md")
+        let fileurl = FileManager.bundleFolderUrl()!.appendingPathComponent("common/git.md")
         print("file url \(fileurl)")
         XCTAssertNotNil(fileurl)
     }
     
     func testFileManager_pathInDownloadFolder_doesnotexist() {
-        let folder = FileManager.urlToTldrFolder()!.appendingPathComponent("InoExist")
+        let folder = FileManager.tldrFolderUrl()!.appendingPathComponent("InoExist")
         let fileExist = FileManager.fileManager.fileExists(atPath: folder.path)
         XCTAssertFalse(fileExist)
     }
     
     func testFileManager_pathInDownloadFolder_exist() {
         FileManager.copyBundleToDocument(replace: true)
-        let folder = FileManager.urlToTldrFolder()!
+        let folder = FileManager.tldrFolderUrl()!
+        print("copied folder \(folder.absoluteString)")
         let fileExist = FileManager.fileManager.fileExists(atPath: folder.path)
         XCTAssertTrue(fileExist)
     }
@@ -45,7 +46,6 @@ class TLDRTests: XCTestCase {
     func testFileManager_readAFileFromDownloadFolder() {
         let content = FileManager.contentOfFileAtTldrPages("common", name: "git")
         XCTAssertNotNil(content)
-        
     }
     
 }
