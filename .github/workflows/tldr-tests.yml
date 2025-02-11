@@ -1,12 +1,12 @@
-name: Xcode Tests
+name: Unit Tests
 
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   test:
@@ -14,18 +14,13 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      # Step 2: Set up Xcode
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode.app
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
 
-      # Step 3: Show Xcode version 
-      - name: Show Xcode version
-        run: xcodebuild -version
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      # Step 4: Build and test the project
-      - name: Run Xcode Tests
-        run: xcodebuild test -project TLDR.xcodeproj -scheme TLDR -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest'
+      - name: Run Unit Tests
+        run: xcodebuild test -project TLDR.xcodeproj -scheme TLDR -destination 'platform=iOS Simulator,name=iPhone 16'
