@@ -22,7 +22,7 @@ struct ConsoleView: View {
             searchBar
         }
         .task {
-            NetworkManager.checkAutoUpdate(printVerbose: true)
+            NetworkManager.checkAutoUpdate(printVerbose: false)
             Verbose.out(Constant.startUpInstruction)
         }
         .padding(.horizontal)
