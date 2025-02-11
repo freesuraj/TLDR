@@ -1,0 +1,20 @@
+# touch
+
+> Create files and set access/modification times.
+> More information: <https://manned.org/touch>.
+
+- Create specific files:
+
+`touch {{path/to/file1 path/to/file2 ...}}`
+
+- Set the file [a]ccess or [m]odification times to the current one and don't [c]reate file if it doesn't exist:
+
+`touch -c -{{a|m}} {{path/to/file1 path/to/file2 ...}}`
+
+- Set the file [t]ime to a specific value and don't [c]reate file if it doesn't exist:
+
+`touch -c -t {{YYYYMMDDHHMM.SS}} {{path/to/file1 path/to/file2 ...}}`
+
+- Set the files' timestamp to the [r]eference file's timestamp, and do not [c]reate the file if it does not exist:
+
+`touch -c -r {{path/to/reference_file}} {{path/to/file1 path/to/file2 ...}}`
