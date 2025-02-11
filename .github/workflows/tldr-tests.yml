@@ -1,0 +1,31 @@
+name: Xcode Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Xcode Tests
+    runs-on: macos-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Xcode
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      # Step 3: Show Xcode version 
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      # Step 4: Build and test the project
+      - name: Run Xcode Tests
+        run: xcodebuild test -project TLDR.xcodeproj -scheme TLDR -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest'
