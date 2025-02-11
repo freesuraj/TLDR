@@ -11,19 +11,34 @@ import Foundation
 /**
  *  All Types of Commands must conform to this Protocol
  */
-protocol Command {
+protocol Command: Identifiable {
+    var id: String { get }
     var name: String { get }
     var type: String { get }
     var output: NSAttributedString { get }
+    var rawOutput: String { get }
 }
 
 struct TLDRCommand: Command {
     let nameTypeTuple : (String, String)
+    var id: String {
+        return "\(name)-\(type)"
+    }
     var name: String {
         return nameTypeTuple.0
     }
     var type: String {
         return nameTypeTuple.1
+    }
+    
+    var rawOutput: String {
+        guard let content =
+            FileManager.contentOfFileAtTldrPages(self.nameTypeTuple.1,
+                name: self.nameTypeTuple.0) else {
+                return Constant.pageNotFound
+            }
+        return content
+
     }
     
     var output: NSAttributedString {
@@ -74,6 +89,10 @@ enum SystemCommand: Command {
     case help
     case version
     case random
+    
+    var id: String {
+        return name
+    }
 
     var name: String {
         switch self {
@@ -119,6 +138,25 @@ enum SystemCommand: Command {
             NetworkManager.checkAutoUpdate(printVerbose: true)
         }
         return NSAttributedString()
+    }
+    
+    var rawOutput: String {
+        switch self {
+        case .help:
+            return Constant.helpPage
+        case .info:
+            return Constant.aboutUsMarkdown
+        case .version:
+            return Constant.version
+        case .random:
+            if let command = StoreManager.getRandomCommand() {
+                return command.rawOutput
+            }
+        case .update:
+            NetworkManager.checkAutoUpdate(printVerbose: true)
+        }
+        
+        return ""
     }
     
     static var startupInstruction: NSAttributedString {

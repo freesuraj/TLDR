@@ -53,25 +53,25 @@ struct StoreManager {
         realm.create(table.tableType, value: ["name": command.nameTypeTuple.0, "type": command.nameTypeTuple.1], update: .all)
     }
     
-    static func commands(withKeyword keyword: String? = nil, table: DBTable = .all) -> [Command] {
+    static func commands(withKeyword keyword: String? = nil, table: DBTable = .all) -> [any Command] {
         guard let realm = realm else { return []}
         if let key = keyword, !key.isEmpty {
             return getMatchingCommands(key, table: table)
         }
         
         let results = realm.objects(table.tableType)
-        var output: [Command] = []
+        var output: [any Command] = []
         for result in results {
             output.append(TLDRCommand(name: result.name, type: result.type))
         }
         return output
     }
 
-    static func getMatchingTLDRCommands(_ keyword: String, table: DBTable = .all) -> [Command] {
-        guard let realm = realm else { return []}
-        let predicate = NSPredicate(format: "name CONTAINS[c] %@", keyword)
-        let results = realm.objects(table.tableType).filter(predicate)
-        var output: [Command] = []
+    static func getMatchingTLDRCommands(_ keyword: String, table: DBTable = .all) -> [TLDRCommand] {
+        guard let realm = realm else { return [] }
+        let predicate = NSPredicate(format: "name BEGINSWITH[c] %@", keyword)
+        let results = realm.objects(table.tableType).filter(predicate).prefix(6)
+        var output: [TLDRCommand] = []
         for result in results {
             output.append(TLDRCommand(name: result.name, type: result.type))
         }
@@ -107,8 +107,8 @@ struct StoreManager {
         } catch {}
     }
 
-    static func getMatchingSystemCommands(_ input: String) -> [Command] {
-        let commands: [Command] = [
+    static func getMatchingSystemCommands(_ input: String) -> [any Command] {
+        let commands: [any Command] = [
             SystemCommand.info,
             SystemCommand.update,
             SystemCommand.help,
@@ -124,7 +124,7 @@ struct StoreManager {
         })
     }
 
-    static func getMatchingCommands(_ keyword: String, table: DBTable = .all) -> [Command] {
+    static func getMatchingCommands(_ keyword: String, table: DBTable = .all) -> [any Command] {
         if keyword.hasPrefix("-") {
             return getMatchingSystemCommands(keyword)
         }

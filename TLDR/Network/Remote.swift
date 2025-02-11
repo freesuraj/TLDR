@@ -22,7 +22,7 @@ struct NetworkManager {
     }
 
     static func checkAutoUpdate(printVerbose verbose: Bool) {
-        Verbose.out("{{🔍 Checking last update time}}", verbose: verbose)
+        Verbose.out("🔍 Checking last update time", verbose: verbose)
         guard let localLastUpdateTime = getLastModifiedDate() else {
             updateTldrLibrary()
             return
